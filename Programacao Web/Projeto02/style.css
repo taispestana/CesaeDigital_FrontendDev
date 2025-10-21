@@ -1,0 +1,337 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: #333333;
+  background-color: #ffffff;
+  scroll-behavior: smooth;
+}
+
+/*NAVBAR*/
+.navbar {
+  background-color: #f5f8fc !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-brand span {
+  color: #003366;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.nav-link {
+  color: #003366 !important;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #66b2ff !important;
+}
+
+.navbar .btn-primary {
+  background-color: #003366;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.navbar .btn-primary:hover {
+  background-color: #00264d;
+  transform: scale(1.05);
+}
+
+section {
+  scroll-margin-top: 80px; /* Ajuste conforme a altura da sua navbar */
+}
+
+/*HEADER*/
+header img {
+  max-height: 80vh;
+  object-fit: cover;
+}
+
+
+.carousel-item img {
+  height: 60vh; 
+  object-fit: cover; 
+}
+
+.carousel-control-prev {
+  left: 0 !important;
+}
+
+.carousel-control-next {
+  right: 0 !important;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 40px;
+  height: 40px;
+}
+
+/* Diminui a altura do carrossel */
+.carousel-item img {
+  height: 60vh; /* 60% da altura da tela — ajuste à vontade */
+  object-fit: cover; /* mantém a imagem centralizada e cortada proporcionalmente */
+}
+
+/*HOME*/
+#inicio {
+  background-color: #f5f8fc;
+  color: #003366;
+}
+
+#inicio h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+#inicio h2 {
+  color: #66b2ff;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+#inicio p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #333333;
+}
+
+#inicio .btn-primary {
+  background-color: #003366;
+  border: none;
+  padding: 0.75rem 2rem;
+  transition: all 0.3s ease;
+}
+
+#inicio .btn-primary:hover {
+  background-color: #00264d;
+  transform: translateY(-3px);
+}
+
+#inicio .btn-outline-primary {
+  border-color: #003366;
+  color: #003366;
+  padding: 0.75rem 2rem;
+}
+
+#inicio .btn-outline-primary:hover {
+  background-color: #003366;
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+/*DESTINOS*/
+#destinos h2 {
+  color: #003366;
+  font-weight: 700;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  color: #003366;
+  font-weight: 600;
+}
+
+.card .btn-primary {
+  background-color: #003366;
+  border: none;
+}
+
+.card .btn-primary:hover {
+  background-color: #00264d;
+}
+
+/*BENEFICIOS*/
+#beneficios {
+  background-color: #f5f8fc;
+}
+
+#beneficios h2 {
+  color: #003366;
+  font-weight: 700;
+}
+
+.icon-azul {
+  filter: invert(18%) sepia(72%) saturate(1835%) hue-rotate(197deg) brightness(93%) contrast(95%);
+}
+
+#beneficios h5 {
+  color: #003366;
+  font-weight: 600;
+}
+
+#beneficios p {
+  color: #333;
+  font-size: 0.95rem;
+}
+
+/*DEPOIMENTOS*/
+#depoimentos {
+  background-color: #ffffff;
+}
+
+#depoimentos h2 {
+  color: #003366;
+  font-weight: 700;
+}
+
+#depoimentos .card {
+  padding-top: 2rem; /* espaço do topo do card */
+  padding-bottom: 1rem; /* mantém espaçamento inferior */
+  background-color: #f5f8fc;
+  border-radius: 10px;
+}
+
+#depoimentos .card img {
+  border: 3px solid #66b2ff; /* borda azul claro */
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+#depoimentos .card-body {
+  padding-top: 0.5rem;
+}
+
+#depoimentos .card-text {
+  color: #333;
+  font-style: italic;
+}
+
+#depoimentos .card-subtitle {
+  color: #66b2ff;
+}
+
+/*DESTINOS*/
+#destinos h2 {
+  color: #003366;
+  font-weight: 700;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  color: #003366;
+  font-weight: 600;
+}
+
+.card .btn-primary {
+  background-color: #003366;
+  border: none;
+}
+
+.card .btn-primary:hover {
+  background-color: #00264d;
+}
+
+/*SOBRE*/
+#sobre {
+  background-color: #f5f8fc;
+  color: #003366;
+}
+
+#sobre h2 {
+  font-weight: 700;
+  color: #003366;
+}
+
+#sobre p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+/*CONTACTO*/
+#contacto h2 {
+  color: #003366;
+  font-weight: 700;
+}
+
+#contacto .form-label {
+  color: #003366;
+  font-weight: 500;
+}
+
+#contacto .form-control {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 0.75rem;
+}
+
+#contacto .btn-primary {
+  background-color: #003366;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+#contacto .btn-primary:hover {
+  background-color: #00264d;
+  transform: scale(1.05);
+}
+
+/*LOCALIZACAO*/
+#localizacao h2 {
+  color: #003366;
+  font-weight: 700;
+}
+
+/*FOOTER*/
+footer {
+  background-color: #003366;
+  color: #ffffff;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  padding: 1rem 0;
+}
+
+/*RESPONSIVIDADE*/
+@media (max-width: 768px) {
+  #inicio h1 {
+    font-size: 2rem;
+  }
+
+  #inicio h2 {
+    font-size: 1.25rem;
+  }
+
+  .carousel-item img {
+    height: auto;
+    object-fit: cover;
+  }
+
+  .card {
+    margin-bottom: 1.5rem;
+  }
+
+}
+
+  .card {
+    margin-bottom: 1.5rem;
+  }

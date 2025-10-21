@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CESAE Digital - Contato</title>
+
+  <link rel="icon" href="Favicon/cesae.png" type="image/x-icon" />
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+</head>
+<body>
+  <a name="TOPO"></a>
+
+  <!-- CABEÇALHO -->
+  <header>
+    <div class="top-bar">
+      <img src="imagens/logo.png" alt="Logo Cesae Digital" class="logo" />
+      <nav class="navbar">
+        <ul>
+          <li><a href="index.html"><i class="fa fa-home"></i> Início</a></li>
+          <li><a href="courses.html"><i class="fa fa-search"></i> Cursos</a></li>
+          <li><a class="active" href="contact.html"><i class="fa fa-envelope"></i> Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="contact-intro">
+      <h1>Contato CESAE Digital</h1>
+      <p>Tem alguma dúvida ou quer mais informações sobre os nossos cursos? Preencha o formulário abaixo ou utilize os contatos disponíveis.</p>
+    </section>
+
+    <!-- FORMULÁRIO DE CONTATO -->
+    <section class="contact-form">
+      <form action="#" method="post">
+        <label for="name">Nome completo:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="subject">Assunto:</label>
+        <input type="text" id="subject" name="subject" required />
+
+        <label for="message">Mensagem:</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+
+        <button type="submit" class="btn-primary">Enviar Mensagem</button>
+      </form>
+    </section>
+
+    <!-- INFORMAÇÕES DE CONTATO -->
+    <section class="contact-info">
+      <h2>Informações de Contato</h2>
+      <p><i class="fa fa-phone"></i> Telefone: +351 912 345 678</p>
+      <p><i class="fa fa-envelope"></i> Email: info@cesae.digital</p>
+      <p><i class="fa fa-map-marker-alt"></i> Endereço: Rua Digital, 123 - Lisboa, Portugal</p>
+    </section>
+
+    <div class="back-to-top">
+      <a href="#TOPO">Voltar ao topo</a>
+    </div>
+  </main>
+
+  <!-- Seção Google Maps -->
+<section class="location">
+  <h2>Encontre-nos</h2>
+  <p>Visite o CESAE Digital ou entre em contato connosco para saber mais sobre os nossos cursos.</p>
+
+  <div class="map-container">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3111.2615160840163!2d-8.612684523518548!3d41.17802231304971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd24652d6e6bbacf%3A0x2cc351f9629cb4f1!2sCESAE%20Digital!5e0!3m2!1spt-PT!2spt!4v1731205577405!5m2!1spt-PT!2spt"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+
+  <a href="https://maps.google.com/?q=CESAE+Digital,+Porto,+Portugal" 
+     class="btn-map" target="_blank">
+    <i class="fa fa-map-marker-alt"></i> Ver no Google Maps
+  </a>
+</section>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <div class="social">
+      <a href="https://www.facebook.com/CesaeDigital/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://pt.linkedin.com/school/cesae-digital/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.youtube.com/c/cesaedigital" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p>&copy; 2025 CESAE Digital | Todos os direitos reservados<br />
+    Desenvolvido por <strong>Taís Pestana</strong></p>
+  </footer>
+</body>
+</html>

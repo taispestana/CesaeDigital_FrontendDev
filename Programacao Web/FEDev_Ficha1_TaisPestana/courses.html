@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CESAE Digital - Cursos</title>
+    <link rel="icon" href="Favicon/cesae.png" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <a name="TOPO"></a>
+    <header>
+      <div class="top-bar">
+        <img src="imagens/logo.png" alt="Logo Cesae Digital" class="logo" />
+        <nav class="navbar">
+          <ul>
+            <li><a href="index.html"><i class="fa fa-home"></i> Início</a></li>
+            <li><a class="active" href="courses.html"><i class="fa fa-search"></i> Cursos</a></li>
+            <li><a href="contact.html"><i class="fa fa-envelope"></i> Contato</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="courses-intro">
+        <h1>Cursos CESAE Digital</h1>
+        <p>Temos uma oferta variada de cursos, adaptados aos seus interesses e objetivos profissionais. Confira abaixo os detalhes de cada curso e inscreva-se.</p>
+      </section>
+
+      <!-- Tabela de cursos -->
+      <section class="courses-table">
+        <h2>Resumo dos Cursos</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Curso</th>
+              <th>Duração</th>
+              <th>Modalidade</th>
+              <th>Nível</th>
+              <th>Preço</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mobile Development com React Native</td>
+              <td>12 semanas</td>
+              <td>Online / Presencial</td>
+              <td>Intermediário</td>
+              <td>€450</td>
+            </tr>
+            <tr>
+              <td>Software Developer</td>
+              <td>16 semanas</td>
+              <td>Online / Presencial</td>
+              <td>Avançado</td>
+              <td>€600</td>
+            </tr>
+            <tr>
+              <td>Design e Desenvolvimento de Videojogos</td>
+              <td>14 semanas</td>
+              <td>Presencial</td>
+              <td>Iniciante/Intermediário</td>
+              <td>€500</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Cards de cursos -->
+      <section class="courses-container">
+        <div class="course-card">
+          <h2>Mobile Development com React Native</h2>
+          <p>Aprenda a criar aplicações móveis multiplataforma (Android e iOS) usando React Native e TypeScript.</p>
+          <ul>
+            <li>React Native</li>
+            <li>Android e iOS</li>
+            <li>TypeScript</li>
+          </ul>
+        </div>
+
+        <div class="course-card">
+          <h2>Software Developer</h2>
+          <p>Formação completa para atuar no desenvolvimento Web e Mobile, gestão de projetos e arquitetura de software.</p>
+          <ul>
+            <li>Arquiteturas de Software</li>
+            <li>Bases de Dados</li>
+            <li>Aplicações Mobile</li>
+          </ul>
+        </div>
+
+        <div class="course-card">
+          <h2>Design e Desenvolvimento de Videojogos</h2>
+          <p>Crie experiências imersivas, aprendendo a desenvolver e design de videojogos profissionais.</p>
+          <ul>
+            <li>Game Design</li>
+            <li>Unity / Unreal Engine</li>
+            <li>Programação de Jogos</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Formulário de inscrição -->
+      <section class="signup-form">
+        <h2>Inscreva-se em um curso</h2>
+        <form action="#" method="post">
+          <label for="name">Nome completo:</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="course">Escolha o curso:</label>
+          <select id="course" name="course" required>
+            <option value="">Selecione...</option>
+            <option value="react-native">Mobile Development com React Native</option>
+            <option value="software-dev">Software Developer</option>
+            <option value="game-dev">Design e Desenvolvimento de Videojogos</option>
+          </select>
+
+          <label for="level">Nível do aluno:</label>
+          <select id="level" name="level" required>
+            <option value="">Selecione...</option>
+            <option value="iniciante">Iniciante</option>
+            <option value="intermediario">Intermediário</option>
+            <option value="avancado">Avançado</option>
+          </select>
+
+          <label for="mode">Modalidade:</label>
+          <select id="mode" name="mode" required>
+            <option value="">Selecione...</option>
+            <option value="online">Online</option>
+            <option value="presencial">Presencial</option>
+            <option value="hibrido">Híbrido</option>
+          </select>
+
+          <button type="submit" class="btn-primary">Enviar Inscrição</button>
+        </form>
+      </section>
+
+      <!-- Seção de Testemunhos -->
+<section class="testimonials">
+  <h2>O que dizem os nossos alunos</h2>
+  <div class="testimonial-container">
+    <div class="testimonial">
+      <img src="imagens/aluno1.jpg" alt="Foto de João Silva">
+      <p class="quote">"O curso de React Native superou as minhas expectativas! As aulas são práticas e o suporte é excelente."</p>
+      <h4>João Silva</h4>
+      <span>Mobile Developer</span>
+    </div>
+
+    <div class="testimonial">
+      <img src="imagens/aluna2.jpg" alt="Foto de Maria Costa">
+      <p class="quote">"Aprendi imenso no curso de Software Developer. Hoje trabalho na área graças à base que o CESAE me proporcionou."</p>
+      <h4>Maria Costa</h4>
+      <span>Software Engineer</span>
+    </div>
+
+    <div class="testimonial">
+      <img src="imagens/aluno3.jpg" alt="Foto de Pedro Santos">
+      <p class="quote">"O curso de Videojogos foi incrível! A metodologia prática ajudou-me a criar o meu primeiro jogo."</p>
+      <h4>Pedro Santos</h4>
+      <span>Game Designer</span>
+    </div>
+  </div>
+</section>
+
+      <div class="back-to-top">
+        <a href="#TOPO">Voltar ao topo</a>
+      </div>
+    </main>
+
+    <footer>
+      <div class="social">
+        <a href="https://www.facebook.com/CesaeDigital/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://pt.linkedin.com/school/cesae-digital/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.youtube.com/c/cesaedigital" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+      <p>&copy; 2025 CESAE Digital | Todos os direitos reservados<br />
+      Desenvolvido por <strong>Taís Pestana</strong></p>
+    </footer>
+  </body>
+</html>

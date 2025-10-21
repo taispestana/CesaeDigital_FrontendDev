@@ -1,0 +1,616 @@
+/* RESET BÁSICO - Removendo margens e espaçamentos padrão dos navegadores*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Voltar ao topo de forma suave */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Definição de fonte, cor de texto, fundo e espaçamento entre linhas. */
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  color: #333;
+  background-color: #fafafa;
+  line-height: 1.6;
+}
+
+/* HEADER E NAVBAR */
+header {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Alinhando logo e menu horizontalmente, com espaçamento interno (padding) e sombra. */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+  max-width: 220px;
+  height: auto;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* Definiçao de cores etc Navbar */
+.navbar a {
+  text-decoration: none;
+  color: #004aad;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+/* Efeito hover da Navbar */
+.navbar a:hover,
+.navbar a.active {
+  color: #00b0f0;
+  border-bottom: 2px solid #00b0f0;
+  padding-bottom: 2px;
+}
+
+/* SLIDESHOW (HOME) */
+.slideshow-container {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Estilização basica do slide */
+.mySlides {
+  display: none;
+  position: relative;
+}
+
+/* Estilizaçao da imagem do slide */
+.mySlides img {
+  width: 100%;
+  height: 70vh;
+  object-fit: cover;
+}
+
+/* Estilização da legenda da imagem */
+.caption {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  /* Centraliza horizontalmente */
+  transform: translateX(-50%);
+  color: #fff;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1rem 2rem;
+  border-radius: 10px;
+}
+
+/* Estilizacao de titulos e parágrafos dentro da legenda */
+.caption h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Estilizacao de titulos e parágrafos dentro da legenda */
+.caption p {
+  font-size: 1rem;
+}
+
+/* Estilização botoes de navegação - setas */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  transition: 0.3s;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Passando a seta “próxima” para o lado direito do slide. */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* Hover da seta */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Ativando a animação fadeEffect para transição entre os slides */
+.fade {
+  animation: fadeEffect 1s ease-in-out;
+}
+
+@keyframes fadeEffect {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* SEÇÃO INTRODUTÓRIA - Estilização de introdução de cada página */
+.intro,
+.courses-intro,
+.contact-intro {
+  text-align: center;
+  padding: 3rem 10%;
+  background-color: #f5f8ff;
+}
+
+.intro h1,
+.courses-intro h1,
+.contact-intro h1 {
+  color: #004aad;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.intro p,
+.courses-intro p,
+.contact-intro p {
+  font-size: 1.1rem;
+  color: #333;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* VÍDEO INSTITUCIONAL - estilização da cor de fundo, centralização e espaçamento */
+.video-section {
+  background-color: #f9fbff;
+  text-align: center;
+  padding: 4rem 5%;
+}
+
+/* Estilização do título */
+.video-section h2 {
+  color: #004aad;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Estilização do parágrafo */
+.video-section p {
+  color: #333;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+/* Estilização do container do video - posição, proporção, cantos arredondados e sombra */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* proporção 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Estilização do iframe - posição, tamanho e remoção de borda */
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .video-section h2 {
+    font-size: 1.6rem;
+  }
+
+  .video-section p {
+    font-size: 1rem;
+  }
+}
+
+/* TABELA DE CURSOS */
+.courses-table {
+  padding: 3rem 5%;
+  text-align: center;
+}
+
+.courses-table h2 {
+  color: #004aad;
+  margin-bottom: 1rem;
+}
+
+/* Removendo espaços entre bordas e ocupando toda a largura */
+.courses-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+/* Estilização do cabeçalho e texto */
+.courses-table th,
+.courses-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+}
+
+/* Estilização do fundo, cor de texto e tamanho do cabeçalho */
+.courses-table th {
+  background-color: #004aad;
+  color: white;
+  font-weight: 600;
+}
+
+/* Aplicando cinza claro nas linhas pares da tabela */
+.courses-table tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+/* Hover da tabela ao passar mouse */
+.courses-table tr:hover {
+  background-color: #e0f0ff;
+}
+
+/* CARDS DE CURSOS - estilização de posição, responsividade, espaçamento para card de cursos*/
+.courses-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 3rem 5%;
+}
+
+/* Estilização de cor de fundo, borda, tamanho e transição do hover para card individual */
+.course-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Estilização do hover- quando passa o mouse o card se move e faz mais sombra */
+.course-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilização de título do curso */
+.course-card h2 {
+  color: #004aad;
+  margin-bottom: 0.8rem;
+}
+
+/* Estilização da descrição do curso */
+.course-card p {
+  color: #555;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+/* Estilização da lista dentro da descrição do curso */
+.course-card ul {
+  list-style: disc inside;
+  color: #333;
+  padding-left: 0;
+}
+
+/* FORMULÁRIOS - estilização cor, tamanho etc sombra de ambos os formularios */
+.signup-form,
+.contact-form {
+  background-color: #f5f8ff;
+  padding: 3rem 5%;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 3rem auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilização dos títulos dos formularios */
+.signup-form h2,
+.contact-form h2 {
+  color: #004aad;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Estilização do conteudo dos formularios */
+.signup-form label,
+.contact-form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+/* Estilização do tamanho, espaço, borda dos campos de entrada de dados dos formularios */
+.signup-form input,
+.signup-form select,
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  margin-top: 0.3rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+}
+
+/* Estilização do tamanho, cor de fundo, cor, borda, cursor e transição do hover dos botões dos formularios */
+.signup-form button,
+.contact-form button {
+  display: block;
+  margin: 2rem auto 0;
+  background-color: #004aad;
+  color: white;
+  padding: 0.8rem 1.8rem;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+/* Estilização da cor do hover dos botoes */
+.signup-form button:hover,
+.contact-form button:hover {
+  background-color: #00b0f0;
+}
+
+/* TESTEMUNHOS - estilização principal de cor de fundo, espaço e centralização dos testemunhos */
+.testimonials {
+  background-color: #f9f9f9;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+/* Estilização da cor, tamanho e espaço dos titulos dos testemunhos */
+.testimonials h2 {
+  color: #003366;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+/* Estilização da organizaçao, centralização e espaçamento entre os cards dos testemunhos */
+.testimonial-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+/* Estilização para cada testemunho, cor de fundo, borda, alinhamento, transição do hover */
+.testimonial {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  padding: 25px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+/* Movimento do card quando mouse passar por cima */
+.testimonial:hover {
+  transform: translateY(-5px);
+}
+
+/* Estilização do tamanho, borda e sem distorção da imagem dos testemunhos */
+.testimonial img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  object-fit: cover;
+}
+
+/* Estilização do texto do testemunho, cor, tamanho e margem */
+.testimonial .quote {
+  font-style: italic;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Estilização nome do autor do testemunho */
+.testimonial h4 {
+  color: #003366;
+  margin-bottom: 4px;
+}
+
+/* Estilização dos campos de cargo/curso do testemunho */
+.testimonial span {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* INFORMAÇÕES DE CONTATO */
+.contact-info {
+  text-align: center;
+  padding: 2rem 5%;
+}
+
+/* Estilização de título de contacto */
+.contact-info h2 {
+  color: #004aad;
+  margin-bottom: 1rem;
+}
+
+/* Estilização dos paragrafos de contacto */
+.contact-info p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+/* Estilização dos icones de contacto */
+.contact-info i {
+  color: #004aad;
+  margin-right: 8px;
+}
+
+/* BACK TO TOP - estilização de voltar ao topo*/
+.back-to-top {
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.back-to-top a {
+  text-decoration: none;
+  color: #004aad;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.back-to-top a:hover {
+  color: #00b0f0;
+}
+
+/* Estilizaçao da Localização / Google Maps */
+.location {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #f5f7fa;
+}
+
+/* Estilização de titulo */
+.location h2 {
+  font-size: 2rem;
+  color: #003366;
+  margin-bottom: 10px;
+}
+
+/* Estilização de paragrafo */
+.location p {
+  color: #555;
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+
+/* Centralizando o mapa */
+.map-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Estilizando o tamanho, borda e sombra do mapa */
+.map-container iframe {
+  width: 100%;
+  max-width: 900px;
+  height: 450px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilização do tamanho, cor, borda e transição de hover do Botão do Google Maps */
+.btn-map {
+  display: inline-block;
+  background-color: #004aad;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Dando margem ao icone */
+.btn-map i {
+  margin-right: 8px;
+}
+
+/* Estiização do hover do botao */
+.btn-map:hover {
+  background-color: #003a8c;
+  transform: translateY(-3px);
+}
+
+/* Estilização do RODAPÉ */
+footer {
+  background-color: #004aad;
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+footer .social {
+  margin-bottom: 1rem;
+}
+
+footer .social a {
+  color: white;
+  margin: 0 10px;
+  font-size: 1.4rem;
+  transition: color 0.3s ease;
+}
+
+footer .social a:hover {
+  color: #00b0f0;
+}
+
+footer p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  .top-bar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* Navbar se empilha em tela menor */
+  .navbar ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  /* Fonte diminue em tela menor */
+  .caption h2 {
+    font-size: 1.4rem;
+  }
+
+  /* Fonte diminue em tela menor */
+  .caption p {
+    font-size: 0.9rem;
+  }
+
+  /* Espaçamento interno dos campos abaixo em tela menor */
+  .intro,
+  .courses-intro,
+  .contact-intro,
+  .courses-container,
+  .signup-form,
+  .contact-form {
+    padding: 2rem 5%;
+  }
+
+  /* Cursos se empilham quando a tela for menor */
+  .courses-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
