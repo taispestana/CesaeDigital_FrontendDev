@@ -11,6 +11,8 @@ import { CourseGoal } from './components/CourseGoal'
 import course from './data/course'
 import { Button } from './components/Button'
 import Login from './components/Login'
+import Discount from './components/Discount'
+import ReactSubject from './components/ReactSubject'
 
 let mySubject = "React";
 
@@ -32,19 +34,27 @@ let product = {
 function App() {
   const [count, setCount] = useState(0)
 
-  let chosenSubject = 'Escolha a matéria';
+  // variaveis sem estado
+  // let chosenSubject = 'Escolha a matéria';
 
+  // estados do react -> useState()
+  const [chosenSubject, setChosenSubject] = useState('Escolha a matéria:');
+
+  // funcao para o botao submeter
   function alertPayDate(){
     alert('Atenção à data de pagamento!')
   }
 
+  // funcao que vai tomar conta do clique das materias
   function getSubject(subject){
-    alert('matéria completa de ' + subject);
-    chosenSubject = subject;
+    // alert('matéria completa de ' + subject);
+    setChosenSubject('a materia é: '+ subject);
   }
 
   return (
     <>
+    <ReactSubject/>
+    
     <FirstComponent/>
     <MainGoal objetivo = {objectvs[0]}/>
     <MainGoal objetivo = {objectvs[1]}/>
@@ -82,12 +92,14 @@ function App() {
         <Button functionForClick={() => getSubject('JS')}>Materia JS</Button>
         <Button functionForClick={() => getSubject('React')}>Materia React</Button>
         <Button functionForClick={() => getSubject('SQL')}>Materia SQL</Button>
+
         <div>
           {chosenSubject}
         </div>
 
-        <Login>
-        </Login>
+        <Discount/>
+
+        <Login/>
       </menu>
     </>
   )

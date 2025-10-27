@@ -1,5 +1,5 @@
 import { Button } from "./Button";
-import "../Login.css";
+import "./Login.css";
 
 export default function Login() {
     function alertLogin(){
@@ -14,7 +14,7 @@ export default function Login() {
           <input
           />
         </div>
-
+<br />
         <div className="control no-margin">
           <label htmlFor="password">Password</label>
           <input  
