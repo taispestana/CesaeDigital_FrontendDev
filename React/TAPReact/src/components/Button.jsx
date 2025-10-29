@@ -1,9 +1,9 @@
 import'./Button.css'
 
-export function Button({children, functionForClick}){
+export function Button({children, functionForClick, isActive}){
     
           return (
-       <button onClick={functionForClick}>{children}</button>
+       <button className={isActive && 'rose'} onClick={functionForClick}>{children}</button>
 )
     
 }

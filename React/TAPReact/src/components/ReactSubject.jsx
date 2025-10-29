@@ -1,33 +1,35 @@
 import { useState } from "react";
 import { Button } from "./Button";
-import { CORE_CONCEPTS, EXAMPLES } from "../data/coreConcepts";
+import { EXAMPLES } from "../data/coreConcepts";
 
 export default function ReactSubject(){
 
-    const [description, setDescription] = useState(null)
+    const [description, setDescription] = useState()
 
     function changeSubject(selectedTopic){
         setDescription(selectedTopic)
     }
+    
 
     return(
     <div>
         <h3>Matéria de React</h3>
 
     <menu>
-        <Button functionForClick={() => changeSubject('jsx')}>JSX</Button>
-        <Button functionForClick={() => changeSubject('props')}>Props</Button>
-        <Button functionForClick={() => changeSubject('state')}>State</Button>
+        <Button isActive={description == 'jsx'} functionForClick={() => changeSubject('jsx')}>JSX</Button>
+        <Button isActive={description == 'props'} functionForClick={() => changeSubject('props')}>Props</Button>
+        <Button isActive={description == 'state'} functionForClick={() => changeSubject('state')}>State</Button>
     </menu>
     
-    
+    {!description ? 'Por favor escolha um tema:' :
     <div id='tab-content'>
-        <h3>{EXAMPLES[description].title}</h3>
-        <p>{EXAMPLES[description].description}</p>
+        <h3>{EXAMPLES[description].title ? EXAMPLES[description].title : 'título não carregado'}</h3>
+        <p>{EXAMPLES[description].description ? EXAMPLES[description].description : 'descrição não carregada'}</p>
         <pre>
-            <code>{EXAMPLES[description].code}</code>
+            <code>{EXAMPLES[description].code ? EXAMPLES[description].code : 'código não carregado'}</code>
         </pre>
     </div>
+}
      </div>
     )
 }
