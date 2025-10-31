@@ -4,8 +4,6 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import MainGoal from './components/MainGoal'
 import FirstComponent from './components/FirstComponent'
-import Card from './components/Card'
-import userData from './data/userData'
 import objectvs from './data/objectivs'
 import { CourseGoal } from './components/CourseGoal'
 import course from './data/course'
@@ -14,6 +12,10 @@ import Login from './components/Login'
 import Discount from './components/Discount'
 import ReactSubject from './components/ReactSubject'
 import Delete from './components/Delete'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import HomePage from './pages/HomePage'
+import Contacts from './pages/Contacts'
+import RootLayout from './components/layouts/RootLayout'
 
 let mySubject = "React";
 
@@ -32,7 +34,19 @@ let product = {
   color: 'amarelo'
 };
 
+const router = createBrowserRouter([
+  {path:'/',
+    element: <RootLayout/>,
+    children:[
+  {path:'/', element: <HomePage/>},
+  {path:'/contacts', element: <Contacts/>}]
+    }
+]);
+
 function App() {
+
+  return <RouterProvider router={router}/>
+
   const [count, setCount] = useState(0)
 
   // variaveis sem estado
@@ -75,14 +89,6 @@ function App() {
       </div>
 
       <h1>Front End Developer: React</h1>
-
-   <Card firstName = 'Cristina'
-   lastName = 'Correia'
-   title = 'Gestora Pedagógica'/>
-   <Card firstName = 'Antonio'
-   lastName = 'Silva'
-   title = 'Gestor'/>
-    <Card {...userData}/>
 
     <Button functionForClick={alertPayDate}>Submeter</Button>
       <p className="read-the-docs">
