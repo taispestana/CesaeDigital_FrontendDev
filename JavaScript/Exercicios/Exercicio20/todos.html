@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos</title>
+    
+    <style>
+        /* CSS */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #6c63ff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        li.done {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        img {
+            max-width: 100px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .checkbox {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Todo List</h1>
+    </header>
+<!-- HTML -->
+    <div class="container">
+        <h2>Todos</h2>
+        <ul>
+            <li class="done">
+                <input type="checkbox" class="checkbox" checked>
+                <span>Buy groceries</span>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzQLjzoIFL527aX27d74psYLvxcGKVDWVzOA&s" alt="Groceries">
+            </li>
+            <li>
+                <input type="checkbox" class="checkbox">
+                <span>Walk the dog</span>
+                <img src="https://www.lawscountrykennel.com/wp-content/uploads/2018/04/Dog-Walk.jpg" alt="Dog walking">
+            </li>
+            <li class="done">
+                <input type="checkbox" class="checkbox" checked>
+                <span>Pay bills</span>
+                <img src="https://debtwave.org/wp-content/uploads/2019/07/Bills-to-Pay.jpg" alt="Pay bills">
+            </li>
+            <li>
+                <input type="checkbox" class="checkbox">
+                <span>Finish project</span>
+                <img src="https://leapmax.ai/wp-content/uploads/2024/06/Flexible-work-arrangements.webp" alt="Project">
+            </li>
+        </ul>
+    </div>
+<script defer src="/Exercicio20/JavaScript/script.js" ></script>
+</body>
+</html>

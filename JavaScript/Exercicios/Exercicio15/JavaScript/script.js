@@ -6,16 +6,16 @@
 //  olhos de cobra’:
 
 
- function isSnakeEyes(num1,num2) {
+//  function isSnakeEyes(num1,num2) {
 
-  // condicao se os numeros forem iguais
-  if (num1 === 1 && num2 === 1){
-    console.log("Yay, snake eyes!!!")
+//   // condicao se os numeros forem iguais
+//   if (num1 === 1 && num2 === 1){
+//     console.log("Yay, snake eyes!!!")
 
-  }else{
-    console.log("Não são olhos de cobra...")
-  }
-    }
+//   }else{
+//     console.log("Não são olhos de cobra...")
+//   }
+//     }
     
-isSnakeEyes(1,2);
-isSnakeEyes(1,1);
+// isSnakeEyes(1,2);
+// isSnakeEyes(1,1);

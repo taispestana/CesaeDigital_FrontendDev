@@ -71,9 +71,9 @@
 // • Retorne o número de vogais na string (a, e, i, o, u). 
 // • Imprima na consola 
 
-// function contarVogais(vogal){
+function contarVogais(vogal){
 
-// }
+}
 
 
 // 6. Calculadora Básica 
