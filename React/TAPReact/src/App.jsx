@@ -18,6 +18,8 @@ import Subject from './pages/Subject'
 import Exercises from './pages/Exercises'
 import Courses from './pages/Courses'
 import Course from './pages/Course'
+import ShoppingList from './pages/ShoppingPage'
+import Christmasgifts from './pages/Christmasgifts'
 
 let mySubject = "React";
 
@@ -46,8 +48,9 @@ const router = createBrowserRouter([
   {path:'/subject', element: <Subject/>},
   {path:'/exercises', element: <Exercises/>},
   {path:'/courses', element: <Courses/>},
-  {path:'/course/:course_name', element: <Course/>}]
-    }
+  {path:'/course/:course_name', element: <Course/>},
+  {path:'/shoppinglist', element: <ShoppingList/>},
+  {path:'/christmasgifts', element: <Christmasgifts/>}]}
 ]);
 
 function App() {
@@ -62,15 +65,5 @@ function App() {
   // estados do react -> useState()
   const [chosenSubject, setChosenSubject] = useState('Escolha a matéria:');
 
-  // funcao para o botao submeter
-  function alertPayDate(){
-    alert('Atenção à data de pagamento!')
-  }
-
-  // funcao que vai tomar conta do clique das materias
-  function getSubject(subject){
-    // alert('matéria completa de ' + subject);
-    setChosenSubject('a materia é: '+ subject);
-  }
 }
 export default App

@@ -11,6 +11,10 @@ export default function HomePage(){
             <Link to="/exercises">Os meus exercicios</Link>
             <br />
             <Link to="/courses">Os meus cursos</Link>
+            <br />
+            <Link to="/shoppingList">A minha lista de compras</Link>
+            <br />
+             <Link to="/christmasgifts">A minha lista de Presentes de Natal</Link>
         </div>
     )
 }
