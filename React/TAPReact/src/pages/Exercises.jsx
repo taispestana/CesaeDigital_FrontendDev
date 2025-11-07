@@ -10,7 +10,14 @@ import { Link } from "react-router-dom"
 import objectvs from '../data/objectivs'
 import course from '../data/course'
 
+
 export default function Exercises(){
+
+  // funcao para o botao submeter
+  function alertPayDate(){
+    alert('Atenção à data de pagamento!')
+  }
+
     return (
 
         <div>

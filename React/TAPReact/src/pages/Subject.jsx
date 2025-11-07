@@ -9,6 +9,12 @@ export default function Subject(){
 
   const [chosenSubject, setChosenSubject] = useState('Escolha a matéria:');
 
+   // funcao que vai tomar conta do clique das materias
+  function getSubject(subject){
+    // alert('matéria completa de ' + subject);
+    setChosenSubject('a materia é: '+ subject);
+  }
+
     return (
         <div>
             <div>
