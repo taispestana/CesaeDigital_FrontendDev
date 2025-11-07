@@ -1,0 +1,82 @@
+:root {
+  --accent: #7c4dff;
+  --accent-2: #00e6ff;
+  --bg: #0b0b0b;
+  --muted: #bdbdbd;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  background: linear-gradient(180deg, #050505 0%, #0a0a0f 100%);
+  color: #eee;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Press Start 2P",
+    sans-serif;
+  min-height: 100vh;
+}
+.retro {
+  font-family: "Press Start 2P", cursive;
+  color: var(--accent-2);
+  text-align: center;
+}
+.navbar-brand {
+  font-family: "Press Start 2P", sans-serif;
+}
+.card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+footer small {
+  opacity: 0.9;
+}
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 10px;
+  justify-items: center;
+  align-items: center;
+}
+.memory-card {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 30px;
+  user-select: none;
+  border: 2px solid rgba(255, 255, 255, 0.04);
+}
+.memory-card.flipped {
+  background: var(--accent);
+  color: #000;
+}
+.reflex-area {
+  width: 100%;
+  height: 250px;
+  background: linear-gradient(180deg, #050514, #071022);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+.reflex-block {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  background: var(--accent);
+  color: #000;
+  font-weight: bold;
+}
+@media (min-width: 768px) {
+  .memory-grid {
+    grid-template-columns: repeat(6, 100px);
+  }
+}

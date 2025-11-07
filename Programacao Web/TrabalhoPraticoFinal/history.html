@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>História dos Games - GameVerse</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">GameVerse</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu2">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu2">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="historia.html">História</a></li>
+            <li class="nav-item"><a class="nav-link" href="jogo.html">Mini Games</a></li>
+            <li class="nav-item"><a class="nav-link" href="contato.html">Contato</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container my-5">
+    <article>
+      <h1 class="retro">A Evolução dos Videogames</h1>
+      <p>Dos arcades às consoles domésticos — uma visão resumida das décadas mais marcantes.</p>
+
+      <section class="my-4">
+        <figure class="figure">
+          <img src="assets/history.jpg" class="figure-img img-fluid rounded" alt="Historia">
+          <figcaption class="figure-caption">Fliperamas e pixels grandes: onde tudo começou.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2>Linha do tempo</h2>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Década</th>
+                <th>Console/Plataforma</th>
+                <th>Jogo Marcante</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1980s</td>
+                <td>NES / Arcades</td>
+                <td>Super Mario Bros / Pac-Man</td>
+              </tr>
+              <tr>
+                <td>1990s</td>
+                <td>PlayStation / Sega</td>
+                <td>Final Fantasy / Sonic</td>
+              </tr>
+              <tr>
+                <td>2000s</td>
+                <td>Xbox / GameCube</td>
+                <td>Halo / Metroid Prime</td>
+              </tr>
+              <tr>
+                <td>2010s</td>
+                <td>Multiplataforma</td>
+                <td>Dark Souls / Minecraft</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="my-4">
+        <h2>Vídeo: A história em 10 minutos</h2>
+        <div class="ratio ratio-16x9">
+          <iframe src="https://www.youtube.com/embed/aqBq9o1-1sI" title="Historia dos games" allowfullscreen></iframe>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="bg-dark text-light py-4">
+    <div class="container d-flex justify-content-between align-items-center">
+      <small>© <span id="year2"></span> GameVerse</small>
+      <div>
+        <a href="mailto:gameverse@example.com" class="text-light me-3">gameverse@example.com</a>
+        <a href="https://pt.wikipedia.org/wiki/Videojogo" target="_blank" class="text-light">Wiki</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>document.getElementById('year2').textContent = new Date().getFullYear();</script>
+</body>
+
+</html>
