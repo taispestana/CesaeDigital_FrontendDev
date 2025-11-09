@@ -1,49 +1,70 @@
 import { Button } from "../components/Button";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { GIFTS } from "../data/christmasgifts";
+import "./Christmasgifts.css";
 
-export default function Christmasgifts(){
+export default function Christmasgifts() {
+  const [pessoaSelecionada, setpessoaSelecionada] = useState(null);
+  const [presentesAnimados, setPresentesAnimados] = useState([]);
 
-      const [selectedPerson, setSelectedPerson] = useState(null);
+  function mostrarPresente(pessoa) {
+    setpessoaSelecionada(pessoa);
+    gerarChuvaDePresentes();
+  }
 
-      function mostrarPresente(pessoa) {
-        setSelectedPerson(pessoa);
-      }
+  function gerarChuvaDePresentes() {
+    const gifts = [];
+    for (let i = 0; i < 20; i++) {
+      gifts.push({
+        id: i,
+        style: {
+          left: `${Math.random() * 90}vw`, // posição horizontal aleatória
+          animationDuration: `${2 + Math.random() * 3}s`, // velocidade diferente
+        },
+      });
+    }
+    setPresentesAnimados(gifts);
 
-      const listaPresente = selectedPerson ? GIFTS [selectedPerson] : null;
+    setTimeout(() => setPresentesAnimados([]), 5000);
+  }
 
-    return(
+  const listaPresente = pessoaSelecionada ? GIFTS[pessoaSelecionada] : null;
 
-        <div className="christmas-container">
-      <h2>Gestão de Prendas de Natal</h2>
+  return (
+    <div className="christmas-page">
+      <h2>Prendas de Natal deste Ano</h2>
 
       <menu className="gift-menu">
         <Button
           functionForClick={() => mostrarPresente("tais")}
-          className={selectedPerson === "tais" ? "active" : ""}
+          isActive={pessoaSelecionada === "tais" ? "active" : ""}
         >
           Tais
         </Button>
 
         <Button
           functionForClick={() => mostrarPresente("macau")}
-          className={selectedPerson === "macau" ? "active" : ""}
+          isActive={pessoaSelecionada === "macau" ? "active" : ""}
         >
           Macau
         </Button>
       </menu>
 
       <div className="gift-content">
-        {!selectedPerson && <p>Escolha um responsável para ver as prendas</p>}
+        {!pessoaSelecionada && (
+          <p>Escolha uma pessoa acima para ver as prendas!</p>
+        )}
 
-        {selectedPerson && !listaPresente && (
+        {pessoaSelecionada && !listaPresente && (
           <p>Erro: não foi possível carregar as prendas</p>
         )}
 
-        {selectedPerson && listaPresente && listaPresente.length === 0 && (
-          <p>{selectedPerson} ainda não tem prendas atribuídas.</p>
+        {pessoaSelecionada && listaPresente && listaPresente.length === 0 && (
+          <p>{pessoaSelecionada} ainda não tem prendas atribuídas.</p>
         )}
 
-        {selectedPerson && listaPresente && listaPresente.length > 0 && (
+        {pessoaSelecionada && listaPresente && listaPresente.length > 0 && (
           <ul>
             {listaPresente.map((gift, index) => (
               <li key={index}>
@@ -53,7 +74,13 @@ export default function Christmasgifts(){
           </ul>
         )}
       </div>
+
+      {presentesAnimados.map((gift) => (
+        <span key={gift.id} className="gift-fall" style={gift.style}>
+          🎁
+        </span>
+      ))}
+      <Link to="/">Minha homepage</Link>
     </div>
-    
-    )
+  );
 }

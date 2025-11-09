@@ -1,0 +1,34 @@
+.christmas-page {
+  color: black; /* texto visível sobre fundo escuro */
+  text-align: center;
+  padding: 2rem;
+}
+
+.gift-fall {
+  position: absolute;
+  top: -50px;
+  font-size: 2rem;
+  animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+.gift-menu {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.gift-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.gift-content li {
+  margin: 0.5rem 0;
+}
