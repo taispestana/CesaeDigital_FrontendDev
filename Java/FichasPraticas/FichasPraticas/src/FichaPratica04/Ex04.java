@@ -14,14 +14,14 @@ public class Ex04 {
         Scanner input = new Scanner(System.in);
 
         // Ler os 10 números
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < numeros.length; i++) {
             System.out.print("Digite o número " + (i + 1) + ": ");
             numeros[i] = input.nextInt();
         }
 
         // Encontrar o menor número
         int menor = numeros[0];
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i < numeros.length; i++) {
             if (numeros[i] < menor) {
                 menor = numeros[i];
             }

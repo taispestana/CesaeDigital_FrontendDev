@@ -9,18 +9,18 @@ public class Ex03 {
         //• Depois, deverá determinar e apresentar o maior valor encontrado no array.
 
         //Declaracao array e leitura do mesmo
-        int[] numeros = new int[10];
+        int[] numeros = new int[3];
         Scanner input = new Scanner(System.in);
 
         // Ler os 10 números
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < numeros.length; i++) {
             System.out.print("Digite o número " + (i + 1) + ": ");
             numeros[i] = input.nextInt();
         }
 
         // Encontrar o maior número
         int maior = numeros[0];
-        for (int i = 1; i < 10; i++) {
+        for (int i = 0; i < numeros.length; i++) {
             if (numeros[i] > maior) {
                 maior = numeros[i];
             }

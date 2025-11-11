@@ -12,21 +12,18 @@ public class Ex05 {
         //Declaracao array e leitura do mesmo
         int[] numeros = new int[10];
         Scanner input = new Scanner(System.in);
+        int soma = 0;
+        int media = 0;
 
-        // Ler os 10 números
-        for (int i = 0; i < 10; i++) {
+        // Ler os 10 números e somar
+        for (int i = 0; i < numeros.length; i++) {
             System.out.print("Digite o número " + (i + 1) + ": ");
             numeros[i] = input.nextInt();
-        }
-
-        // Somar os números
-        int soma = 0;
-        for (int i = 0; i < 10; i++) {
             soma += numeros[i];
         }
 
         // Calcular média
-        double media = soma / 10.0;
+        media = soma / numeros.length;
 
         // Mostrar resultado
         System.out.println("A média dos numeros introduzidos é: " + media);

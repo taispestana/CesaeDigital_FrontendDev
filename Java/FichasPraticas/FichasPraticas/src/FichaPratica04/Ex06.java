@@ -15,7 +15,7 @@ public class Ex06 {
         Scanner input = new Scanner(System.in);
 
         //Criar array com 10 gavetas
-        int[] gavetas = new int [10];
+        int[] gavetas = new int [3];
         boolean crescente= true;
 
         //Criar um  ciclo para preencher os valores nas gavetas
