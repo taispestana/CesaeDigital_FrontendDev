@@ -1,196 +1,158 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Universo dos Jogos</title>
 
-        <link rel="icon" type="image/webp" href="img/logo.webp" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/styles.css" />
-  </head>
-  <body>
-    <canvas id="starfield"></canvas>
-    <header class="site-header">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-         <a class="navbar-brand" href="index.html">
-  <img src="/img/logo2.png" alt="GameVerse Logo" width="120">
-</a>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Universo dos Jogos</title>
 
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navMenu"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navMenu">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link active" href="index.html">Início</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="historia.html">História</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="jogo.html">Mini Games</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="contato.html">Contato</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
+  <link rel="icon" type="image/webp" href="img/logo.webp" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
 
-      <section id="carouselSection" class="mb-5">
-        <div id="gamesCarousel" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img
-                src="/img/imagembanner1.webp"
-                class="d-block w-100"
-                alt="Arcade"
-              />
-              <div class="carousel-caption d-none d-md-block">
-                <h5>Volte aos anos 80</h5>
-                <p>Os primeiros heróis dos videogames.</p>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <img
-                src="/img/imagembanner2.webp"
-                class="d-block w-100"
-                alt="Joystick"
-              />
-              <div class="carousel-caption d-none d-md-block">
-                <h5>Jogue agora</h5>
-                <p>Mini games simples para praticar lógica e reflexos.</p>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <img
-                src="/img/imagembanner3.webp"
-                class="d-block w-100"
-                alt="Pixel"
-              />
-              <div class="carousel-caption d-none d-md-block">
-                <h5>Pixel Art clássica</h5>
-                <p>Minimalismo e diversão.</p>
-              </div>
-            </div>
-            
-          </div>
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#gamesCarousel"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon"></span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#gamesCarousel"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon"></span>
-          </button>
-        </div>
-      </section>
+<body>
+  <canvas id="starfield"></canvas>
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="/img/logo2.png" alt="GameVerse Logo" width="120">
+        </a>
 
-      <main class="container my-5">
-      <section class="text-center mb-5">
-        <h1 class="display-6 retro">Universo dos Jogos</h1>
-        <p class="lead">
-          Portal dos clássicos + mini games. Relembre, aprenda e divirta-se.
-        </p>
-      </section>
-      </main>
-
-      <section class="mb-5">
-        <h2 class="mb-3">Jogos em destaque</h2>
-        <div class="row g-3">
-          <div class="col-md-4">
-            <div class="card h-100">
-              <img
-                src="/img/snake.webp"
-                class="card-img-top"
-                alt="Snake"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Snake</h5>
-                <p class="card-text">
-                  Clássico jogo da cobrinha. Controle com as setas.
-                </p>
-                <a href="jogo.html#snake" class="btn btn-primary btn-jogar">Jogar</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100">
-              <img
-                src="/img/memory.webp"
-                class="card-img-top"
-                alt="Memory"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Memory</h5>
-                <p class="card-text">
-                  Treine sua memória com pares de cartas retrô.
-                </p>
-                <a href="jogo.html#memory" class="btn btn-primary btn-jogar">Jogar</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100">
-              <img
-                src="/img/reflex.webp"
-                class="card-img-top"
-                alt="Reflex"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Reflex</h5>
-                <p class="card-text">
-                  Teste seus reflexos clicando nos blocos que aparecem.
-                </p>
-                <a href="jogo.html#reflex" class="btn btn-primary btn-jogar">Jogar</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    <footer class="bg-dark text-light py-4">
-      <div class="container d-flex justify-content-between align-items-center">
-        <small>© <span id="year"></span> Universo dos Jogos</small>
-        <div>
-          <a href="mailto:gameverse@example.com" class="text-light me-3"
-            >universo@jogos.com</a
-          >
-          <a href="https://github.com" target="_blank" class="text-light"
-            >GitHub</a
-          >
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Início</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="historia.html">História</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="jogo.html">Mini Games</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contato.html">Contato</a>
+            </li>
+          </ul>
         </div>
       </div>
-    </footer>
+    </nav>
+  </header>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/starfield.js"></script>
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
-  </body>
+  <section id="carouselSection" class="mb-5">
+    <div id="gamesCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="img/imagembanner1.webp" class="d-block w-100" alt="Arcade" />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Volte aos anos 80</h5>
+            <p>Os primeiros heróis dos videogames.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="img/imagembanner2.webp" class="d-block w-100" alt="Joystick" />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Jogue agora</h5>
+            <p>Mini games simples para praticar lógica e reflexos.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="img/imagembanner3.webp" class="d-block w-100" alt="Pixel" />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Pixel Art clássica</h5>
+            <p>Minimalismo e diversão.</p>
+          </div>
+        </div>
+
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#gamesCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#gamesCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </section>
+
+  <main class="container my-5">
+    <section class="hero text-center">
+      <h1 class="hero-title text-center retro">Universo dos Jogos</h1>
+      <p class="lead">
+        Sua parada obrigatória para uma dose de nostalgia e diversão. Explore a história dos videogames, desafie-se com
+        nossos mini games clássicos e reviva a magia dos pixels.
+      </p>
+      <a href="jogo.html" class="btn btn-primary btn-lg btn-jogar">Explorar Jogos</a>
+    </section>
+
+    <section class="featured-games my-5">
+      <h2 class="text-center retro mb-4">Jogos em Destaque</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="img/snake.webp" class="card-img-top" alt="Snake" />
+            <div class="card-body">
+              <h5 class="card-title">Cobra</h5>
+              <p class="card-text">
+                O clássico jogo da cobrinha. Controle com as setas e coma o máximo de frutas que puder.
+              </p>
+            </div>
+            <div class="card-footer">
+              <a href="jogo.html#snake" class="btn btn-primary btn-jogar">Jogar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="img/memory.webp" class="card-img-top" alt="Memory" />
+            <div class="card-body">
+              <h5 class="card-title">Memória</h5>
+              <p class="card-text">
+                Vire as cartas e encontre os pares correspondentes. Teste sua memória e agilidade.
+              </p>
+            </div>
+            <div class="card-footer">
+              <a href="jogo.html#memory" class="btn btn-primary btn-jogar">Jogar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="img/reflex.webp" class="card-img-top" alt="Reflex" />
+            <div class="card-body">
+              <h5 class="card-title">Reflexo</h5>
+              <p class="card-text">
+                Clique nos alvos que aparecem na tela o mais rápido que puder. Desafie seus reflexos.
+              </p>
+            </div>
+            <div class="card-footer">
+              <a href="jogo.html#reflex" class="btn btn-primary btn-jogar">Jogar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-dark text-light py-4 mt-auto">
+    <div class="container d-flex justify-content-between align-items-center">
+      <small>© <span id="year"></span> Universo dos Jogos</small>
+      <div>
+        <a href="mailto:gameverse@example.com" class="text-light me-3">universo@jogos.com</a>
+        <a href="https://github.com" target="_blank" class="text-light">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/starfield.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+
 </html>
