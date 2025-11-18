@@ -17,6 +17,10 @@ export default function HomePage() {
       <Link to="/christmasgifts">A minha lista de Presentes de Natal</Link>
       <br />
       <Link to="/places">O meu PLACE</Link>
+      <br />
+      <Link to="/swpeople">StarWars Personagens</Link>
+      <br />
+      <Link to="/swmovies">StarWars Filmes</Link>
     </div>
   );
 }
