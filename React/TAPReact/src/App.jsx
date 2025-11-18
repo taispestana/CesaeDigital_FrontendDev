@@ -11,6 +11,8 @@ import Course from "./pages/Course";
 import ShoppingList from "./pages/ShoppingPage";
 import Christmasgifts from "./pages/Christmasgifts";
 import AvailablePlaces from "./pages/PlacesIndex";
+import StarWarsPeople from "./pages/StarWarsPeople";
+import StarWarsMovies from "./pages/StarWarsMovies";
 
 let mySubject = "React";
 
@@ -44,6 +46,8 @@ const router = createBrowserRouter([
       { path: "/shoppinglist", element: <ShoppingList /> },
       { path: "/christmasgifts", element: <Christmasgifts /> },
       { path: "/places", element: <AvailablePlaces /> },
+      { path: "/swpeople", element: <StarWarsPeople /> },
+      { path: "/swmovies", element: <StarWarsMovies /> },
     ],
   },
 ]);

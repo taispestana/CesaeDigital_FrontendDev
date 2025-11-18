@@ -1,83 +1,244 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contato - Universo dos Jogos</title>
+  <title>Contacto - Universo dos Jogos</title>
   <link rel="icon" type="image/webp" href="img/logo.webp" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
   <canvas id="starfield"></canvas>
-  <header class="site-header">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-         <a class="navbar-brand" href="index.html">
-  <img src="/img/logo2.png" alt="GameVerse Logo" width="120">
-</a>
+  <header class="site-header header-transparent sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="img/logo2.png" alt="GameVerse Logo" width="120">
+        </a>
 
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navMenu"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navMenu">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html">Início</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Início</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="historia.html">História</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="jogo.html">Mini Games</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="contato.html">Contacto</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main class="container my-5">
+    <h1 class="retro mb-4">Contacto</h1>
+    <p>Envie sua sugestão de jogo, feedback ou dúvida.</p>
+
+    <div class="row">
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <form class="card p-4 h-100" id="contactForm" action="mailto:gameverse@example.com" method="post" enctype="text/plain">
+          <div class="mb-3">
+            <label for="name" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Mensagem</label>
+            <textarea id="message" class="form-control" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-jogar mt-auto" id="submitButton">Enviar</button>
+        </form>
+      </div>
+      <div class="col-lg-6">
+        <div class="card p-2 h-100">
+          <iframe class="map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.028133218274!2d-8.65295988458163!3d41.1556629792862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd24659a5475946d%3A0x8ea5c34653199f8c!2sCESAE%20-%20Digital!5e0!3m2!1sen!2spt!4v1678886400000!5m2!1sen!2spt" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <section class="faq-section card p-4 mt-5">
+      <h2 class="retro mb-4">Perguntas Frequentes</h2>
+      <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              Como posso jogar?
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Basta navegar até à nossa secção de "Mini Games", escolher um jogo e clicar para começar a jogar diretamente no seu browser!
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Os jogos são gratuitos?
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Sim, todos os jogos disponíveis no "Universo dos Jogos" são 100% gratuitos.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Preciso de criar uma conta para jogar?
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Não é necessário criar nenhuma conta. Todos os jogos são de acesso livre para que possa jogar sem complicações.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              Como posso dar uma sugestão?
+            </button>
+          </h2>
+          <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Adoramos receber novas ideias! Pode usar o formulário de contacto nesta mesma página para nos enviar as suas sugestões de jogos ou qualquer outro feedback.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter-section card p-4 mt-5">
+      <h2 class="retro mb-4">Subscreva a nossa Newsletter</h2>
+      <p>Receba as últimas novidades e jogos diretamente no seu email.</p>
+      <form id="newsletterForm">
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="Seu melhor e-mail" required>
+          <button class="btn btn-jogar" type="submit">Subscrever</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- Pop-up de Confirmação -->
+  <div id="confirmationPopup" class="popup-overlay">
+    <div class="popup-content">
+      <i class="fas fa-check-circle success-icon"></i>
+      <h3 id="popupTitle" class="retro">Sucesso!</h3>
+      <p id="popupMessage">Sua mensagem foi enviada.</p>
+      <button id="closePopup" class="btn btn-jogar">Fechar</button>
+    </div>
+  </div>
+
+  <footer class="footer-modern text-light pt-5 pb-4">
+    <div class="container text-center text-md-start">
+      <div class="row text-center text-md-start">
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+          <img src="img/logo2.png" alt="Universo dos Jogos" style="width: 200px;">
+          <p>
+            Sua parada obrigatória para uma dose de nostalgia e diversão.
+          </p>
+        </div>
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 font-weight-bold retro">Links</h5>
+          <p><a href="index.html" class="text-light">Início</a></p>
+          <p><a href="historia.html" class="text-light">História</a></p>
+          <p><a href="jogo.html" class="text-light">Mini Games</a></p>
+          <p><a href="contato.html" class="text-light">Contacto</a></p>
+        </div>
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 font-weight-bold retro">Contacto</h5>
+          <p><i class="fas fa-envelope me-3"></i> universo@jogos.com</p>
+          <p><i class="fas fa-phone me-3"></i> +351 957 649 200</p>
+        </div>
+      </div>
+      <hr class="mb-4" />
+      <div class="row align-items-center">
+        <div class="col-md-7 col-lg-8">
+          <p>© <span id="year"></span> Universo dos Jogos. Todos os direitos reservados.</p>
+        </div>
+        <div class="col-md-5 col-lg-4">
+          <div class="text-center text-md-end">
+            <ul class="list-unstyled list-inline">
+              <li class="list-inline-item">
+                <a href="https://www.facebook.com" class="btn-floating btn-sm text-light" style="font-size: 23px;"><i class="fab fa-facebook"></i></a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="historia.html">História</a>
+              <li class="list-inline-item">
+                <a href="https://www.twitter.com" class="btn-floating btn-sm text-light" style="font-size: 23px;"><i class="fab fa-twitter"></i></a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="jogo.html">Mini Games</a>
+              <li class="list-inline-item">
+                <a href="https://www.instagram.com" class="btn-floating btn-sm text-light" style="font-size: 23px;"><i class="fab fa-instagram"></i></a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="contato.html">Contato</a>
+              <li class="list-inline-item">
+                <a href="https.github.com" class="btn-floating btn-sm text-light" style="font-size: 23px;"><i class="fab fa-github"></i></a>
               </li>
             </ul>
           </div>
         </div>
-      </nav>
-    </header>
-  <main class="container my-5">
-    <h1 class="retro mb-4">Contato</h1>
-    <p>Envie sua sugestão de jogo, feedback ou dúvida.</p>
-
-    <form class="card p-4" id="contactForm" action="mailto:gameverse@example.com" method="post" enctype="text/plain">
-      <div class="mb-3">
-        <label for="name" class="form-label">Nome</label>
-        <input type="text" class="form-control" id="name" required>
-      </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">E-mail</label>
-        <input type="email" class="form-control" id="email" required>
-      </div>
-      <div class="mb-3">
-        <label for="message" class="form-label">Mensagem</label>
-        <textarea id="message" class="form-control" rows="4" required></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary">Enviar</button>
-    </form>
-  </main>
-
-  <footer class="bg-dark text-light py-4">
-    <div class="container d-flex justify-content-between align-items-center">
-      <small>© <span id="year4"></span> Universo dos Jogos</small>
-      <div>
-        <a href="mailto:gameverse@example.com" class="text-light me-3">universo@jogos.com</a>
-        <a href="https://github.com" target="_blank" class="text-light">GitHub</a>
       </div>
     </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/starfield.js"></script>
-  <script>document.getElementById('year4').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const contactForm = document.getElementById('contactForm');
+    const newsletterForm = document.getElementById('newsletterForm');
+    const popup = document.getElementById('confirmationPopup');
+    const closePopup = document.getElementById('closePopup');
+    const popupTitle = document.getElementById('popupTitle');
+    const popupMessage = document.getElementById('popupMessage');
+
+    function showPopup(title, message) {
+      popupTitle.textContent = title;
+      popupMessage.textContent = message;
+      popup.classList.add('active');
+    }
+
+    function hidePopup() {
+      popup.classList.remove('active');
+    }
+
+    contactForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      showPopup('Sucesso!', 'Sua mensagem foi enviada.');
+      contactForm.reset();
+    });
+
+    newsletterForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      showPopup('Obrigado!', 'Inscrição realizada com sucesso!');
+      newsletterForm.reset();
+    });
+
+    closePopup.addEventListener('click', hidePopup);
+    popup.addEventListener('click', function (event) {
+      if (event.target === popup) {
+        hidePopup();
+      }
+    });
+  </script>
 </body>
+
 </html>

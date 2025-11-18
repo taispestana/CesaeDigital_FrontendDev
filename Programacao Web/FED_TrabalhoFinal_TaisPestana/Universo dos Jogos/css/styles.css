@@ -18,6 +18,12 @@ body {
   margin: 0;
   overflow-x: hidden;
   position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 body::after {
@@ -111,6 +117,12 @@ body::after {
   font-family: "Press Start 2P", sans-serif;
 }
 
+header,
+footer {
+  background-color: #000;
+  z-index: 1030; /* Adicionado para garantir que o cabeçalho esteja acima de outros elementos */
+}
+
 footer small {
   opacity: 0.9;
 }
@@ -137,13 +149,12 @@ footer small {
 }
 
 .memory-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
-  justify-items: center;
-  align-items: center;
   margin: 0 auto;
-  max-width: 650px;
+  max-width: 450px;
 }
 .memory-card {
   width: 80px;
@@ -185,8 +196,252 @@ footer small {
   color: #000;
   font-weight: bold;
 }
-@media (min-width: 768px) {
+
+
+/* Timeline */
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.timeline::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  background-color: var(--accent);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+}
+
+.timeline-container {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+}
+
+.timeline-container.left {
+  left: 0;
+}
+
+.timeline-container.right {
+  left: 50%;
+}
+
+.timeline-container::after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: -17px;
+  background-color: white;
+  border: 4px solid var(--accent-2);
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.timeline-container.right::after {
+  left: -16px;
+}
+
+.timeline-content {
+  padding: 20px 30px;
+  background-color: rgba(255, 255, 255, 0.05);
+  position: relative;
+  border-radius: 6px;
+}
+
+.timeline-container.left::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  right: 30px;
+  border: medium solid white;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent rgba(255, 255, 255, 0.05);
+}
+
+.timeline-container.right::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  left: 30px;
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent rgba(255, 255, 255, 0.05) transparent transparent;
+}
+
+main section {
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Estilos para tornar os jogos responsivos */
+
+.game-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#snakeCanvas {
+  width: 100%;
+  max-width: 350px; /* mesmo tamanho visual dos outros jogos */
+  height: 350px; /* mantém proporção quadrada */
+  display: block;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
   .memory-grid {
-    grid-template-columns: repeat(6, 100px);
+    gap: 5px;
   }
+
+  .memory-card {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+
+  .reflex-area {
+    height: 200px;
+  }
+}
+.timeline::after {
+  left: 31px;
+}
+
+.timeline-container {
+  width: 100%;
+  padding-left: 70px;
+  padding-right: 25px;
+}
+
+.timeline-container::before {
+  left: 60px;
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent;
+}
+
+.timeline-container.left::after,
+.timeline-container.right::after {
+  left: 15px;
+}
+
+.timeline-container.right {
+  left: 0%;
+}
+
+/* FAQ Accordion Styles */
+.faq-section .accordion-item {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+}
+
+.faq-section .accordion-header .accordion-button {
+  background-color: transparent;
+  color: #fff;
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.faq-section .accordion-button:not(.collapsed) {
+  color: var(--accent-2);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.faq-section .accordion-body {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: var(--muted);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.faq-section .accordion-button::after {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* Pop-up de Confirmação */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none; /* Começa escondido */
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.popup-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.popup-content {
+  background: #1a1a2e;
+  padding: 30px;
+  border-radius: 15px;
+  border: 1px solid var(--accent);
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+  box-shadow: 0 0 30px rgba(124, 77, 255, 0.5);
+}
+
+.popup-overlay.active .popup-content {
+  transform: scale(1);
+}
+
+.popup-content h3 {
+  color: var(--accent-2);
+  margin-bottom: 15px;
+}
+
+.popup-content p {
+  color: #eee;
+  margin-bottom: 25px;
+}
+
+#closePopup {
+  background-color: var(--accent-2);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#closePopup:hover {
+  background-color: #d600e6;
+}
+
+.success-icon {
+  color: #28a745;
+  font-size: 40px;
+  margin-bottom: 15px;
 }

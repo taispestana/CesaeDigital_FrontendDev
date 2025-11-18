@@ -45,12 +45,30 @@ function spawnBlock(){
   setTimeout(()=>{ if(block.parentElement) block.remove(); }, 900);
 }
 
-function endReflex(){
+function endReflex() {
   clearInterval(reflexTimer);
   clearInterval(spawnTimer);
-  // clear blocks
   reflexArea.innerHTML = '';
-  alert('Tempo esgotado! Pontuação: ' + score);
+
+  const popupOverlay = document.createElement('div');
+  popupOverlay.className = 'popup-overlay active';
+
+  const popupContent = document.createElement('div');
+  popupContent.className = 'popup-content';
+
+  popupContent.innerHTML = `
+    <h3>Tempo Esgotado!</h3>
+    <p>Sua pontuação final foi: ${score}</p>
+    <button id="closePopup">Fechar</button>
+  `;
+
+  popupOverlay.appendChild(popupContent);
+  document.body.appendChild(popupOverlay);
+
+  popupContent.querySelector('#closePopup').addEventListener('click', () => {
+    document.body.removeChild(popupOverlay);
+    resetReflex(); // Opcional: resetar o jogo ao fechar o popup
+  });
 }
 
 function resetReflex(){

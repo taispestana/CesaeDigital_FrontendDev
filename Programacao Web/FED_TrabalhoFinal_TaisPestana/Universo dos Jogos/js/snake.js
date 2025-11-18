@@ -1,15 +1,34 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const canvas = document.getElementById('snakeCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const scale = 20;
-  const rows = canvas.height / scale;
-  const cols = canvas.width / scale;
+document.addEventListener("DOMContentLoaded", () => {
+  const canvas = document.getElementById("snakeCanvas");
+  const ctx = canvas.getContext("2d");
 
-  let snake;
-  let food;
-  let snakeInterval;
+  let scale = 20;
+  let rows, cols;
+  let snake, food, snakeInterval;
 
+  // ---------- CONFIGURA O CANVAS DE FORMA RESPONSIVA ----------
+  function resizeCanvas() {
+    const containerWidth = canvas.parentElement.clientWidth;
+
+    // igualar proporção dos outros jogos
+    const maxWidth = Math.min(containerWidth, 350);
+
+    canvas.width = Math.floor(maxWidth / scale) * scale;
+    canvas.height = canvas.width; // sempre quadrado
+
+    rows = canvas.height / scale;
+    cols = canvas.width / scale;
+
+    if (snake) {
+      resetSnake();
+    }
+  }
+
+  // Recalcular ao abrir a página e ao mexer na tela
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+
+  // ---------- CLASSE SNAKE ----------
   class Snake {
     constructor() {
       this.x = Math.floor(cols / 2);
@@ -19,100 +38,114 @@ document.addEventListener('DOMContentLoaded', () => {
       this.tail = [];
       this.maxTail = 3;
     }
+
     draw() {
-      ctx.fillStyle = "#00FF00";
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < this.tail.length; i++) {
-        ctx.fillRect(this.tail[i].x * scale, this.tail[i].y * scale, scale, scale);
+      ctx.fillStyle = "#00FF00";
+
+      for (let part of this.tail) {
+        ctx.fillRect(part.x * scale, part.y * scale, scale, scale);
       }
       ctx.fillRect(this.x * scale, this.y * scale, scale, scale);
+
+      // comida
+      ctx.fillStyle = "red";
+      ctx.fillRect(food.x * scale, food.y * scale, scale, scale);
     }
+
     update() {
       this.tail.push({ x: this.x, y: this.y });
       while (this.tail.length > this.maxTail) this.tail.shift();
+
       this.x += this.xSpeed;
       this.y += this.ySpeed;
-      // wall collision - game over
+
+      // colisão paredes
       if (this.x < 0 || this.x >= cols || this.y < 0 || this.y >= rows) {
         resetSnake();
       }
-      // self collision
-      for (let i = 0; i < this.tail.length; i++) {
-        if (this.x === this.tail[i].x && this.y === this.tail[i].y) {
+
+      // colisão com o próprio corpo
+      for (let part of this.tail) {
+        if (this.x === part.x && this.y === part.y) {
           resetSnake();
         }
       }
-      // eat food
-      if (food && this.x === food.x && this.y === food.y) {
+
+      // comer comida
+      if (this.x === food.x && this.y === food.y) {
         this.maxTail++;
-        placeFood();
         updateScore();
-      }
-    }
-    changeDirection(dir) {
-      switch (dir) {
-        case 'Up': if (this.ySpeed === 0) { this.xSpeed = 0; this.ySpeed = -1; } break;
-        case 'Down': if (this.ySpeed === 0) { this.xSpeed = 0; this.ySpeed = 1; } break;
-        case 'Left': if (this.xSpeed === 0) { this.xSpeed = -1; this.ySpeed = 0; } break;
-        case 'Right': if (this.xSpeed === 0) { this.xSpeed = 1; this.ySpeed = 0; } break;
+        placeFood();
       }
     }
   }
 
+  // ---------- FUNÇÕES AUX ----------
   function placeFood() {
-    food = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) };
-    if (!snake) return;
-    // avoid placing on snake
-    for (let i = 0; i < snake.tail.length; i++) {
-      if (food.x === snake.tail[i].x && food.y === snake.tail[i].y) {
-        placeFood(); return;
-      }
-    }
+    food = {
+      x: Math.floor(Math.random() * cols),
+      y: Math.floor(Math.random() * rows),
+    };
   }
 
   function resetSnake() {
     clearInterval(snakeInterval);
     snake = new Snake();
     placeFood();
-    document.getElementById('snakeScore').textContent = 0;
-    document.getElementById('snakeStart').disabled = false;
+    document.getElementById("snakeScore").textContent = 0;
+    document.getElementById("snakeStart").disabled = false;
   }
 
   function updateScore() {
-    let sc = parseInt(document.getElementById('snakeScore').textContent) || 0;
-    sc += 10;
-    document.getElementById('snakeScore').textContent = sc;
+    let s = parseInt(document.getElementById("snakeScore").textContent);
+    document.getElementById("snakeScore").textContent = s + 10;
   }
 
+  // ---------- GAME LOOP ----------
   function gameLoop() {
     snake.update();
     snake.draw();
-    // draw food
-    if (food) {
-      ctx.fillStyle = "#FF0000";
-      ctx.fillRect(food.x * scale, food.y * scale, scale, scale);
-    }
   }
 
-  document.addEventListener('keydown', (e) => {
+  // ---------- CONTROLES ----------
+  document.addEventListener("keydown", (e) => {
     if (!snake) return;
-    const key = e.key;
-    if (key === 'ArrowUp') snake.changeDirection('Up');
-    if (key === 'ArrowDown') snake.changeDirection('Down');
-    if (key === 'ArrowLeft') snake.changeDirection('Left');
-    if (key === 'ArrowRight') snake.changeDirection('Right');
+
+    if (e.key === "w" || e.key === "W") snake.changeDirection("Up");
+    if (e.key === "s" || e.key === "S") snake.changeDirection("Down");
+    if (e.key === "a" || e.key === "A") snake.changeDirection("Left");
+    if (e.key === "d" || e.key === "D") snake.changeDirection("Right");
   });
 
-  document.getElementById('snakeStart').addEventListener('click', () => {
-    document.getElementById('snakeStart').disabled = true;
-    if (!snake) resetSnake();
+  Snake.prototype.changeDirection = function (dir) {
+    if (dir === "Up" && this.ySpeed === 0) {
+      this.xSpeed = 0;
+      this.ySpeed = -1;
+    }
+    if (dir === "Down" && this.ySpeed === 0) {
+      this.xSpeed = 0;
+      this.ySpeed = 1;
+    }
+    if (dir === "Left" && this.xSpeed === 0) {
+      this.xSpeed = -1;
+      this.ySpeed = 0;
+    }
+    if (dir === "Right" && this.xSpeed === 0) {
+      this.xSpeed = 1;
+      this.ySpeed = 0;
+    }
+  };
+
+  // ---------- BOTÕES ----------
+  document.getElementById("snakeStart").addEventListener("click", () => {
+    document.getElementById("snakeStart").disabled = true;
     snakeInterval = setInterval(gameLoop, 120);
   });
 
-  document.getElementById('snakeReset').addEventListener('click', () => {
+  document.getElementById("snakeReset").addEventListener("click", () => {
     resetSnake();
   });
 
-  // init
   resetSnake();
 });
