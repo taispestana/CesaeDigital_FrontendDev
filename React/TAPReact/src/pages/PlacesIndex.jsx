@@ -64,7 +64,7 @@ export default function AvailablePlaces() {
         })
 
     //enviar o ficheiro para atualizar no backend os lugares escolhidos
-    updateUserPlaces([onSelectPlace, ...userPlaces])
+     !userPlaces.includes(onSelectPlace) && updateUserPlaces([onSelectPlace, ...userPlaces]);
   }
 
   if (error) {
@@ -75,6 +75,15 @@ export default function AvailablePlaces() {
       </div>
     );
   }
+
+  //funcao que toma conta de apagar o lugar clicado no user places
+      function handleRemovePlace(onSelectPlace) {
+      setUserPlaces((prevPickedPlaces) =>
+        prevPickedPlaces.filter((place) => place.id !== onSelectPlace.id)
+      );
+   
+      updateUserPlaces(userPlaces.filter((place) => place.id != onSelectPlace.id));
+    }
 
   return (
     <>
@@ -93,6 +102,7 @@ export default function AvailablePlaces() {
           places={userPlaces}
           isLoading={isLoading}
           loadingText="Loading..."
+          onSelectPlace={handleRemovePlace}
         />
         <Places
           title="Available Places"

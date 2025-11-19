@@ -1,3 +1,42 @@
 [
-   
+  {
+    "email": "asa@sas.com",
+    "password": "asd",
+    "firstName": "asd",
+    "lastName": "asd",
+    "role": "student",
+    "termsAccepted": true
+  },
+  {
+    "email": "asa@sas.com",
+    "password": "gfhfg",
+    "firstName": "asd",
+    "lastName": "asd",
+    "role": "student",
+    "termsAccepted": true
+  },
+  {
+    "email": "asa@sas.com",
+    "password": "asd",
+    "firstName": "assda",
+    "lastName": "dsasad",
+    "role": "student",
+    "termsAccepted": true
+  },
+  {
+    "email": "asa@sas.com",
+    "password": "asd",
+    "firstName": "asd",
+    "lastName": "asd",
+    "role": "student",
+    "termsAccepted": true
+  },
+  {
+    "email": "asa@sas.com",
+    "password": "asd",
+    "firstName": "asd",
+    "lastName": "asd",
+    "role": "student",
+    "termsAccepted": true
+  }
 ]

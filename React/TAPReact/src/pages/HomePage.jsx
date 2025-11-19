@@ -1,8 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function HomePage() {
+  const location = useLocation();
+  const message = location.state?.message;
+
   return (
     <div>
+      {message && <p>{message}</p>}
       <h3>As minhas funcionalidades</h3>
       <Link to="/contacts">Os meus contactos</Link>
       <br />

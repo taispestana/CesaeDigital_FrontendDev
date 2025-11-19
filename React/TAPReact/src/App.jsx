@@ -13,6 +13,7 @@ import Christmasgifts from "./pages/Christmasgifts";
 import AvailablePlaces from "./pages/PlacesIndex";
 import StarWarsPeople from "./pages/StarWarsPeople";
 import StarWarsMovies from "./pages/StarWarsMovies";
+import Signup from "./pages/Signup";
 
 let mySubject = "React";
 
@@ -48,6 +49,7 @@ const router = createBrowserRouter([
       { path: "/places", element: <AvailablePlaces /> },
       { path: "/swpeople", element: <StarWarsPeople /> },
       { path: "/swmovies", element: <StarWarsMovies /> },
+      { path: "/register", element: <Signup /> }
     ],
   },
 ]);
