@@ -38,5 +38,21 @@
     "lastName": "asd",
     "role": "student",
     "termsAccepted": true
+  },
+  {
+    "email": "asa@sas.com",
+    "password": "asd",
+    "firstName": "asd",
+    "lastName": "asd",
+    "role": "founder",
+    "termsAccepted": true
+  },
+  {
+    "email": "professor@gmail.com",
+    "password": "1234",
+    "firstName": "dsgdsfsd",
+    "lastName": "gdssdggds",
+    "role": "teacher",
+    "termsAccepted": true
   }
 ]

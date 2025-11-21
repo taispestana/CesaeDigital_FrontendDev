@@ -14,6 +14,9 @@ import AvailablePlaces from "./pages/PlacesIndex";
 import StarWarsPeople from "./pages/StarWarsPeople";
 import StarWarsMovies from "./pages/StarWarsMovies";
 import Signup from "./pages/Signup";
+import { AuthProvider } from "./contexts/AuthContext";
+import Login from "./pages/Login";
+import RouteForStudents from "./protectedRoutes/RouteForStudents";
 
 let mySubject = "React";
 
@@ -42,19 +45,24 @@ const router = createBrowserRouter([
       { path: "/contacts", element: <Contacts /> },
       { path: "/subject", element: <Subject /> },
       { path: "/exercises", element: <Exercises /> },
-      { path: "/courses", element: <Courses /> },
+      { path: "/courses", element: <RouteForStudents element={<Courses />}/> },
       { path: "/course/:course_name", element: <Course /> },
       { path: "/shoppinglist", element: <ShoppingList /> },
       { path: "/christmasgifts", element: <Christmasgifts /> },
       { path: "/places", element: <AvailablePlaces /> },
       { path: "/swpeople", element: <StarWarsPeople /> },
       { path: "/swmovies", element: <StarWarsMovies /> },
-      { path: "/register", element: <Signup /> }
+      { path: "/register", element: <Signup /> },
+      { path: "/login", element: <Login /> }
     ],
   },
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+  <AuthProvider>
+    <RouterProvider router={router} />
+  </AuthProvider>
+  )
 }
 export default App;

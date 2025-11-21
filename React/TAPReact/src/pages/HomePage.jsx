@@ -1,8 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 
 export default function HomePage() {
   const location = useLocation();
   const message = location.state?.message;
+  const {logout, user} = useContext(AuthContext);
 
   return (
     <div>
@@ -24,7 +27,20 @@ export default function HomePage() {
       <br />
       <Link to="/swpeople">StarWars Personagens</Link>
       <br />
-      <Link to="/swmovies">StarWars Filmes</Link>
+      <Link to="/swmovies">StarWars Filmes</Link> <br />
+
+      {(user && user.role === 'student') &&
+      <Link to="/courses">Cursos do Cesae</Link> }
+      <br />
+      
+      {!user ?
+      <div>
+        <Link to="/login">Login</Link> <br />
+        <Link to="/register">Registro</Link> <br />
+      </div> :
+      <button onClick={logout}>Logout</button>
+      }
+      
     </div>
   );
 }
