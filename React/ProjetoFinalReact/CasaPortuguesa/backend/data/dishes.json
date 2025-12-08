@@ -1,0 +1,134 @@
+[
+  {
+    "id": "p1",
+    "title": "Pão & Azeitonas da Casa",
+    "image": {
+      "src": "backend/images/entrada1.png",
+      "alt": "Entrada de pao com azeitonas da casa"
+    },
+    "description": "Pão fresco artesanal acompanhado de azeitonas temperadas com azeite virgem extra, alho e ervas aromáticas portuguesas.",
+    "price": 4.5,
+    "category": "entrada"
+  },
+  {
+    "id": "p2",
+    "title": "Bolinhos de Bacalhau Tradicionais",
+    "image": {
+      "src": "backend/images/entrada2.png",
+      "alt": "Entrada de bolinho de bacalhau"
+    },
+    "description": "Clássicos bolinhos de bacalhau crocantes por fora e macios por dentro, feitos com bacalhau desfiado e especiarias da casa.",
+    "price": 6.9,
+    "category": "entrada"
+  },
+  {
+    "id": "p3",
+    "title": "Caldo Verde à Moda do Minho",
+    "image": {
+      "src": "backend/images/entrada3.png",
+      "alt": "Entrada de caldo verde"
+    },
+    "description": "Sopa tradicional preparada com couve galega fininha, batata cremosa e um toque de chouriço para elevar o sabor.",
+    "price": 5.8,
+    "category": "entrada"
+  },
+  {
+    "id": "p4",
+    "title": "Bacalhau à Casa Portuguesa",
+    "image": {
+      "src": "backend/images/prato1.png",
+      "alt": "Prato de bacalhau à moda portuguesa"
+    },
+    "description": "Lascas de bacalhau confitadas em azeite, acompanhadas de batatas ao murro, cebola caramelizada e azeitonas pretas. Um prato cheio de tradição e alma portuguesa.",
+    "price": 16.9,
+    "category": "principal"
+  },
+  {
+    "id": "p5",
+    "title": "Arroz de Pato à Antiga",
+    "image": {
+      "src": "backend/images/prato2.png",
+      "alt": "Prato de arroz de pato"
+    },
+    "description": "Arroz solto e saboroso, finalizado no forno com pedaços generosos de pato desfiado e cobertura crocante de chouriço.",
+    "price": 15.5,
+    "category": "principal"
+  },
+  {
+    "id": "p6",
+    "title": "Bifinhos ao Molho de Vinho do Porto",
+    "image": {
+      "src": "backend/images/prato3.png",
+      "alt": "Prato de bifinhos ao molho de binho do porto"
+    },
+    "description": "Tirinhas de novilho salteadas em manteiga e reduzidas num molho rico de Vinho do Porto, servidas com batata rústica e legumes salteados.",
+    "price": 14.8,
+    "category": "principal"
+  },
+  {
+    "id": "p7",
+    "title": "Toucinho do Céu com Amêndoass",
+    "image": {
+      "src": "backend/images/sobremesa1.png",
+      "alt": "Sobremesa de toucinho do ceu com amendoas"
+    },
+    "description": "Clássico conventual, rico e delicado, feito com gemas e amêndoas, finalizado com açúcar em pó.",
+    "price": 5.2,
+    "category": "sobremesa"
+  },
+  {
+    "id": "p8",
+    "title": "Sericaia com Doce de Ameixa",
+    "image": {
+      "src": "backend/images/sobremesa2.png",
+      "alt": "Sobremesa de sericaia com doce de ameixa"
+    },
+    "description": "Sobremesa alentejana de massa leve e fofa, servida com tradicional calda de ameixa de Elvas.",
+    "price": 5.9,
+    "category": "sobremesa"
+  },
+  {
+    "id": "p9",
+    "title": "Mousse de Chocolate com Flor de Sal",
+    "image": {
+      "src": "backend/images/sobremesa3.png",
+      "alt": "Sobremesa de mousse de chocolate com flor de sal"
+    },
+    "description": "Mousse cremosa de chocolate negro português, equilibrada com um toque subtil de flor de sal.",
+    "price": 4.9,
+    "category": "sobremesa"
+  },
+  {
+    "id": "p10",
+    "title": "Queijo Curado com Mel & Nozes",
+    "image": {
+      "src": "backend/images/entrada4.png",
+      "alt": "Entrada de queijo curado com mel e nozes"
+    },
+    "description": "Queijo curado português fatiado, servido com mel artesanal e nozes tostadas. Uma entrada equilibrada, doce e salgada, perfeita para abrir o apetite.",
+    "price": 7.2,
+    "category": "entrada"
+  },
+  {
+    "id": "p11",
+    "title": "Polvo à Lagareiro com Batatas ao Murro",
+    "image": {
+      "src": "backend/images/prato4.png",
+      "alt": "Prato de polvo a lagareiro com batatas ao murro"
+    },
+    "description": "Polvo tenro assado no azeite, alho e coentros, acompanhado de batatas ao murro douradas no forno. Um clássico português preparado com autenticidade e sabor.",
+    "price": 18.9,
+    "category": "principal"
+  },
+  {
+    "id": "p12",
+    "title": "Pudim Abade de Priscos",
+    "image": {
+      "src": "backend/images/sobremesa4.png",
+      "alt": "Sobremesa de pudim abade de priscos"
+    },
+    "description": "Receita tradicional conventual, cremosa e intensa, finalizada com caramelo artesão. Uma das mais ricas e emblemáticas sobremesas portuguesas.",
+    "price": 5.8,
+    "category": "sobremesa"
+  }
+]

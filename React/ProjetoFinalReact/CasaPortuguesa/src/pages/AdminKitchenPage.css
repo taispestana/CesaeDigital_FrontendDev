@@ -1,0 +1,153 @@
+.admin-kitchen-container {
+  padding-top: 100px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.admin-kitchen-container h1 {
+  font-family: 'Garamond', serif;
+  font-size: 2.8rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.loading-message,
+.error-message,
+.no-orders-message {
+  font-size: 1.1rem;
+  color: #6c757d;
+  margin-top: 2rem;
+}
+
+.error-message {
+  color: #dc3545;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.orders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+
+.order-kitchen-card {
+  background-color: #ffffff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-left: 5px solid;
+}
+
+.order-kitchen-card.status-criado {
+  border-left-color: #ffc107;
+}
+
+.order-kitchen-card.status-confeccao {
+  border-left-color: #17a2b8;
+}
+
+.order-kitchen-card.status-entregue {
+  border-left-color: #28a745;
+}
+
+.order-kitchen-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.order-kitchen-header h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #0f172a;
+}
+
+.order-status {
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.order-status.status-criado {
+  background-color: #ffc107;
+}
+
+.order-status.status-confeccao {
+  background-color: #17a2b8;
+}
+
+.order-status.status-entregue {
+  background-color: #28a745;
+}
+
+.order-kitchen-email,
+.order-kitchen-date {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+}
+
+.order-kitchen-items {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.order-kitchen-items h4 {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.order-kitchen-items ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.order-kitchen-items li {
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.4;
+}
+
+.order-kitchen-total {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--accent-2);
+  margin-top: 1rem;
+  text-align: right;
+}
+
+.order-kitchen-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.order-kitchen-actions .btn {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+}
+
+.order-kitchen-actions .btn--deliver {
+  background-color: #28a745;
+}
+
+.order-kitchen-actions .btn--deliver:hover {
+  background-color: #218838;
+}

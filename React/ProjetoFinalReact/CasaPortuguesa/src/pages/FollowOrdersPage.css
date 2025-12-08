@@ -1,0 +1,146 @@
+.follow-orders-container {
+  padding-top: 100px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.follow-orders-container h1 {
+  font-family: 'Garamond', serif;
+  font-size: 2.8rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.loading-message,
+.error-message,
+.no-orders-message {
+  font-size: 1.1rem;
+  color: #6c757d;
+  margin-top: 2rem;
+}
+
+.error-message {
+  color: #dc3545;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.orders-list {
+  margin-top: 2rem;
+}
+
+.order-card {
+  background-color: #ffffff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.order-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #0f172a;
+}
+
+.order-header p {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--accent-2);
+}
+
+.order-items h4 {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.order-items ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.order-items li {
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.order-timeline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  position: relative;
+}
+
+.timeline-step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.timeline-step .timeline-icon {
+  width: 20px;
+  height: 20px;
+  background-color: #e9ecef;
+  border-radius: 50%;
+  margin: 0 auto 0.5rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: #fff;
+  z-index: 1;
+  position: relative;
+  border: 2px solid #e9ecef;
+}
+
+.timeline-step.active .timeline-icon {
+  background-color: var(--accent-2);
+  border-color: var(--accent-2);
+}
+
+.timeline-step.active p {
+  color: var(--accent-2);
+}
+
+.timeline-step:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: -50%;
+  width: 100%;
+  height: 2px;
+  background-color: #e9ecef;
+  z-index: 0;
+}
+
+.timeline-step.active:not(:first-child)::before {
+  background-color: var(--accent-2);
+}
+
+.order-date {
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 1.5rem;
+  text-align: right;
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Erick Jacquin",
+    "email": "teste-kitchen@teste.com",
+    "password": "123456",
+    "role": "kitchen"
+  },
+  {
+    "name": "Salt Bae",
+    "email": "teste-manager@teste.com",
+    "password": "123456",
+    "role": "manager"
+  },
+  {
+    "name": "teste",
+    "email": "teste@test.com",
+    "password": "123456",
+    "role": "customer"
+  }
+]

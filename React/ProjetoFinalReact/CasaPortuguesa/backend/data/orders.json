@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1765219147427",
+    "userEmail": "teste@test.com",
+    "items": [
+      {
+        "id": "p10",
+        "title": "Queijo Curado com Mel & Nozes",
+        "image": {
+          "src": "backend/images/entrada4.png",
+          "alt": "Entrada de queijo curado com mel e nozes"
+        },
+        "description": "Queijo curado português fatiado, servido com mel artesanal e nozes tostadas. Uma entrada equilibrada, doce e salgada, perfeita para abrir o apetite.",
+        "price": 7.2,
+        "category": "entrada",
+        "quantity": 2
+      }
+    ],
+    "total": 14.4,
+    "status": "Criado",
+    "createdAt": "2025-12-08T18:39:07.427Z"
+  }
+]

@@ -1,0 +1,136 @@
+.homepage-container {
+  /* Add padding-top to account for the taller fixed header */
+  padding-top: 100px;
+  padding-bottom: 0; /* Removed padding for fixed footer */
+}
+
+.carousel-wrapper {
+  position: relative;
+  width: 100%; /* Make the carousel full-width */
+  margin: 0; /* Remove horizontal margins */
+}
+
+/* This ensures the images in the carousel have a consistent height */
+.carousel-item img {
+  height: 60vh; /* 60% of the viewport height */
+  object-fit: cover; /* Cover the area without distortion */
+  width: 100%;
+}
+
+.carousel-caption-center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5); /* Slightly darker overlay */
+  flex-direction: column;
+  z-index: 1; /* Ensures the text caption is displayed above the carousel images */
+}
+
+.carousel-caption-center h1 {
+  font-size: 3.5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+/* Styling for the Call to Action section */
+.cta-section {
+  background-color: #f8f9fa; /* Light gray background */
+  padding: 4rem 2rem; /* Increased padding for more space */
+  margin-top: 0; /* Removed margin-top to connect with carousel */
+}
+
+.cta-section .lead {
+  font-size: 1.25rem;
+  font-style: italic;
+  color: #555;
+  max-width: 800px; /* Limit width for better readability */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-section .title-portuguese {
+  font-family: 'Garamond', serif;
+  font-size: 2.8rem;
+  color: #006600; /* Portugal's Green */
+  margin-top: 2rem;
+}
+
+/* Custom Red Button for Portugal's flag color - Increased specificity and !important */
+.cta-section button.btn-red-portuguese { /* Targeted the button element directly */
+  background-color: #DA291C !important; /* Portugal's Red */
+  border-color: #DA291C !important;
+  color: white !important; /* Added !important to color */
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cta-section button.btn-red-portuguese:hover {
+  background-color: #B02018 !important; /* Darker red on hover */
+  border-color: #B02018 !important;
+  color: white !important; /* Added !important to color */
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Styling for the About Us section */
+.about-us-section {
+  background-color: #ffffff; /* White background for contrast */
+  padding: 4rem 2rem;
+  margin-top: 4rem; /* Space above this section */
+  border-top: 1px solid #eee; /* Subtle separator */
+}
+
+.about-us-section .title-portuguese {
+  font-size: 2.5rem; /* Slightly smaller than the main CTA title */
+  margin-bottom: 2rem;
+}
+
+.about-us-section .lead {
+  font-size: 1.15rem;
+  font-style: normal;
+  color: #333;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.8;
+}
+
+
+@media (max-width: 768px) {
+  .carousel-item img {
+    height: 50vh;
+  }
+
+  .carousel-caption-center h1 {
+    font-size: 2.5rem;
+  }
+
+  .cta-section {
+    padding: 3rem 1rem;
+  }
+
+  .cta-section .title-portuguese {
+    font-size: 2.2rem;
+  }
+
+  .about-us-section {
+    padding: 3rem 1rem;
+    margin-top: 3rem;
+  }
+
+  .about-us-section .title-portuguese {
+    font-size: 2rem;
+  }
+
+  .about-us-section .lead {
+    font-size: 1rem;
+  }
+}
