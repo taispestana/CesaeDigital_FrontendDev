@@ -4,13 +4,39 @@
     {{--Exibir a variável cesaeInfo--}}
     <p>O email de contacto, caso detecte erros é {{ $cesaeInfo['name'] }}, com endereço {{ $cesaeInfo['address'] }}, com email {{ $cesaeInfo['email'] }}, na cidade {{ $cesaeInfo['city'] }} e contacto {{ $cesaeInfo['phone'] }}</p>
 
-    <h1>Aqui estão todos os usuários:</h1>
+    <h1>Aqui estão todos os usuários de forma estática sem case de dados:</h1>
 <ul>
     {{--Iterar sobre a coleção de estudantes e exibir seus detalhes--}}
     @foreach ($students as $student)
     <li>
-    <p>O nome é {{ $student['name'] }} e o email é {{ $student['email'] }}</p>
+    O nome é {{ $student['name'] }} e o email é {{ $student['email'] }}
     </li>
     @endforeach
 </ul>
+
+<h5>Users que sao carregados da base de dados (tabela de users):</h5>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Email</th>
+      <th scope="col">Nif</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{--mostrar tabela de user a partir dos dados da base de dados--}}
+    @foreach ($users as $user)
+    <tr>
+      <th scope="row">{{ $user->id }}</th>
+      <td>{{ $user->name }}</td>
+      <td>{{ $user->email }}</td>
+      <td>{{ $user->nif }}</td>
+      </tr>
+      @endforeach
+  </tbody>
+</table>
+
     @endsection

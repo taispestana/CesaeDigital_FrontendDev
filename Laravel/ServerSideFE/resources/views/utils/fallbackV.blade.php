@@ -7,6 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-<h1>Página não encontrada. <a href='{{route('utils.fallbackV')}}'>Voltar para a página inicial</a></h1>
+<h1>Página não encontrada. <a href='{{route('utils.welcome')}}'>Voltar para a página inicial</a></h1>
 </body>
 </html>
