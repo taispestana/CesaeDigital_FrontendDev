@@ -17,7 +17,64 @@
       }
     ],
     "total": 14.4,
-    "status": "Criado",
+    "status": "Confecção",
     "createdAt": "2025-12-08T18:39:07.427Z"
+  },
+  {
+    "id": "1765286120149",
+    "userEmail": "teste@test.com",
+    "items": [
+      {
+        "id": "p12",
+        "title": "Pudim Abade de Priscos",
+        "image": {
+          "src": "backend/images/sobremesa4.png",
+          "alt": "Sobremesa de pudim abade de priscos"
+        },
+        "description": "Receita tradicional conventual, cremosa e intensa, finalizada com caramelo artesão. Uma das mais ricas e emblemáticas sobremesas portuguesas.",
+        "price": 5.8,
+        "category": "sobremesa",
+        "quantity": 1
+      },
+      {
+        "id": "p5",
+        "title": "Arroz de Pato à Antiga",
+        "image": {
+          "src": "backend/images/prato2.png",
+          "alt": "Prato de arroz de pato"
+        },
+        "description": "Arroz solto e saboroso, finalizado no forno com pedaços generosos de pato desfiado e cobertura crocante de chouriço.",
+        "price": 15.5,
+        "category": "principal",
+        "quantity": 1
+      },
+      {
+        "id": "p10",
+        "title": "Queijo Curado com Mel & Nozes",
+        "image": {
+          "src": "backend/images/entrada4.png",
+          "alt": "Entrada de queijo curado com mel e nozes"
+        },
+        "description": "Queijo curado português fatiado, servido com mel artesanal e nozes tostadas. Uma entrada equilibrada, doce e salgada, perfeita para abrir o apetite.",
+        "price": 7.2,
+        "category": "entrada",
+        "quantity": 4
+      },
+      {
+        "id": "p1",
+        "title": "Pão & Azeitonas da Casa",
+        "image": {
+          "src": "backend/images/entrada1.png",
+          "alt": "Entrada de pao com azeitonas da casa"
+        },
+        "description": "Pão fresco artesanal acompanhado de azeitonas temperadas com azeite virgem extra, alho e ervas aromáticas portuguesas.",
+        "price": 4.5,
+        "category": "entrada",
+        "quantity": 1
+      }
+    ],
+    "total": 54.6,
+    "status": "Entregue",
+    "createdAt": "2025-12-09T13:15:20.149Z"
   }
 ]
