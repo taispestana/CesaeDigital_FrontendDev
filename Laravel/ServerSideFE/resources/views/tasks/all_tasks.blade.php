@@ -21,6 +21,10 @@
                         <td>{{ $task->status }}</td>
                         <td>{{ $task->due_at }}</td>
                         <td>{{ $task->usname }}</td>
+    {{--Fazer button com "a" em vez de "button"para conseguir chamar a rota--}}
+      {{--Relacionar a rota tasks.view ao botao--}}
+      <td><a href="{{route('tasks.view', $task->id)}}" class="btn btn-info">Ver</a></td>
+      <td><a href="{{route ('tasks.delete', $task->id)}}" class="btn btn-danger">Apagar</a></td>
                     </tr>
                 @endforeach
             </tbody>

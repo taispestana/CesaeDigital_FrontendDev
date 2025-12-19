@@ -98,4 +98,30 @@ public function selectUsersFromDB(){
     dd($users);
 }
 
+//funcao que abre a view com toda a info do user
+public function viewUser($id){
+    //query que vai buscar o user pelo id que estou a clicar
+    //$user = User::find($id);
+
+    $user = DB::table('users')->where('id', $id)->first();
+
+    return view('users.view_user', compact('user'));
+}
+
+//funcao que apaga o user da base de dados
+public function deleteUser($id){
+
+    //apagar todas as tasks associadas ao user antes de apagar o user
+    DB::table('tasks')
+    ->where('user_id', $id)
+    ->delete();
+
+    //apagar o user da base de dados
+    DB::table('users')
+    ->where('id', $id)
+    ->delete();
+
+    return back();
+}
+
 }

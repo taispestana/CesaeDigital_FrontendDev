@@ -34,6 +34,10 @@
       <td>{{ $user->name }}</td>
       <td>{{ $user->email }}</td>
       <td>{{ $user->nif }}</td>
+      {{--Fazer button com "a" em vez de "button"para conseguir chamar a rota--}}
+      {{--Relacionar a rota users.view ao botao--}}
+      <td><a href="{{route('users.view', $user->id)}}" class="btn btn-info">Ver</a></td>
+      <td><a href="{{route ('users.delete', $user->id)}}" class="btn btn-danger">Apagar</a></td>
       </tr>
       @endforeach
   </tbody>

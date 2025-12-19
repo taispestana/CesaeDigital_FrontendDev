@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UtilController;
+use App\Http\Controllers\GiftController;
 
 //utilizar o controller UtilController e a funcao home
 Route::get('/', [UtilController::class, 'home'])->name('utils.welcome');
@@ -41,6 +42,27 @@ Route::get('/alltasks', [TaskController::class, 'allTasks'] )->name('tasks.all')
 
 //utilizar o controller UserController e a funcao allUsers
 Route::get('/allusers', [UserController::class, 'allUser'] )->name('users.all');
+
+//Rota que abre a view com toda a info do user
+Route::get('/viewuser/{id}', [UserController::class, 'viewUser'])->name('users.view');
+
+//Rota que apaga o user da base de dados
+Route::get('/deleteuser/{id}', [UserController::class, 'deleteUser'])->name('users.delete');
+
+//Rota que abre a view com toda a info da task
+Route::get('/viewtask/{id}', [TaskController::class, 'viewTask'])->name('tasks.view');
+
+//Rota que apaga a task da base de dados
+Route::get('/deletetask/{id}', [TaskController::class, 'deleteTask'])->name('tasks.delete');
+
+//utilizar o controller GiftController e a funcao allGifts
+Route::get('/allgift', [GiftController::class, 'allGift'] )->name('gifts.all');
+
+//Rota que abre a view com toda a info do gift
+Route::get('/viewgift/{id}', [GiftController::class, 'viewGift'])->name('gifts.view');
+
+//Rota que apaga o gift da base de dados
+Route::get('/deletegift/{id}', [GiftController::class, 'deleteGift'])->name('gifts.delete');
 
 // Route::fallback(function () {
 //     return "<h1>Página não encontrada. <a href='/'>Voltar para a página inicial</a></h1>";
