@@ -11,16 +11,31 @@ class GiftController extends Controller
 {
      public function allGift(){
 
-    $gifts = Gift::get();
+        $gifts = DB::table('gifts')
+        ->join(
+            'users',
+            'gifts.user_id',
+             '=',
+             'users.id')
+        ->select(
+            'gifts.*',
+            'users.name as usname'
+             )
+        ->get();
 
-    return view('gifts.all_gifts', compact('gifts'));
+
+        return view('gifts.all_gifts', compact('gifts'));//passa a variável gifts para a view all_gifts.blade.php
+
+   // $gifts = Gift::get();
+
+    //return view('gifts.all_gifts', compact('gifts'));
 }
 
 //funcao que abre a view com toda a info do gift
 public function viewGift($id){
     //query que vai buscar os gifts pelo id que estou a clicar
 
-    $gift = DB::table('gifts')->join('users', 'users.id', 'gifts.user_id')->where('gifts.id', $id)->first();
+    $gift = DB::table('gifts')->join('users', 'users.id', 'gifts.user_id')->select('gifts.*', 'users.name as usname')->where('gifts.id', $id)->first();
 
     return view('gifts.view_gifts', compact('gift'));
 }
