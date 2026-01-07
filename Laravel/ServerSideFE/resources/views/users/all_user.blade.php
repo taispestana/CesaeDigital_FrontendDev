@@ -1,6 +1,12 @@
 @extends('layouts.main_layout')
     @section('content')
 
+    @if (session('message'))
+    <div class="alert alert-success">
+        {{ session('message') }}
+    </div>
+
+    @endif
     {{--Exibir a variável cesaeInfo--}}
     <p>O email de contacto, caso detecte erros é {{ $cesaeInfo['name'] }}, com endereço {{ $cesaeInfo['address'] }}, com email {{ $cesaeInfo['email'] }}, na cidade {{ $cesaeInfo['city'] }} e contacto {{ $cesaeInfo['phone'] }}</p>
 

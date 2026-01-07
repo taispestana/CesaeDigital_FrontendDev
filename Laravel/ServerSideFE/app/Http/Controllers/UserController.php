@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -14,6 +15,25 @@ public function addUser() {
 
     //Retornar a view addusers.blade.php
     return view('users.add_user', compact('pageAdmin'));
+}
+
+//funcao que recebe os dados do formulario e os armazena na base de dados
+public function storeUser(Request $request) {
+      // dd($request->all());
+
+      $request->validate([
+          'name' => 'required|string|max:255',
+          'email' => 'required|string|email|max:255|unique:users',
+          'password' => 'required|string|min:8',
+      ]);
+
+      User::insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+      ]);
+
+        return redirect()->route('users.all')->with('message', 'User created successfully.');
 }
 
 public function allUser() {

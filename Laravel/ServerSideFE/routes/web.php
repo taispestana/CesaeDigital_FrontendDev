@@ -21,8 +21,17 @@ Route::get('/turma/{name}', function ($name) {
     return "<h1>Turma: $name</h1>";
 })->name('utils.turma');
 
-//utilizar o controller UserController e a funcao addUser
+//utilizar o controller UserController e a funcao addUser, para visualizar e adicionar users
 Route::get('/addusers', [UserController::class, 'addUser'] )->name('users.add');
+
+//utilizar o controller UserController e a funcao addUser, para visualizar e adicionar users
+Route::get('/addtasks', [TaskController::class, 'addTask'] )->name('tasks.add');
+
+//utilizar o controller UserController e a funcao storeUser, pega dados do formulario e os envia para o servidor
+Route::post('/storeusers', [UserController::class, 'storeUser'] )->name('users.store');
+
+//utilizar o controller TaskController e a funcao storeTask, pega dados do formulario e os envia para o servidor
+Route::post('/storetasks', [TaskController::class, 'storeTask'] )->name('tasks.store');
 
 //utilizar o controller UserController e a funcao insertUserIntoDB
 //funcao raw que insere um user na basde de dados (teste do dbquery builder sem frontend)
