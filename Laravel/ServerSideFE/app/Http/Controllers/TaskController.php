@@ -19,9 +19,9 @@ class TaskController extends Controller
 }
 
 public function addTask() {
-
+    $users = DB::table('users')->get();
     //Retornar a view addtasks.blade.php
-    return view('tasks.add_tasks');
+    return view('tasks.add_tasks', compact('users'));
 }
 
 //funcao que recebe os dados do formulario e os armazena na base de dados
@@ -31,7 +31,7 @@ public function storeTask(Request $request) {
       $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'utilizador' => 'required|string',
+            'utilizador' => 'required',
       ]);
 
       Task::insert([
@@ -47,9 +47,15 @@ public function storeTask(Request $request) {
 public function viewTask($id){
     //query que vai buscar a task pelo id que estou a clicar
 
-    $task = DB::table('tasks')->join('users', 'users.id', 'tasks.user_id')->where('tasks.id', $id)->first();
+    $task = DB::table('tasks')
+        ->join('users', 'users.id', 'tasks.user_id')
+        ->select('tasks.*', 'users.name as user_name')
+        ->where('tasks.id', $id)
+        ->first();
 
-    return view('tasks.view_tasks', compact('task'));
+    $users = DB::table('users')->get();
+
+    return view('tasks.view_tasks', compact('task', 'users'));
 }
 
 //funcao que apaga o user da base de dados
@@ -61,6 +67,26 @@ public function deleteTask($id){
     ->delete();
 
     return back();
+}
+
+//funcao que atualiza o user na base de dados
+public function updateTask(Request $request){
+    //dd($request->all());
+
+    $request->validate([
+        'name' => 'required|string|max:50',
+    ]);
+
+    DB::table('tasks')
+    ->where('id', $request->id)
+    ->update([
+        'name' => $request->name,
+        'description' => $request->description,
+        'user_id' => $request->user_id,
+        'status' => $request->status,
+    ]);
+
+    return redirect()->route('tasks.all')->with('message', 'Task updated successfully.');
 }
 
 }

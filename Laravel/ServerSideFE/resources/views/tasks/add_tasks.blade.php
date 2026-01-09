@@ -20,12 +20,17 @@
             Descrição inválida
         @enderror
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Insira o User Id</label>
-            <input name="utilizador" type="text" class="form-control" id="exampleInputPassword1">
+            <label for="exampleInputUser1" class="form-label">User</label>
+            <select name="utilizador">
+            <option value="">--Please choose an option--</option>
+             @foreach ($users as $user)
+                 <option value="{{$user->id}}">{{$user->name}}</option>
+             @endforeach
+            </select>
+            @error('utilizador')
+                <p>User inválido</p>
+            @enderror
         </div>
-        @error('utilizador')
-            User Id inválido
-        @enderror
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Check me out</label>

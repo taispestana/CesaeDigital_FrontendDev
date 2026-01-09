@@ -77,6 +77,12 @@ Route::get('/deletegift/{id}', [GiftController::class, 'deleteGift'])->name('gif
 //     return "<h1>Página não encontrada. <a href='/'>Voltar para a página inicial</a></h1>";
 // });
 
+//Rota para atualizar o user na base de dados
+Route::put('/updateuser', [UserController::class, 'updateUser'])->name('users.update');
+
+//Rota para atualizar o user na base de dados
+Route::put('/updatetask', [TaskController::class, 'updateTask'])->name('tasks.update');
+
 Route::fallback(function () {
  return view('utils.fallbackV');
 });

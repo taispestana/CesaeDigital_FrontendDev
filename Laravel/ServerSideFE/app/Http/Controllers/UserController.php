@@ -144,4 +144,22 @@ public function deleteUser($id){
     return back();
 }
 
+//funcao que atualiza o user na base de dados
+public function updateUser(Request $request){
+    //dd($request->all());
+
+    $request->validate([
+        'name' => 'required|string|max:50',
+    ]);
+
+    DB::table('users')
+    ->where('id', $request->id)
+    ->update([
+        'name' => $request->name,
+        'nif' => $request->nif,
+        'address' => $request->address,
+    ]);
+
+    return redirect()->route('users.all')->with('message', 'User updated successfully.');
+}
 }
