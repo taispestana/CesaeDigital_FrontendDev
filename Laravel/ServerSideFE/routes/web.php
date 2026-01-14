@@ -1,13 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GiftController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UtilController;
-use App\Http\Controllers\GiftController;
+use App\Http\Controllers\DashboardController;
 
 //utilizar o controller UtilController e a funcao home
 Route::get('/', [UtilController::class, 'home'])->name('utils.welcome');
+
+Route::get('/welcome',  function(){
+    return view('welcome');
+});
 
 Route::get('/hello', function () {
     //Declaracao da variavel
@@ -47,7 +52,10 @@ Route::get('/deleteuser', [UserController::class, 'deleteUserFromDB'] );
 Route::get('/getuser', [UserController::class, 'selectUsersFromDB'] );
 
 //utilizar o controller TaskController e a funcao allTasks
-Route::get('/alltasks', [TaskController::class, 'allTasks'] )->name('tasks.all');;
+Route::get('/alltasks', [TaskController::class, 'allTasks'] )->name('tasks.all')->middleware('auth');
+
+//utilizar o controller DashboardController e a funcao dashboard
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard')->middleware('auth');
 
 //utilizar o controller UserController e a funcao allUsers
 Route::get('/allusers', [UserController::class, 'allUser'] )->name('users.all');
