@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -150,7 +151,13 @@ public function updateUser(Request $request){
 
     $request->validate([
         'name' => 'required|string|max:50',
+        'photo' => 'image',
     ]);
+
+    $photo = null;
+    if ($request->hasFile('photo')) {
+        $photo = Storage::putFile('photos', $request->file('photo'));
+    }
 
     DB::table('users')
     ->where('id', $request->id)
@@ -158,6 +165,7 @@ public function updateUser(Request $request){
         'name' => $request->name,
         'nif' => $request->nif,
         'address' => $request->address,
+        'photo' => $photo,
     ]);
 
     return redirect()->route('users.all')->with('message', 'User updated successfully.');

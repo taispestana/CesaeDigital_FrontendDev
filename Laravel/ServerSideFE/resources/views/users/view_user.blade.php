@@ -3,7 +3,7 @@
 @section('content')
 <h6>Info do User</h6>
 
- <form method="POST" action="{{ route('users.update') }}">
+ <form method="POST" action="{{ route('users.update') }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <input type="hidden" name="id" value="{{ $user->id }}">
@@ -33,6 +33,9 @@
             <input value="{{ $user->address }}" name="address" type="text" class="form-control" id="exampleInputEmail1"
                 aria-describedby="emailHelp">
         </div>
+
+        <input type="file" name="photo" accept="image/*">
+        <br>
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
