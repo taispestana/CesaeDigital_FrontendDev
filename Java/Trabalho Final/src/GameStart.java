@@ -12,18 +12,18 @@ public class GameStart {
 
         // Menu para selecionar o tipo de utilizador
         do {
-            System.out.println("\n<3 <3 <3 GameStart <3 <3 <3");
-            System.out.print("Tipo de Utilizador (ADMIN | CLIENTE | SAIR): ");
+            System.out.println("\n<3 <3 <3 Bem-vindo à GameStart <3 <3 <3");
+            System.out.print("Escolha e digite o tipo de Utilizador (ADMIN , CLIENTE ou SAIR): ");
             modoUsuario = teclado.next().toUpperCase();
 
             if (modoUsuario.equals("ADMIN")) {
-                // Verificação password para ADMIN
-                System.out.print("PASSWORD: ");
+                // Verificação de senha para ADMIN
+                System.out.print("Digite sua senha: ");
                 String senhaAdmin = teclado.next();
                 if (senhaAdmin.equals("0805")) {
                     menuAdmin(tabelaVendas, teclado);
                 } else {
-                    System.out.println("Password Incorreta!");
+                    System.out.println("Senha Incorreta! Por favor, tente novamente.");
                 }
             } else if (modoUsuario.equals("CLIENTE")) {
                 menuCliente(tabelaVendas, teclado);
@@ -31,27 +31,29 @@ public class GameStart {
 
         } while (!modoUsuario.equals("SAIR"));
 
-        System.out.println("Programa encerrado.");
+        System.out.println("Saindo...");
     }
 
     // Menu do Administrador
     public static void menuAdmin(String[][] dados, Scanner teclado) {
         int escolha;
         do {
-            System.out.println("\n--- MENU ADMIN ---");
+            System.out.println("\n<3 <3 <3 MENU ADMIN <3 <3 <3");
             System.out.println("1. Exibir Conteúdo do Arquivo");
-            System.out.println("2. Total de Vendas e Valor Acumulado");
-            System.out.println("3. Lucro Total (20%)");
-            System.out.println("4. Pesquisar Cliente por ID");
-            System.out.println("5. Jogo mais Caro e Compradores");
+            System.out.println("2. Exibir Total de Vendas e Valor Acumulado");
+            System.out.println("3. Calcular Lucro Total");
+            System.out.println("4. Pesquisar por cliente");
+            System.out.println("5. Exibir jogos mais caros e seu compradores");
             System.out.println("0. Sair");
-            System.out.print("Escolha uma opção: ");
+            System.out.print("Digite o numero correspondente à uma das opções acima: ");
             escolha = teclado.nextInt();
 
+            //Laço de repetição para escolha do usuário
             switch (escolha) {
                 case 1:
                     imprimirMatriz(dados);
                     break;
+                    //Opção que imprime
                 case 2:
                     exibirTotais(dados);
                     break;
@@ -65,10 +67,10 @@ public class GameStart {
                     jogoMaisCaro(dados);
                     break;
                 case 0:
-                    System.out.println("A sair do menu Admin...");
+                    System.out.println("Saindo...");
                     break;
                 default:
-                    System.out.println("Opção Inválida!");
+                    System.out.println("Opção Inválida! Por favor, tente novamente.");
             }
         } while (escolha != 0);
     }
@@ -127,7 +129,7 @@ public class GameStart {
         }
     }
 
-    // Menu Opção 2. Total de Vendas e Valor Acumulado
+    // Menu Opção 2. Exibir Total de Vendas e Valor Acumulado
     public static void exibirTotais(String[][] dados) {
         double valorAcumulado = 0;
         for (int i = 0; i < dados.length; i++) {
@@ -138,7 +140,7 @@ public class GameStart {
         System.out.println("Valor Total Acumulado: " + valorAcumulado + "€");
     }
 
-    // Menu Opção 3. Lucro Total (20%)
+    // Menu Opção 3. Calcular lucro Total
     public static void calcularLucro(String[][] dados) {
         double somaTotal = 0;
         for (int i = 0; i < dados.length; i++) {
@@ -149,15 +151,15 @@ public class GameStart {
         System.out.println("Lucro Total da Loja (20%): " + margem + "€");
     }
 
-    // Menu Opção 4. Pesquisar Cliente por ID
+    // Menu Opção 4. Pesquisar por cliente
     public static void pesquisarCliente(String[][] dados, Scanner teclado) {
-        System.out.print("Introduza o ID do Cliente: ");
+        System.out.print("Digite o ID do Cliente desejado: ");
         String idAlvo = teclado.next();
         boolean achou = false;
 
         for (int i = 0; i < dados.length; i++) {
             if (dados[i][1].equalsIgnoreCase(idAlvo)) {
-                System.out.println("\n--- Dados do Cliente ---");
+                System.out.println("\n<3 <3 <3 Informações do Cliente <3 <3 <3");
                 System.out.println("Nome: " + dados[i][2]);
                 System.out.println("Contacto: " + dados[i][3]);
                 System.out.println("Email: " + dados[i][4]);
@@ -167,11 +169,11 @@ public class GameStart {
         }
 
         if (!achou) {
-            System.out.println("Cliente com ID " + idAlvo + " não encontrado.");
+            System.out.println("Cliente com ID " + idAlvo + " não encontrado. Tente novamente.");
         }
     }
 
-    // Menu Opção 5. Jogo mais Caro e Compradores
+    // Menu Opção 5. Exibir jogos mais caros e seu compradores
     public static void jogoMaisCaro(String[][] dados) {
         double maxPreco = 0;
 
@@ -185,11 +187,11 @@ public class GameStart {
 
         System.out.println("\n*** Jogo Mais Caro (" + maxPreco + "€) ***");
 
-        // Mostra os jogos e clientes que têm esse valor máximo
+        // Mostra os jogos e clientes que tem o valor máximo
         for (int i = 0; i < dados.length; i++) {
             double precoJogo = Double.parseDouble(dados[i][8]);
             if (precoJogo == maxPreco) {
-                System.out.println("Jogo: " + dados[i][7] + " | Cliente: " + dados[i][2]);
+                System.out.println("Jogo: " + dados[i][7] + " | Comprador: " + dados[i][2]);
             }
         }
     }
@@ -198,9 +200,9 @@ public class GameStart {
     public static void menuCliente(String[][] dados, Scanner teclado) {
         int escolha;
         do {
-            System.out.println("\n--- MENU CLIENTE ---");
-            System.out.println("1. Registrar Novo Cliente");
-            System.out.println("2. Verificar Vagas de Estacionamento");
+            System.out.println("\n<3 <3 <3 MENU CLIENTE <3 <3 <3");
+            System.out.println("1. Fazer Registro");
+            System.out.println("2. Verificar Vagas de Estacionamento disponíveis");
             System.out.println("3. Títulos de Jogos Disponíveis");
             System.out.println("4. Catálogo por Editora");
             System.out.println("0. Sair");
