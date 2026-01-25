@@ -32,7 +32,7 @@ public class GameStart {
         do {
             System.out.println("\n<3 <3 <3 Bem-vindo à GameStart <3 <3 <3");
             System.out.println("Escolha o tipo de Utilizador: ");
-            System.out.println("ADMIN, CLIENTE ou SAIR");
+            System.out.print("ADMIN, CLIENTE ou SAIR: ");
 
             modoUsuario = teclado.next().toUpperCase();
 
@@ -56,44 +56,52 @@ public class GameStart {
 
     // Menu do Administrador
     public static void menuAdmin(String[][] dados, Scanner teclado) {
-        int escolha;
+        String escolha;
         do {
             System.out.println("\n<3 <3 <3 MENU ADMIN <3 <3 <3");
             System.out.println("1. Exibir Conteúdo do Arquivo");
             System.out.println("2. Exibir Total de Vendas e Valor Acumulado");
             System.out.println("3. Calcular Lucro Total");
             System.out.println("4. Pesquisar por cliente");
-            System.out.println("5. Exibir jogos mais caros e seu compradores");
+            System.out.println("5. Exibir jogos mais caros e seus compradores");
             System.out.println("0. Sair");
             System.out.print("Digite o numero correspondente à uma das opções acima: ");
-            escolha = teclado.nextInt();
+            System.out.println();
+            escolha = teclado.next();
             // Consumir a quebra de linha pendente para evitar erros de leitura futuros
             teclado.nextLine();
 
             // Laço de repetição de escolha
             switch (escolha) {
-                case 1:
+                case "1":
                     exibirConteudoArquivo(dados);
+                    System.out.println();
                     break;
-                case 2:
+                case "2":
                     exibirTotalVendas(dados);
+                    System.out.println();
                     break;
-                case 3:
+                case "3":
                     exibirLucroTotal(dados);
+                    System.out.println();
                     break;
-                case 4:
+                case "4":
                     buscarClientePorId(dados, teclado);
+                    System.out.println();
                     break;
-                case 5:
+                case "5":
                     exibirJogoMaisCaro(dados);
+                    System.out.println();
                     break;
-                case 0:
+                case "0":
                     System.out.println("Saindo...");
+                    System.out.println();
                     break;
                 default:
                     System.out.println("Opção Inválida! Por favor, tente novamente.");
+                    System.out.println();
             }
-        } while (escolha != 0);
+        } while (!escolha.equals("0"));
     }
 
     // Carregar dados do ficheiro CSV para uma matriz
@@ -226,7 +234,7 @@ public class GameStart {
 
     // Menu Cliente
     public static void menuCliente(String[][] dados, Scanner teclado) {
-        int escolha;
+        String escolha;
         do {
             System.out.println("\n<3 <3 <3 MENU CLIENTE <3 <3 <3");
             System.out.println("1. Fazer Registro");
@@ -235,29 +243,35 @@ public class GameStart {
             System.out.println("4. Catálogo por Editora");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
-            escolha = teclado.nextInt();
+            escolha = teclado.next();
             teclado.nextLine();
 
             switch (escolha) {
-                case 1:
+                case "1":
                     inserirNovoCliente(teclado);
+                    System.out.println();
                     break;
-                case 2:
+                case "2":
                     verificarVagasDisponiveis();
+                    System.out.println();
                     break;
-                case 3:
+                case "3":
                     listarJogosUnicos(dados);
+                    System.out.println();
                     break;
-                case 4:
+                case "4":
                     listarJogosPorEditora(dados, teclado);
+                    System.out.println();
                     break;
-                case 0:
+                case "0":
                     System.out.println("Volta para o menu principal");
+                    System.out.println();
                     break;
                 default:
                     System.out.println("Opção Inválida!");
+                    System.out.println();
             }
-        } while (escolha != 0);
+        } while (!escolha.equals("0"));
     }
 
     // Menu CLIENTE Opção 1. Registar Novo Cliente
@@ -278,10 +292,9 @@ public class GameStart {
         System.out.println("\n<3 Vagas Disponíveis <3");
 
         // Fórmula do número triangular
-        for (int n = 1;; n++) {
+        for (int n = 1; ; n++) {
             int numVaga = (n * (n + 1)) / 2;
-            if (numVaga > 121)
-                break;
+            if (numVaga > 121) break;
             if (numVaga % 5 == 0) {
                 System.out.print(+numVaga + " | ");
             }
@@ -317,20 +330,24 @@ public class GameStart {
         String catAnterior = "";
 
         // Vetor auxiliar para saber quais categorias já imprimimos
+        boolean editoraExiste=false;
         for (int i = 0; i < dados.length; i++) {
             if (dados[i][COL_EDITORA].equalsIgnoreCase(editoraBusca)) {
+                editoraExiste=true;
                 String catAtual = dados[i][COL_CATEGORIA];
                 String jogo = dados[i][COL_JOGO];
 
                 if (!catAtual.equalsIgnoreCase(catAnterior)) {
-                    System.out.println("<3" + catAtual + "<3");
+                    System.out.println("<3 " + catAtual + " <3");
                     catAnterior = catAtual;
                 }
 
                 System.out.println(jogo);
             }
         }
-
+        if (!editoraExiste){
+            System.out.println("<3 Editora nao encontrada <3");
+        }
     }
 
 }
