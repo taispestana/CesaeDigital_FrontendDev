@@ -13,14 +13,15 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::create([
-        'name' => 'Marvel',
-        'image' => 'https://via.placeholder.com/300x150.png?text=Marvel+Studios'
-    ]);
+        $categories = [
+            ['name' => 'Ação', 'image' => 'https://images.unsplash.com/photo-1594909122845-11baa439b7bf?auto=format&fit=crop&w=800&q=80'],
+            ['name' => 'Ficção Científica', 'image' => 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80'],
+            ['name' => 'Drama', 'image' => 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80'],
+            ['name' => 'Clássicos', 'image' => 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=800&q=80'],
+        ];
 
-    Category::create([
-        'name' => 'Star Wars',
-        'image' => 'https://via.placeholder.com/300x150.png?text=Star+Wars'
-    ]);
+        foreach ($categories as $category) {
+            Category::updateOrCreate(['name' => $category['name']], $category);
+        }
     }
 }

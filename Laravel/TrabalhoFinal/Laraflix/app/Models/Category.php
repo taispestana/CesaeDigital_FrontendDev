@@ -9,6 +9,8 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'image'];
+
     // ESTA É A FUNÇÃO QUE ESTÁ A FALTAR:
     public function movies()
     {

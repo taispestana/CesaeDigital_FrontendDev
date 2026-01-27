@@ -6,7 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Movie extends Model
 {
-   public function movies() {
-    return $this->hasMany(Movie::class);
-}
+    protected $fillable = [
+        'category_id',
+        'title',
+        'release_date',
+        'image',
+        'synopsis',
+        'rating',
+        'imdb_id',
+        'poster_url'
+    ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

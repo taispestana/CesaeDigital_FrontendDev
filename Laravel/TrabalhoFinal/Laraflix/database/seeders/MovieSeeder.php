@@ -15,21 +15,28 @@ class MovieSeeder extends Seeder
      */
     public function run(): void
     {
-        $marvel = Category::where('name', 'Marvel')->first();
-    $starwars = Category::where('name', 'Star Wars')->first();
+        $categories = [
+            'Ação' => ['Gladiator', 'The Dark Knight', 'John Wick', 'Mad Max: Fury Road'],
+            'Ficção Científica' => ['Inception', 'The Matrix', 'Interstellar', 'Blade Runner 2049'],
+            'Drama' => ['The Shawshank Redemption', 'Forrest Gump', 'Parasite', 'The Green Mile'],
+            'Clássicos' => ['The Godfather', 'Pulp Fiction', 'Schindler\'s List', 'Citizen Kane'],
+        ];
 
-    Movie::create([
-        'category_id' => $marvel->id,
-        'title' => 'Avengers: Endgame',
-        'image' => 'https://via.placeholder.com/200x300.png?text=Avengers',
-        'release_date' => '2019-04-26'
-    ]);
+        foreach ($categories as $categoryName => $movieTitles) {
+            $category = Category::where('name', $categoryName)->first();
 
-    Movie::create([
-        'category_id' => $starwars->id,
-        'title' => 'The Mandalorian',
-        'image' => 'https://via.placeholder.com/200x300.png?text=Mandalorian',
-        'release_date' => '2019-11-12'
-    ]);
+            if ($category) {
+                foreach ($movieTitles as $title) {
+                    Movie::updateOrCreate(
+                        ['title' => $title],
+                        [
+                            'category_id' => $category->id,
+                            'release_date' => now()->subYears(rand(1, 30))->format('Y-m-d'),
+                            'image' => null, // OMDb will fill this
+                        ]
+                    );
+                }
+            }
+        }
     }
 }
