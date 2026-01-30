@@ -1,46 +1,88 @@
-// --- Carrossel de Imagens na Seção "Sobre Nós" ---
-const secaoSobre = document.querySelector('#sobre');
 
-if (secaoSobre) {
-    const containerCarrossel = document.createElement('div');
-    containerCarrossel.style.maxWidth = '100%';
-    containerCarrossel.style.height = '300px';
-    containerCarrossel.style.marginTop = '20px';
-    containerCarrossel.style.borderRadius = '10px';
-    containerCarrossel.style.overflow = 'hidden';
-    containerCarrossel.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+// 1. FUNCIONALIDADE DOS MODAIS (Setup, Dados e Lógica)
+
+// Adicionar CSS para o Modal
+const modalCss = document.createElement('style');
+modalCss.innerHTML = `
+    .modal-backdrop {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 2000;
+    }
+    .modal-content {
+        background: white; padding: 25px; border-radius: 10px; width: 90%; max-width: 500px;
+        position: relative; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        font-family: Arial, sans-serif;
+    }
+    .modal-close {
+        position: absolute; top: 10px; right: 15px; font-size: 28px; cursor: pointer; color: #333;
+    }
+    .modal-info p { margin: 10px 0; font-size: 1.1em; color: #555; }
+    .modal-info strong { color: #333; }
+`;
+document.head.appendChild(modalCss);
+
+// Criar Estrutura HTML do Modal
+const modalOverlay = document.createElement('div');
+modalOverlay.className = 'modal-backdrop';
+modalOverlay.innerHTML = `
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h2 id="modal-titulo" style="margin-bottom: 15px; color: #243C2F;"></h2>
+        <div class="modal-info">
+            <p id="modal-desc"></p>
+            <p><strong>Duração:</strong> <span id="modal-duracao"></span></p>
+            <p><strong>Valor:</strong> <span id="modal-valor"></span></p>
+        </div>
+    </div>
+`;
+document.body.appendChild(modalOverlay);
+
+// Dados dos Cursos (descrição, duração, valor)
+const coursesData = {
+    "Software Developer": { desc: "Aprenda a desenvolver aplicações web e mobile.", duracao: "12 meses", valor: "€ 4.000" },
+    "Web Developer": { desc: "Domine HTML, CSS e JS para criar sites modernos.", duracao: "6 meses", valor: "€ 3.000" },
+    "Front-End Developer": { desc: "Domine as tecnologias front-end e crie interfaces incríveis.", duracao: "9 meses", valor: "€ 3.500" },
+    "Girls Can Code!": { desc: "Empodere mulheres na área da tecnologia.", duracao: "3 meses", valor: "Gratuito" },
+    "Comunicação Digital": { desc: "Estratégias de marketing e gestão de redes sociais.", duracao: "4 meses", valor: "€ 2.500" },
+    "Formação de formadores": { desc: "Desenvolva competências pedagógicas para formação.", duracao: "150 horas", valor: "€ 1.200" },
+    "default": { desc: "Entre em contato para mais detalhes sobre este curso.", duracao: "Sob consulta", valor: "Sob consulta" }
+};
+
+// Lógica de Abrir/Fechar
+const modalTitle = document.getElementById('modal-titulo');
+const modalDescription = document.getElementById('modal-desc');
+const modalDuration = document.getElementById('modal-duracao');
+const modalPrice = document.getElementById('modal-valor');
+const closeModalBtn = document.querySelector('.modal-close');
+
+// Função para abrir o modal com os dados
+function openCourseModal(titulo, descricao) {
+    const tituloLimpo = titulo.trim();
+
+    // Tenta encontrar correspondência exata ou usa o default
+    const dados = coursesData[tituloLimpo] || coursesData['default'];
     
-    const imgCarrossel = document.createElement('img');
-    imgCarrossel.style.width = '100%';
-    imgCarrossel.style.height = '100%';
-    imgCarrossel.style.objectFit = 'cover';
-    imgCarrossel.style.transition = 'opacity 0.5s';
-    
-    const imagensSobre = [
-        'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80', // Pessoas trabalhando
-        'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80', // Reunião
-        'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80'  // Escritório
-    ];
-    
-    let indiceImg = 0;
-    imgCarrossel.src = imagensSobre[0];
-    containerCarrossel.appendChild(imgCarrossel);
-    secaoSobre.appendChild(containerCarrossel);
-    
-    setInterval(() => {
-        imgCarrossel.style.opacity = '0';
-        setTimeout(() => {
-            indiceImg = (indiceImg + 1) % imagensSobre.length;
-            imgCarrossel.src = imagensSobre[indiceImg];
-            imgCarrossel.style.opacity = '1';
-        }, 500);
-    }, 4000);
+    // Preencher os dados do modal
+    modalTitle.textContent = tituloLimpo;
+    modalDescription.textContent = descricao || dados.desc;
+    modalDuration.textContent = dados.duracao;
+    modalPrice.textContent = dados.valor;
+    modalOverlay.style.display = 'flex';
 }
 
-// Animação dos cards dos cursos 
-const cards = document.querySelectorAll('#cursos .card');
+// Fechar o modal
+closeModalBtn.addEventListener('click', () => modalOverlay.style.display = 'none');
+modalOverlay.addEventListener('click', (e) => {
+    if (e.target === modalOverlay) modalOverlay.style.display = 'none';
+});
 
-cards.forEach(card => {
+
+// 2. SEÇÃO DE CURSOS (Animações, Imagens e Botões)
+
+// Animação dos cards dos cursos 
+const courseCards = document.querySelectorAll('#cursos .card');
+
+courseCards.forEach(card => {
     card.addEventListener('mouseenter', () => {
         card.style.transform = 'scale(1.1)';
     })
@@ -51,130 +93,216 @@ cards.forEach(card => {
 
 // Garante que todas as imagens dos cards tenham a mesma altura
 document.addEventListener('DOMContentLoaded', () => {
-    const cardImages = document.querySelectorAll('#cursos .card img');
+    const courseCardImages = document.querySelectorAll('#cursos .card img');
 
-    cardImages.forEach(img => {
-        img.style.height = '200px'; // Define uma altura fixa para todas as imagens
-        img.style.objectFit = 'cover'; // Garante que a imagem cubra a área sem distorcer
+    courseCardImages.forEach(img => {
+        img.style.height = '200px'; 
+        img.style.objectFit = 'cover'; 
     });
 });
 
-// Substituir imagem do card "Girls Can Code!"
-const imgGirlsCanCode = document.querySelector('img[alt="Curso Girls Can Code!"]');
+// Associar aos Botões "Saiba Mais"
+document.querySelectorAll('#cursos .card').forEach(card => {
+    const btn = card.querySelector('.btn-primary');
+    const tituloEl = card.querySelector('.card-title');
+    const descEl = card.querySelector('.card-text');
+    
+    // Verifica se o botão e o título existem antes de adicionar o evento
+    if (btn && tituloEl) {
+        btn.style.backgroundColor = '#800080';
+        btn.style.borderColor = '#800080';
+        btn.style.border = '1px solid #800080';
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openCourseModal(tituloEl.textContent, descEl ? descEl.textContent : null);
+        });
+    }
+});
+
+
+// 3. SEÇÃO "SOBRE NÓS" (Carrossel, Imagens e Lista)
+
+// Carrossel de Imagens na Seção "Sobre Nós"
+const aboutSection = document.querySelector('#sobre');
+
+// Verifica se a seção "Sobre Nós" existe antes de criar o carrossel
+if (aboutSection) {
+    const carouselContainer = document.createElement('div');
+    carouselContainer.style.maxWidth = '100%';
+    carouselContainer.style.height = '300px';
+    carouselContainer.style.marginTop = '20px';
+    carouselContainer.style.borderRadius = '10px';
+    carouselContainer.style.overflow = 'hidden';
+    carouselContainer.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+    
+    // Criação do elemento de imagem
+    const carouselImage = document.createElement('img');
+    carouselImage.style.width = '100%';
+    carouselImage.style.height = '100%';
+    carouselImage.style.objectFit = 'cover';
+    carouselImage.style.transition = 'opacity 0.5s';
+    
+    // URLs das imagens do carrossel
+    const aboutImages = [
+        'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80', 
+        'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80', 
+        'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80'  
+    ];
+    
+    // Lógica do carrossel
+    let imageIndex = 0;
+    carouselImage.src = aboutImages[0];
+    carouselContainer.appendChild(carouselImage);
+    aboutSection.appendChild(carouselContainer);
+    
+    // Troca automática de imagens a cada 4 segundos
+    setInterval(() => {
+        carouselImage.style.opacity = '0';
+        setTimeout(() => {
+            imageIndex = (imageIndex + 1) % aboutImages.length;
+            carouselImage.src = aboutImages[imageIndex];
+            carouselImage.style.opacity = '1';
+        }, 500);
+    }, 4000);
+}
+
+// Alterar a imagem
+const girlsCanCodeImg = document.querySelector('img[alt="Curso Girls Can Code!"]');
  
-if (imgGirlsCanCode) {
-    // Insere a nova URL da imagem
-    imgGirlsCanCode.src = "https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=800&q=80";
+// Verifica se a imagem existe antes de alterar o src
+if (girlsCanCodeImg) {
+    girlsCanCodeImg.src = "https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=800&q=80";
 
 }
 
-// Incluir cursos em mais duas áreas na lista "Sobre Nós"
-const listaSobre = document.querySelector('#sobre ul');
+// Adicionar novos itens na lista da seção "Sobre Nós"
+const aboutList = document.querySelector('#sobre ul');
  
-if (listaSobre) {
+// Verifica se a lista existe antes de adicionar os itens
+if (aboutList) {
+
     // Criar o item Comunicação Digital
-    const item1 = document.createElement('li');
-    item1.textContent = 'Comunicação Digital';
+    const digitalCommItem = document.createElement('li');
+    digitalCommItem.textContent = 'Comunicação Digital';
     
     // Criar o item Formação de formadores
-    const item2 = document.createElement('li');
-    item2.textContent = 'Formação de formadores';
+    const trainersItem = document.createElement('li');
+    trainersItem.textContent = 'Formação de formadores';
  
     // Inserir os itens no final da lista
-    listaSobre.appendChild(item1);
-    listaSobre.appendChild(item2);
+    aboutList.appendChild(digitalCommItem);
+    aboutList.appendChild(trainersItem);
 }
 
-// --- Formulário de Contato ---
 
-document.getElementById("formulario-contato").addEventListener('submit', function(event) {
+// 4. FORMULÁRIO DE CONTATO
+
+// Validação do Formulário de Contato
+const contactForm = document.getElementById("formulario-contato");
+const formSubmitBtn = contactForm.querySelector('button');
+if (formSubmitBtn) {
+    formSubmitBtn.style.backgroundColor = '#800080';
+    formSubmitBtn.style.borderColor = '#800080';
+    formSubmitBtn.style.border = '1px solid #800080';
+}
+
+contactForm.addEventListener('submit', function(event) {
     event.preventDefault();
  
-    const mensagensErro = document.querySelectorAll('.erro-validacao');
-    mensagensErro.forEach(msg => msg.remove());
+    // Remover mensagens de erro anteriores
+    const errorMessages = document.querySelectorAll('.erro-validacao');
+    errorMessages.forEach(msg => msg.remove());
  
-    const nome = document.getElementById('nome');
-    const email = document.getElementById('email');
-    const contato = document.getElementById('contatoFormulario');
-    const regiao = document.getElementById('regiao');
-    const mensagem = document.getElementById('mensagem');
+    // Referências aos campos do formulário
+    const nameField = document.getElementById('nome');
+    const emailField = document.getElementById('email');
+    const contactField = document.getElementById('contatoFormulario');
+    const regionField = document.getElementById('regiao');
+    const messageField = document.getElementById('mensagem');
  
-    let formularioValido = true;
+    let isFormValid = true;
  
-    function exibirErro(campo, texto) {
+    // Função para exibir mensagens de erro
+    function showError(field, text) {
         const erro = document.createElement('small');
         erro.className = 'erro-validacao';
         erro.textContent = texto;
         erro.style.color = '#dc3545';
         erro.style.fontSize = '12px';
         erro.style.display = 'block';
-        campo.parentNode.appendChild(erro);
-        formularioValido = false;
+        field.parentNode.appendChild(erro);
+        isFormValid = false;
     }
  
     // Verificação de Campos em Branco
- 
-    if (nome.value.trim() === "") {
-        exibirErro(nome, '* Campo obrigatório.');
+    if (nameField.value.trim() === "") {
+        showError(nameField, '* Campo de nome obrigatório.');
     }
  
-    if (email.value.trim() === "") {
-        exibirErro(email, '* Campo obrigatório.');
-    } else if (!email.checkValidity()) {
-        exibirErro(email, '* Insira um e-mail válido.');
+    if (emailField.value.trim() === "") {
+        showError(emailField, '* Campo de e-mail obrigatório.');
+    } else if (!emailField.checkValidity()) {
+        showError(emailField, '* Insira um e-mail válido.');
     }
  
-    if (contato.value.trim() === "") {
-        exibirErro(contato, '* Campo obrigatório.');
+    if (contactField.value.trim() === "") {
+        showError(contactField, '* Campo de contato obrigatório.');
     }
  
-    if (regiao.value === "") {
-        exibirErro(regiao, '* Campo obrigatório.');
+    if (regionField.value === "") {
+        showError(regionField, '* Campo de região obrigatório.');
     }
  
-    if (mensagem.value.trim() === "") {
-        exibirErro(mensagem, '* Campo obrigatório.');
+    if (messageField.value.trim() === "") {
+        showError(messageField, '* Campo de mensagem obrigatório.');
     }
  
-    if (formularioValido) {
-        const btn = event.target.querySelector('button');
-        btn.style.backgroundColor = '#243C2F';
-        btn.textContent = 'Enviado!';
+    // Se o formulário for válido, exibir mensagem de sucesso
+    if (isFormValid) {
+        const submitBtn = event.target.querySelector('button');
+        submitBtn.style.backgroundColor = '#800080';
+        submitBtn.style.borderColor = '#800080';
+        submitBtn.style.border = '1px solid #800080';
+        submitBtn.textContent = 'Enviado!';
         alert("Formulário enviado com sucesso!");
         event.target.reset();
     }
 });
 
+
+// 5. QUIZ INTERATIVO
+
 // Quiz Interativo 
-// 1. Criar estrutura do Quiz
-const quizContainer = document.createElement('div');
-quizContainer.style.maxWidth = '600px';
-quizContainer.style.margin = '50px auto';
-quizContainer.style.padding = '20px';
-quizContainer.style.backgroundColor = '#f9f9f9';
-quizContainer.style.borderRadius = '10px';
-quizContainer.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
-quizContainer.style.textAlign = 'center';
-quizContainer.style.fontFamily = 'Arial, sans-serif';
+const quizWrapper = document.createElement('div');
+quizWrapper.style.maxWidth = '600px';
+quizWrapper.style.margin = '50px auto';
+quizWrapper.style.padding = '20px';
+quizWrapper.style.backgroundColor = '#f9f9f9';
+quizWrapper.style.borderRadius = '10px';
+quizWrapper.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+quizWrapper.style.textAlign = 'center';
+quizWrapper.style.fontFamily = 'Arial, sans-serif';
 
-const tituloQuiz = document.createElement('h2');
-tituloQuiz.textContent = 'Quiz de Conhecimentos';
-tituloQuiz.style.color = '#333';
-quizContainer.appendChild(tituloQuiz);
+// 1. Estrutura do Quiz
+const quizHeader = document.createElement('h2');
+quizHeader.textContent = 'Quiz de Conhecimentos';
+quizHeader.style.color = '#333';
+quizWrapper.appendChild(quizHeader);
 
-const areaConteudo = document.createElement('div');
-quizContainer.appendChild(areaConteudo);
+// Área para perguntas e opções
+const quizContent = document.createElement('div');
+quizWrapper.appendChild(quizContent);
 
-// Insere o quiz antes da seção de contato para melhor fluxo
-const secaoContato = document.getElementById('contato');
-if (secaoContato) {
-    secaoContato.parentNode.insertBefore(quizContainer, secaoContato);
+// Insere o quiz antes da seção de contato
+const contactSection = document.getElementById('contato');
+if (contactSection) {
+    contactSection.parentNode.insertBefore(quizWrapper, contactSection);
 } else {
-    document.body.insertBefore(quizContainer, document.querySelector('footer'));
+    document.body.insertBefore(quizWrapper, document.querySelector('footer'));
 }
 
-// 2. Dados do Quiz
-const perguntas = [
+// Dados do Quiz
+const quizQuestions = [
     {
         pergunta: "O que significa a sigla HTML?",
         opcoes: ["Hyper Text Markup Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language"],
@@ -192,20 +320,22 @@ const perguntas = [
     }
 ];
 
-let indiceAtual = 0;
-let pontuacao = 0;
+let currentQuestionIndex = 0;
+let currentScore = 0;
 
-// 3. Funções de Lógica
-function carregarPergunta() {
-    const q = perguntas[indiceAtual];
-    areaConteudo.innerHTML = ''; // Limpa conteúdo anterior
+// Funções de Lógica
+function loadQuestion() {
+    const q = quizQuestions[currentQuestionIndex];
+    quizContent.innerHTML = ''; 
 
+    // Pergunta
     const p = document.createElement('p');
     p.textContent = q.pergunta;
     p.style.fontSize = '1.2em';
     p.style.margin = '20px 0';
-    areaConteudo.appendChild(p);
+    quizContent.appendChild(p);
 
+    // Opções
     q.opcoes.forEach((opcao, index) => {
         const btn = document.createElement('button');
         btn.textContent = opcao;
@@ -215,170 +345,91 @@ function carregarPergunta() {
         btn.style.margin = '5px 0';
         btn.style.cursor = 'pointer';
         btn.style.backgroundColor = '#fff';
-        btn.style.border = '1px solid #ccc';
+        btn.style.border = '1px solid #800080';
         btn.style.borderRadius = '5px';
         
+        // Efeitos de hover
         btn.addEventListener('mouseenter', () => btn.style.backgroundColor = '#e0e0e0');
         btn.addEventListener('mouseleave', () => btn.style.backgroundColor = '#fff');
         
+        // Verificação da resposta
         btn.addEventListener('click', () => {
             if (index === q.correta) {
-                pontuacao++;
+                currentScore++;
                 alert("Correto!");
             } else {
                 alert("Incorreto!");
             }
-            indiceAtual++;
-            if (indiceAtual < perguntas.length) {
-                carregarPergunta();
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizQuestions.length) {
+                loadQuestion();
             } else {
-                mostrarResultado();
+                displayResult();
             }
         });
-        areaConteudo.appendChild(btn);
+        quizContent.appendChild(btn);
     });
 }
 
-function mostrarResultado() {
-    areaConteudo.innerHTML = `
+// Mostrar Resultado
+function displayResult() {
+    quizContent.innerHTML = `
         <h3>Quiz Finalizado!</h3>
-        <p>Você acertou <strong>${pontuacao}</strong> de <strong>${perguntas.length}</strong> perguntas.</p>
+        <p>Você acertou <strong>${currentScore}</strong> de <strong>${quizQuestions.length}</strong> perguntas.</p>
     `;
     
-    const btnReiniciar = document.createElement('button');
-    btnReiniciar.textContent = 'Reiniciar Quiz';
-    btnReiniciar.style.marginTop = '15px';
-    btnReiniciar.style.padding = '10px 20px';
-    btnReiniciar.style.backgroundColor = '#243C2F';
-    btnReiniciar.style.color = 'white';
-    btnReiniciar.style.border = 'none';
-    btnReiniciar.style.borderRadius = '5px';
-    btnReiniciar.style.cursor = 'pointer';
+    // Botão para reiniciar o quiz
+    const restartBtn = document.createElement('button');
+    restartBtn.textContent = 'Reiniciar Quiz';
+    restartBtn.style.marginTop = '15px';
+    restartBtn.style.padding = '10px 20px';
+    restartBtn.style.backgroundColor = '#800080';
+    restartBtn.style.color = 'white';
+    restartBtn.style.border = '1px solid #800080';
+    restartBtn.style.borderRadius = '5px';
+    restartBtn.style.cursor = 'pointer';
     
-    btnReiniciar.addEventListener('click', () => {
-        indiceAtual = 0;
-        pontuacao = 0;
-        carregarPergunta();
+    restartBtn.addEventListener('click', () => {
+        currentQuestionIndex = 0;
+        currentScore = 0;
+        loadQuestion();
     });
     
-    areaConteudo.appendChild(btnReiniciar);
+    quizContent.appendChild(restartBtn);
 }
 
 // Iniciar o Quiz
-carregarPergunta();
+loadQuestion();
 
+
+// 6. UTILITÁRIOS (Botão Voltar ao Topo)
+  
 // Botão "Voltar ao Topo"
-const btnTopo = document.createElement('button');
-btnTopo.textContent = 'Voltar ao Topo';
-btnTopo.style.position = 'fixed';
-btnTopo.style.bottom = '20px';
-btnTopo.style.right = '20px';
-btnTopo.style.display = 'none';
-btnTopo.style.padding = '10px 15px';
-btnTopo.style.backgroundColor = '#2b68f6ff';
-btnTopo.style.color = '#fff';
-btnTopo.style.border = 'none';
-btnTopo.style.borderRadius = '5px';
-btnTopo.style.cursor = 'pointer';
-btnTopo.style.zIndex = '1000';
+const backToTopBtn = document.createElement('button');
+backToTopBtn.textContent = 'Voltar ao Topo';
+backToTopBtn.style.position = 'fixed';
+backToTopBtn.style.bottom = '20px';
+backToTopBtn.style.right = '20px';
+backToTopBtn.style.display = 'none';
+backToTopBtn.style.padding = '10px 15px';
+backToTopBtn.style.backgroundColor = '#800080';
+backToTopBtn.style.color = '#fff';
+backToTopBtn.style.border = '1px solid #800080';
+backToTopBtn.style.borderRadius = '5px';
+backToTopBtn.style.cursor = 'pointer';
+backToTopBtn.style.zIndex = '1000';
 
-document.body.appendChild(btnTopo);
+document.body.appendChild(backToTopBtn);
 
-btnTopo.addEventListener('click', () => {
+backToTopBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
+// Mostrar o botão ao rolar a página
 window.addEventListener('scroll', () => {
     if (window.scrollY > 300) {
-        btnTopo.style.display = 'block';
+        backToTopBtn.style.display = 'block';
     } else {
-        btnTopo.style.display = 'none';
-    }
-});
-
-// --- Funcionalidade dos Modais (Pop-ups) ---
-
-// 1. Injetar CSS para o Modal
-const styleModal = document.createElement('style');
-styleModal.innerHTML = `
-    .modal-backdrop {
-        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 2000;
-    }
-    .modal-content {
-        background: white; padding: 25px; border-radius: 10px; width: 90%; max-width: 500px;
-        position: relative; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        font-family: Arial, sans-serif;
-    }
-    .modal-close {
-        position: absolute; top: 10px; right: 15px; font-size: 28px; cursor: pointer; color: #333;
-    }
-    .modal-info p { margin: 10px 0; font-size: 1.1em; color: #555; }
-    .modal-info strong { color: #333; }
-`;
-document.head.appendChild(styleModal);
-
-// 2. Criar Estrutura HTML do Modal
-const modalContainer = document.createElement('div');
-modalContainer.className = 'modal-backdrop';
-modalContainer.innerHTML = `
-    <div class="modal-content">
-        <span class="modal-close">&times;</span>
-        <h2 id="modal-titulo" style="margin-bottom: 15px; color: #243C2F;"></h2>
-        <div class="modal-info">
-            <p id="modal-desc"></p>
-            <p><strong>Duração:</strong> <span id="modal-duracao"></span></p>
-            <p><strong>Valor:</strong> <span id="modal-valor"></span></p>
-        </div>
-    </div>
-`;
-document.body.appendChild(modalContainer);
-
-// 3. Dados dos Cursos (Simulação)
-const infoCursos = {
-    "Software Developer": { desc: "Aprenda a desenvolver aplicações web e mobile.", duracao: "12 meses", valor: "€ 4.000" },
-    "Web Developer": { desc: "Domine HTML, CSS e JS para criar sites modernos.", duracao: "6 meses", valor: "€ 3.000" },
-    "Front-End Developer": { desc: "Domine as tecnologias front-end e crie interfaces incríveis.", duracao: "9 meses", valor: "€ 3.500" },
-    "Girls Can Code!": { desc: "Empodere mulheres na área da tecnologia.", duracao: "3 meses", valor: "Gratuito" },
-    "Comunicação Digital": { desc: "Estratégias de marketing e gestão de redes sociais.", duracao: "4 meses", valor: "€ 2.500" },
-    "Formação de formadores": { desc: "Desenvolva competências pedagógicas para formação.", duracao: "150 horas", valor: "€ 1.200" },
-    "default": { desc: "Entre em contato para mais detalhes sobre este curso.", duracao: "Sob consulta", valor: "Sob consulta" }
-};
-
-// 4. Lógica de Abrir/Fechar
-const mTitulo = document.getElementById('modal-titulo');
-const mDesc = document.getElementById('modal-desc');
-const mDuracao = document.getElementById('modal-duracao');
-const mValor = document.getElementById('modal-valor');
-const mClose = document.querySelector('.modal-close');
-
-function abrirModal(titulo, descricao) {
-    const tituloLimpo = titulo.trim();
-    // Tenta encontrar correspondência exata ou usa o default
-    const dados = infoCursos[tituloLimpo] || infoCursos['default'];
-    
-    mTitulo.textContent = tituloLimpo;
-    mDesc.textContent = descricao || dados.desc;
-    mDuracao.textContent = dados.duracao;
-    mValor.textContent = dados.valor;
-    modalContainer.style.display = 'flex';
-}
-
-mClose.addEventListener('click', () => modalContainer.style.display = 'none');
-modalContainer.addEventListener('click', (e) => {
-    if (e.target === modalContainer) modalContainer.style.display = 'none';
-});
-
-// 5. Associar aos Botões "Saiba Mais"
-document.querySelectorAll('#cursos .card').forEach(card => {
-    const btn = card.querySelector('.btn-primary');
-    const tituloEl = card.querySelector('.card-title');
-    const descEl = card.querySelector('.card-text');
-    
-    if (btn && tituloEl) {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            abrirModal(tituloEl.textContent, descEl ? descEl.textContent : null);
-        });
+        backToTopBtn.style.display = 'none';
     }
 });
