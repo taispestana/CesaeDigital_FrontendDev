@@ -8,14 +8,15 @@ use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {
+    // Função que exibe a lista de categorias
     public function index()
     {
-        // "withCount" cria automaticamente uma variável 'movies_count'
         $categories = Category::withCount('movies')->get();
 
         return view('categories.index', compact('categories'));
     }
 
+    //Função que exibe os detalhes de uma categoria
     public function show($id)
     {
         // Procura a categoria pelo ID ou dá erro 404 se não existir
@@ -24,6 +25,7 @@ class MovieController extends Controller
         return view('categories.show', compact('category'));
     }
 
+    // Função que atualiza um filme
     public function update(Request $request, Movie $movie)
     {
         $request->validate([

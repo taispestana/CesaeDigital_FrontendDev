@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bootstrap any application services.
+     * Compose a view com todos os usuários
      */
     public function boot(): void
     {

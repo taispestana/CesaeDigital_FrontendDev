@@ -113,6 +113,7 @@
         <a href="/" class="logo">Laraflix</a>
     </header>
 
+    <!-- Conteúdo da página -->
     <main class="flex-grow flex items-start justify-center pt-10 px-4">
         <div class="login-card">
             <h1 class="text-3xl font-bold mb-2">Introduza os seus dados para iniciar sessão</h1>
@@ -121,14 +122,14 @@
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
-                <!-- Email Address -->
+                <!-- Email -->
                 <div class="mb-4">
                     <input id="email" class="input-field" type="email" name="email" :value="old('email')"
                         placeholder="E-mail" required autofocus autocomplete="username" />
                     <x-input-error :messages="$errors->get('email')" class="mt-1" />
                 </div>
 
-                <!-- Password -->
+                <!-- Palavra-passe -->
                 <div class="mb-2">
                     <input id="password" class="input-field" type="password" name="password" placeholder="Senha"
                         required autocomplete="current-password" />
@@ -139,6 +140,7 @@
                     Continuar
                 </button>
 
+                <!-- Checkbox de lembrar-me -->
                 <div class="flex items-center justify-between mt-4">
                     <label for="remember_me" class="inline-flex items-center cursor-pointer">
                         <input id="remember_me" type="checkbox"
@@ -149,6 +151,7 @@
                 </div>
             </form>
 
+            <!-- Link de registro -->
             <div class="mt-10">
                 <p class="text-gray-500">
                     Não tem uma conta? <a href="{{ route('register') }}"
@@ -156,8 +159,7 @@
                 </p>
             </div>
 
-
-
+            <!-- Texto do Footer -->
             <div class="footer-text">
                 Esta página está protegida pelo serviço Google reCAPTCHA para garantir que não se trata de um robô. <a
                     href="#" class="text-blue-600 hover:underline">Mais informações</a>

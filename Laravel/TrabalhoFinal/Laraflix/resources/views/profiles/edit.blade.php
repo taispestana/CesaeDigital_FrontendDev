@@ -14,7 +14,7 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <style>
+<style>
         body {
             background-color: #fff;
             color: #333;

@@ -11,7 +11,7 @@ use App\Models\Category;
 class MovieSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Corre as seeds de Movie
      */
     public function run(): void
     {
@@ -23,9 +23,11 @@ class MovieSeeder extends Seeder
         ];
 
 
+        // Preenche o banco de dados
         foreach ($categories as $categoryName => $movieTitles) {
             $category = Category::where('name', $categoryName)->first();
 
+            // Verifica se a categoria existe
             if ($category) {
                 foreach ($movieTitles as $title) {
                     Movie::updateOrCreate(
@@ -33,7 +35,7 @@ class MovieSeeder extends Seeder
                         [
                             'category_id' => $category->id,
                             'release_date' => now()->subYears(rand(1, 30))->format('Y-m-d'),
-                            'image' => null, // OMDb will fill this
+                            'image' => null,
                         ]
                     );
                 }
