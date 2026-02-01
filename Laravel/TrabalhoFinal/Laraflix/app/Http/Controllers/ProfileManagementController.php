@@ -30,14 +30,28 @@ class ProfileManagementController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $user->update([
+        $data = [
             'name' => $request->name,
-        ]);
+        ];
+
+        if ($request->hasFile('profile_photo')) {
+            // Delete old photo if it exists
+            if ($user->profile_photo_path && \Illuminate\Support\Facades\Storage::disk('public')->exists($user->profile_photo_path)) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($user->profile_photo_path);
+            }
+
+            $path = $request->file('profile_photo')->store('profile-photos', 'public');
+            $data['profile_photo_path'] = $path;
+        }
+
+        $user->update($data);
 
         return redirect()->route('profiles.manage')->with('success', 'Perfil atualizado com sucesso!');
     }
+
 
     /**
      * Delete a user profile.
@@ -77,15 +91,32 @@ class ProfileManagementController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
+            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        $profilePhotoPath = null;
+        if ($request->hasFile('profile_photo')) {
+            $profilePhotoPath = $request->file('profile_photo')->store('profile-photos', 'public');
+        }
 
         \App\Models\User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => \Illuminate\Support\Facades\Hash::make('laraflix123'),
             'role' => 'user',
+            'profile_photo_path' => $profilePhotoPath,
         ]);
 
         return redirect()->route('profiles.manage')->with('success', 'Novo perfil adicionado com sucesso!');
     }
+
+    /**
+     * Switch the current user profile.
+     */
+    public function switch(\App\Models\User $user)
+    {
+        \Illuminate\Support\Facades\Auth::login($user);
+        return redirect()->route('dashboard')->with('success', 'Perfil alterado para ' . $user->name);
+    }
 }
+

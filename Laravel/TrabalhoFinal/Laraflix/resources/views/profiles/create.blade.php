@@ -206,19 +206,21 @@
     <div class="edit-container">
         <h1>Adicionar perfil</h1>
 
-        <form action="{{ route('profiles.store') }}" method="POST">
+        <form action="{{ route('profiles.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="edit-profile-section">
-                <div class="profile-avatar-container">
+                <div class="profile-avatar-container" onclick="document.getElementById('profile_photo').click()">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
-                        class="profile-avatar">
+                        class="profile-avatar" id="avatar-preview">
                     <div class="avatar-edit-overlay">
                         <svg class="edit-icon-main" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                         </svg>
                     </div>
                 </div>
+                <input type="file" name="profile_photo" id="profile_photo" class="hidden" accept="image/*"
+                    onchange="previewImage(event)">
                 <div class="input-group">
                     <label class="input-label">Nome do perfil</label>
                     <input type="text" name="name" class="name-input" placeholder="Insira o nome" required>
@@ -248,6 +250,16 @@
             </div>
         </form>
     </div>
+    <script>
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                const output = document.getElementById('avatar-preview');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </body>
 
 </html>

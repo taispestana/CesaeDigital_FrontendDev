@@ -22,7 +22,21 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'profile_photo_path',
     ];
+
+    /**
+     * Get the URL to the user's profile photo.
+     *
+     * @return string
+     */
+    public function getProfilePhotoUrlAttribute()
+    {
+        return $this->profile_photo_path
+            ? asset('storage/' . $this->profile_photo_path)
+            : 'https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png';
+    }
+
 
     public function isAdmin()
     {

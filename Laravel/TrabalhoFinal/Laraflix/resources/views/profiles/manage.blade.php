@@ -235,9 +235,8 @@
     <nav class="settings-nav">
         <a href="{{ route('dashboard') }}" class="logo-red">Laraflix</a>
         <div class="user-profile">
-            <div class="w-8 h-8 rounded bg-blue-500 overflow-hidden">
-                <img src="https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg"
-                    alt="Profile">
+            <div class="w-8 h-8 rounded overflow-hidden">
+                <img src="{{ Auth::user()->profile_photo_url }}" alt="Profile">
             </div>
         </div>
     </nav>
@@ -251,34 +250,7 @@
                 Voltar à Laraflix
             </a>
 
-            <a href="#" class="sidebar-link">
-                <svg fill="none" class="w-5 h-5" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-                Descrição
-            </a>
-            <a href="#" class="sidebar-link">
-                <svg fill="none" class="w-5 h-5" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                Adesão
-            </a>
-            <a href="#" class="sidebar-link">
-                <svg fill="none" class="w-5 h-5" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-                Segurança
-            </a>
-            <a href="#" class="sidebar-link">
-                <svg fill="none" class="w-5 h-5" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                </svg>
-                Dispositivos
-            </a>
+
             <a href="#" class="sidebar-link active">
                 <svg fill="none" class="w-5 h-5" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -290,26 +262,10 @@
 
         <main class="content">
             <h1>Perfis</h1>
-            <p class="subtitle">Controlos parentais e permissões</p>
+
 
             <div class="card">
-                <a href="#" class="card-item">
-                    <div class="card-item-left">
-                        <div class="icon-box">
-                            <svg fill="none" class="w-6 h-6" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                            </svg>
-                        </div>
-                        <div class="item-text">
-                            <h3>Ajustar controlos parentais</h3>
-                            <p>Configure as classificações etárias, bloqueie títulos</p>
-                        </div>
-                    </div>
-                    <svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                </a>
+
                 @if(Auth::user()->isAdmin())
                     <a href="{{ route('profiles.create') }}" class="card-item">
                         <div class="card-item-left">
@@ -337,8 +293,8 @@
                 @foreach($users as $user)
                     <a href="{{ route('profiles.edit_form', $user) }}" class="profile-item group">
                         <div class="profile-info">
-                            <img src="https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg"
-                                class="profile-avatar">
+                            <img src="{{ $user->profile_photo_url }}" class="profile-avatar">
+
                             <span class="profile-name">{{ $user->name }}</span>
                             @if($user->id === Auth::id())
                                 <span class="badge">O seu perfil</span>

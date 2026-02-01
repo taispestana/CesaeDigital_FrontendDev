@@ -238,9 +238,8 @@
     <nav class="settings-nav">
         <a href="{{ route('dashboard') }}" class="logo-red">Laraflix</a>
         <div class="user-profile">
-            <div class="w-8 h-8 rounded bg-blue-500 overflow-hidden">
-                <img src="https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg"
-                    alt="Profile">
+            <div class="w-8 h-8 rounded overflow-hidden">
+                <img src="{{ Auth::user()->profile_photo_url }}" alt="Profile">
             </div>
         </div>
     </nav>
@@ -248,14 +247,14 @@
     <div class="edit-container">
         <h1>Editar perfil</h1>
 
-        <form action="{{ route('profiles.update', $user) }}" method="POST">
+        <form action="{{ route('profiles.update', $user) }}" method="POST" enctype="multipart/form-data"
+            id="edit-profile-form">
             @csrf
             @method('PATCH')
 
             <div class="edit-profile-section">
-                <div class="profile-avatar-container">
-                    <img src="https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg"
-                        class="profile-avatar">
+                <div class="profile-avatar-container" onclick="document.getElementById('profile_photo').click()">
+                    <img src="{{ $user->profile_photo_url }}" class="profile-avatar" id="avatar-preview">
                     <div class="avatar-edit-overlay">
                         <svg class="edit-icon-main" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -263,6 +262,8 @@
                         </svg>
                     </div>
                 </div>
+                <input type="file" name="profile_photo" id="profile_photo" class="hidden" accept="image/*"
+                    onchange="previewImage(event)">
                 <div class="input-group">
                     <label class="input-label">Nome do perfil</label>
                     <input type="text" name="name" class="name-input" value="{{ $user->name }}" required>
@@ -305,6 +306,16 @@
             </form>
         @endif
     </div>
+    <script>
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                const output = document.getElementById('avatar-preview');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </body>
 
 </html>

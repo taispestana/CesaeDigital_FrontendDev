@@ -60,6 +60,8 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
+    Route::post('/profiles/switch/{user}', [App\Http\Controllers\ProfileManagementController::class, 'switch'])->name('profiles.switch');
 });
+
 
 require __DIR__ . '/auth.php';
