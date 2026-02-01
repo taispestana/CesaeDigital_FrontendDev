@@ -32,7 +32,15 @@ Route::get('/dashboard', function (\App\Services\OmdbService $omdb) {
 
     $featured = $omdb->fetchMovieByTitle('Younger');
 
+    if ($featured) {
+        // $featured['LogoUrl'] = 'https://upload.wikimedia.org/wikipedia/commons/e/e6/Younger_logo.png';
+        $featured['Backdrop'] = asset('images/younger_custom_backdrop.png');
+    }
+
+
+
     return view('dashboard', compact('categories', 'featured'));
+
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/categorias', [MovieController::class, 'index'])->name('categories.index');

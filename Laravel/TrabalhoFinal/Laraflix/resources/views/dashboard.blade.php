@@ -36,15 +36,36 @@
         }
 
         .hero-synopsis {
-            font-size: 1.2rem;
-            line-height: 1.4;
+            font-size: 1.1rem;
+            line-height: 1.5;
             margin-bottom: 2rem;
-            color: #fff;
+            color: #ddd;
             text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
             display: -webkit-box;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 4;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            font-weight: 400;
+        }
+
+        .series-tag {
+            font-size: 0.9rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+        }
+
+        .series-tag::before {
+            content: "";
+            display: block;
+            width: 30px;
+            height: 2px;
+            background: #E50914;
         }
 
         .maturity-badge {
@@ -57,6 +78,39 @@
             font-size: 1.1rem;
             color: #fff;
             z-index: 10;
+        }
+
+        .hero-brand-logo {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .hero-brand-logo .logo-red {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        .hero-logo-img {
+            max-width: 450px;
+            height: auto;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 15px rgba(0,0,0,0.8));
+            display: block;
+        }
+
+        .hero-tagline {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            opacity: 0.9;
         }
 
         .row-container {
@@ -195,26 +249,83 @@
         }
     </style>
 
-    <div class="font-sans">
+    <div class="font-sans" x-data="{ 
+        selectedMovie: null,
+        isInWatchlist: false,
+        async toggleWatchlist() {
+            if (!this.selectedMovie || !this.selectedMovie.id) return;
+            try {
+                const response = await fetch('{{ route('watchlist.toggle') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({ movie_id: this.selectedMovie.id })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    this.isInWatchlist = data.is_in_watchlist;
+                }
+            } catch (error) {
+                console.error('Error toggling watchlist:', error);
+            }
+        },
+        async checkWatchlist(movie) {
+            this.selectedMovie = movie;
+            if (!movie.id) {
+                this.isInWatchlist = false;
+                return;
+            }
+            try {
+                const response = await fetch(`/watchlist/check/${movie.id}`);
+                const data = await response.json();
+                this.isInWatchlist = data.is_in_watchlist;
+            } catch (error) {
+                console.error('Error checking watchlist:', error);
+            }
+        }
+    }">
         {{-- Hero Section --}}
         @if($featured)
-            <div class="hero-banner" style="background-image: url('{{ str_replace('SX300', 'SX1920', $featured['Poster']) }}')">
+            <div class="hero-banner" style="background-image: url('{{ $featured['Backdrop'] ?? str_replace('SX300', 'SX1920', $featured['Poster']) }}'); background-position: center 20%;">
                 <div class="hero-overlay"></div>
 
+                {{-- Mirroring Paramount+ style with brand logo at top center of banner --}}
+                <div class="hero-brand-logo">
+                    <span class="logo-red">Laraflix</span>
+                </div>
+
                 <div class="hero-content">
-                    <h1 class="hero-title">{{ $featured['Title'] }}</h1>
+                    <div class="series-tag">Série original</div>
+                    
+                    @if(isset($featured['LogoUrl']) && $featured['LogoUrl'])
+                        <img src="{{ $featured['LogoUrl'] }}" alt="{{ $featured['Title'] }}" class="hero-logo-img" onerror="this.style.display='none'">
+                    @else
+                        <h1 class="hero-title">{{ $featured['Title'] }}</h1>
+                    @endif
+
+                    <div class="hero-tagline">Prontos para mais um?</div>
+                    
                     <p class="hero-synopsis">
                         {{ $featured['Plot'] }}
                     </p>
                     <div class="flex gap-4">
                         <button class="btn-white">
-                            <svg class="h-8 w-8 fill-current" viewBox="0 0 24 24">
+                            <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
                                 <path d="M6 4l15 8-15 8V4z" />
                             </svg>
-                            Ver
+                            Ver agora
                         </button>
-                        <button class="btn-gray">
-                            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <button class="btn-gray" @click="checkWatchlist({{ json_encode([
+                            'id' => null,
+                            'title' => $featured['Title'],
+                            'synopsis' => $featured['Plot'],
+                            'rating' => $featured['imdbRating'] ?? null,
+                            'release_date' => $featured['Released'] ?? $featured['Year'] ?? null,
+                            'poster_url' => str_replace('SX300', 'SX1920', $featured['Poster']),
+                        ]) }})">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
@@ -245,39 +356,7 @@
         @endif
 
         {{-- Rows section --}}
-        <div class="pb-20 relative z-20" x-data="{ 
-            selectedMovie: null,
-            isInWatchlist: false,
-            async toggleWatchlist() {
-                if (!this.selectedMovie) return;
-                try {
-                    const response = await fetch('{{ route('watchlist.toggle') }}', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        },
-                        body: JSON.stringify({ movie_id: this.selectedMovie.id })
-                    });
-                    const data = await response.json();
-                    if (data.success) {
-                        this.isInWatchlist = data.is_in_watchlist;
-                    }
-                } catch (error) {
-                    console.error('Error toggling watchlist:', error);
-                }
-            },
-            async checkWatchlist(movie) {
-                this.selectedMovie = movie;
-                try {
-                    const response = await fetch(`/watchlist/check/${movie.id}`);
-                    const data = await response.json();
-                    this.isInWatchlist = data.is_in_watchlist;
-                } catch (error) {
-                    console.error('Error checking watchlist:', error);
-                }
-            }
-        }">
+        <div class="pb-20 relative z-20">
             @foreach ($categories as $category)
                 @if ($category->movies->count() > 0)
                     <div class="row-container group" 
@@ -366,6 +445,7 @@
                                 <div class="flex gap-4">
                                     <button class="btn-white">Ver agora</button>
                                     <button @click="toggleWatchlist()" 
+                                            x-show="selectedMovie.id"
                                             class="p-2 rounded-full border border-zinc-500 transition-colors"
                                             :class="isInWatchlist ? 'bg-white text-black border-white' : 'bg-zinc-800/80 text-white hover:bg-zinc-700'">
                                         <svg x-show="!isInWatchlist" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
