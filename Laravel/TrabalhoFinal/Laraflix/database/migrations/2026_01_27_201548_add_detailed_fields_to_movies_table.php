@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     /**
-     * Run the migrations.
+     * Adiciona os campos de sinopse, nota e poster_url na tabela movies
      */
     public function up(): void
     {
@@ -19,7 +19,7 @@ return new class extends Migration {
     }
 
     /**
-     * Reverse the migrations.
+     * Remove os campos de sinopse, nota e poster_url da tabela movies
      */
     public function down(): void
     {

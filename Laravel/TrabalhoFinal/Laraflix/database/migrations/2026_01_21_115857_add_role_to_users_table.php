@@ -4,21 +4,20 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
-     * Run the migrations.
+     * Adiciona o campo role na tabela users
      */
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
             // Define o padrão como 'user', mas permite ser 'admin'
-        $table->string('role')->default('user');
+            $table->string('role')->default('user');
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Remove o campo role da tabela users
      */
     public function down(): void
     {

@@ -13,7 +13,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * Função que define as colunas que devem ser mass assignable
      *
      * @var list<string>
      */
@@ -26,7 +26,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the URL to the user's profile photo.
+     * Função que define a URL da foto do perfil do usuário
      *
      * @return string
      */
@@ -44,7 +44,7 @@ class User extends Authenticatable
     }
 
     /**
-     * The attributes that should be hidden for serialization.
+     * Função que define as colunas que devem ser escondidas na serialização
      *
      * @var list<string>
      */
@@ -54,7 +54,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * Função que define as colunas que devem ser convertidas para tipos específicos
      *
      * @return array<string, string>
      */

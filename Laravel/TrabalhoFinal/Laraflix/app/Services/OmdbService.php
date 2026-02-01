@@ -15,11 +15,13 @@ class OmdbService
     }
 
     /**
-     * Search for a movie by its title.
+     * Busca um filme pelo seu título.
      *
      * @param string $title
      * @return array|null
      */
+
+    // Busca um filme pelo seu título
     public function fetchMovieByTitle(string $title)
     {
         if (!$this->apiKey) {
@@ -35,6 +37,7 @@ class OmdbService
             'plot' => 'full'
         ]);
 
+        // Verifica se a requisição foi bem sucedida
         if ($response->successful()) {
             if ($response->json('Response') === 'True') {
                 \Illuminate\Support\Facades\Log::info("OMDb: SUCCESS for '{$title}'");

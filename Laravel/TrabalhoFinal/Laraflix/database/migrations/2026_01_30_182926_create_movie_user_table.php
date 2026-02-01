@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     /**
-     * Run the migrations.
+     * Cria a tabela movie_user que é a lista de filmes favoritos de cada usuário
      */
     public function up(): void
     {
@@ -21,7 +21,7 @@ return new class extends Migration {
     }
 
     /**
-     * Reverse the migrations.
+     * Remove a tabela movie_user
      */
     public function down(): void
     {

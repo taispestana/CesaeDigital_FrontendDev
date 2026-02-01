@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class ProfileManagementController extends Controller
 {
     /**
-     * Display the profile management page.
+     * Função que exibe a página de gerenciamento de perfis
      */
     public function index()
     {
@@ -16,7 +16,7 @@ class ProfileManagementController extends Controller
     }
 
     /**
-     * Display the profile edit page.
+     * Função que exibe a página de edição de perfil
      */
     public function edit(\App\Models\User $user)
     {
@@ -24,7 +24,7 @@ class ProfileManagementController extends Controller
     }
 
     /**
-     * Update the user profile.
+     * Função que atualiza o perfil do usuário
      */
     public function update(\Illuminate\Http\Request $request, \App\Models\User $user)
     {
@@ -38,7 +38,7 @@ class ProfileManagementController extends Controller
         ];
 
         if ($request->hasFile('profile_photo')) {
-            // Delete old photo if it exists
+            // Deleta a foto antiga se existir
             if ($user->profile_photo_path && \Illuminate\Support\Facades\Storage::disk('public')->exists($user->profile_photo_path)) {
                 \Illuminate\Support\Facades\Storage::disk('public')->delete($user->profile_photo_path);
             }
@@ -54,7 +54,7 @@ class ProfileManagementController extends Controller
 
 
     /**
-     * Delete a user profile.
+     * Função que elimina um perfil de usuário
      */
     public function destroy(\App\Models\User $user)
     {
@@ -64,7 +64,7 @@ class ProfileManagementController extends Controller
             abort(403, 'Ação não autorizada.');
         }
 
-        // If deleting the current user, log them out first
+        // Se estiver eliminando o próprio perfil, desloga o usuário
         if ($currentUser->id === $user->id) {
             \Illuminate\Support\Facades\Auth::logout();
             $user->delete();
@@ -76,7 +76,7 @@ class ProfileManagementController extends Controller
     }
 
     /**
-     * Show the form for creating a new profile.
+     * Função que exibe o formulário para criar um novo perfil
      */
     public function create()
     {
@@ -84,7 +84,7 @@ class ProfileManagementController extends Controller
     }
 
     /**
-     * Store a newly created profile in storage.
+     * Função que salva um novo perfil no banco de dados
      */
     public function store(\Illuminate\Http\Request $request)
     {
@@ -111,7 +111,7 @@ class ProfileManagementController extends Controller
     }
 
     /**
-     * Switch the current user profile.
+     * Função que altera o perfil atual
      */
     public function switch(\App\Models\User $user)
     {

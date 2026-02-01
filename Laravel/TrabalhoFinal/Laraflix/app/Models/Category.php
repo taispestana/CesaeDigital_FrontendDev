@@ -11,7 +11,7 @@ class Category extends Model
 
     protected $fillable = ['name', 'image'];
 
-    // ESTA É A FUNÇÃO QUE ESTÁ A FALTAR:
+    //Filmes da categoria
     public function movies()
     {
         return $this->hasMany(Movie::class);

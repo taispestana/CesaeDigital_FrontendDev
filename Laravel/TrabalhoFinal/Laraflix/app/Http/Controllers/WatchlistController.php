@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class WatchlistController extends Controller
 {
     /**
-     * Display the user's watchlist.
+     * Função que exibe a lista de filmes favoritos do usuário
      */
     public function index()
     {
@@ -20,7 +20,7 @@ class WatchlistController extends Controller
     }
 
     /**
-     * Toggle a movie in/out of the user's watchlist.
+     * Função que adiciona ou remove um filme da lista de favoritos do usuário
      */
     public function toggle(Request $request)
     {
@@ -33,7 +33,7 @@ class WatchlistController extends Controller
 
         $status = $user->watchlist()->toggle($movie_id);
 
-        // Check if it was attached or detached
+        // Checa se o filme foi adicionado ou removido
         $is_in_watchlist = count($status['attached']) > 0;
 
         return response()->json([
@@ -44,7 +44,7 @@ class WatchlistController extends Controller
     }
 
     /**
-     * Check if a movie is in the user's watchlist.
+     * Função que verifica se um filme está na lista de favoritos do usuário
      */
     public function check(Movie $movie)
     {
