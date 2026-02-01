@@ -247,11 +247,13 @@
     <div class="edit-container">
         <h1>Editar perfil</h1>
 
+        {{-- Formulário de edição de perfil --}}
         <form action="{{ route('profiles.update', $user) }}" method="POST" enctype="multipart/form-data"
             id="edit-profile-form">
             @csrf
             @method('PATCH')
 
+            {{-- Seção de edição de perfil --}}
             <div class="edit-profile-section">
                 <div class="profile-avatar-container" onclick="document.getElementById('profile_photo').click()">
                     <img src="{{ $user->profile_photo_url }}" class="profile-avatar" id="avatar-preview">
@@ -262,8 +264,12 @@
                         </svg>
                     </div>
                 </div>
+
+                {{-- Input de avatar --}}
                 <input type="file" name="profile_photo" id="profile_photo" class="hidden" accept="image/*"
                     onchange="previewImage(event)">
+
+                {{-- Input de nome do perfil --}}
                 <div class="input-group">
                     <label class="input-label">Nome do perfil</label>
                     <input type="text" name="name" class="name-input" value="{{ $user->name }}" required>
@@ -272,6 +278,7 @@
 
             <div class="divider"></div>
 
+            {{-- Seção de informações de contacto --}}
             <h2 class="section-header">Informações de contacto</h2>
             <div class="contact-card">
                 <div class="contact-info">
@@ -295,6 +302,7 @@
             </div>
         </form>
 
+        {{-- Validação de admin para eliminar perfil --}}
         @if(Auth::user()->isAdmin())
             <div class="divider"></div>
 
@@ -307,6 +315,8 @@
         @endif
     </div>
     <script>
+
+        // Função para pré-visualizar a imagem do avatar
         function previewImage(event) {
             const reader = new FileReader();
             reader.onload = function () {

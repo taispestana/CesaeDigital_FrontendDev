@@ -231,6 +231,8 @@
     </style>
 </head>
 
+{{-- Body --}}
+
 <body>
     <nav class="settings-nav">
         <a href="{{ route('dashboard') }}" class="logo-red">Laraflix</a>
@@ -266,6 +268,7 @@
 
             <div class="card">
 
+                {{-- Valida se o usuário é admin para mostrar o botão de criar perfil --}}
                 @if(Auth::user()->isAdmin())
                     <a href="{{ route('profiles.create') }}" class="card-item">
                         <div class="card-item-left">
@@ -287,6 +290,7 @@
                 @endif
             </div>
 
+            {{-- Lista de perfis --}}
             <h2 class="section-title">Definições de perfil</h2>
 
             <div class="profile-list">

@@ -203,9 +203,11 @@
         </div>
     </nav>
 
+    {{-- Formulário de adicionar perfil --}}
     <div class="edit-container">
         <h1>Adicionar perfil</h1>
 
+        {{-- Formulário de edição de perfil --}}
         <form action="{{ route('profiles.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
@@ -219,8 +221,12 @@
                         </svg>
                     </div>
                 </div>
+
+                {{-- Input de avatar --}}
                 <input type="file" name="profile_photo" id="profile_photo" class="hidden" accept="image/*"
                     onchange="previewImage(event)">
+
+                {{-- Input de nome do perfil --}}
                 <div class="input-group">
                     <label class="input-label">Nome do perfil</label>
                     <input type="text" name="name" class="name-input" placeholder="Insira o nome" required>
@@ -230,6 +236,8 @@
             <div class="divider"></div>
 
             <h2 class="section-header">Informações de contacto</h2>
+
+            {{-- Input de e-mail --}}
             <div class="contact-card">
                 <div class="contact-info">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -244,6 +252,7 @@
                 </div>
             </div>
 
+            {{-- Botões de guardar e cancelar --}}
             <div class="button-group">
                 <button type="submit" class="btn-guardar">Adicionar Perfil</button>
                 <a href="{{ route('profiles.manage') }}" class="btn-cancelar">Cancelar</a>
@@ -251,6 +260,8 @@
         </form>
     </div>
     <script>
+
+        // Função para pré-visualizar a imagem do avatar
         function previewImage(event) {
             const reader = new FileReader();
             reader.onload = function () {

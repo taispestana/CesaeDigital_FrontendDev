@@ -1,5 +1,7 @@
 <nav id="navbar" class="netflix-nav {{ $class ?? '' }}">
     <a href="/" class="logo-red">Laraflix</a>
+
+    {{-- Menu de navegação --}}
     <div class="hidden lg:flex flex-grow">
         <a href="{{ route('dashboard') }}"
             class="nav-link-custom {{ request()->routeIs('dashboard') ? 'active' : '' }}">Página inicial</a>
@@ -9,6 +11,7 @@
     </div>
     <div class="flex items-center gap-6">
 
+        {{-- Menu de perfis --}}
         <div class="relative" x-data="{ open: false }" @click.away="open = false">
             <div @click="open = !open" class="flex items-center gap-2 cursor-pointer group">
                 <div class="w-8 h-8 rounded overflow-hidden">
@@ -20,18 +23,17 @@
                 </svg>
             </div>
 
-            {{-- Dropdown Menu --}}
+            {{-- Dropdown de perfis --}}
             <div x-show="open" x-transition:enter="transition ease-out duration-100"
                 x-transition:enter-start="transform opacity-0 scale-95"
                 x-transition:enter-end="transform opacity-100 scale-100"
                 class="absolute right-0 mt-2 w-56 bg-black/90 border border-zinc-800 shadow-2xl z-50 py-2">
 
-                {{-- Arrow Top --}}
                 <div
                     class="absolute -top-2 right-4 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[8px] border-b-black/90">
                 </div>
 
-                {{-- Profile List --}}
+                {{-- Lista de perfis --}}
                 <div class="px-2 pb-2 mb-2">
                     @foreach($allUsers as $user)
                         <form method="POST" action="{{ route('profiles.switch', $user) }}">
@@ -50,7 +52,7 @@
                     @endforeach
                 </div>
 
-                {{-- Secondary Menu --}}
+                {{-- Menu secundário --}}
                 <div class="px-2">
                     <a href="{{ route('profiles.manage') }}"
                         class="flex items-center gap-3 p-2 hover:underline text-xs group text-white/70">
@@ -63,7 +65,7 @@
                     </a>
                 </div>
 
-                {{-- Logout --}}
+                {{-- Botão de logout --}}
                 <div class="px-2 pb-1">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf

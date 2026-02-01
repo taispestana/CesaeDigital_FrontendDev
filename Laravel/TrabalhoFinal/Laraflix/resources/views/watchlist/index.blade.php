@@ -63,6 +63,7 @@
         }
     </style>
 
+    {{-- Livewire que controla o watchlist --}}
     <div class="min-h-screen font-sans">
         <div class="row-container" x-data="{ 
             selectedMovie: null,
@@ -96,12 +97,15 @@
         }">
             <h1 class="row-title">A minha lista</h1>
 
+            {{-- Validar se a lista está vazia --}}
             @if($movies->isEmpty())
                 <div class="text-center py-20">
                     <p class="text-zinc-500 text-xl">Ainda não adicionou nenhum título à sua lista.</p>
                     <a href="{{ route('dashboard') }}" class="text-white mt-4 inline-block underline">Explorar filmes</a>
                 </div>
             @else
+
+                {{-- Grid de filmes --}}
                 <div class="movie-grid">
                     @foreach ($movies as $movie)
                         <div class="movie-card" @click="selectMovie({{ json_encode($movie) }})">

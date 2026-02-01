@@ -109,7 +109,6 @@
             background-color: rgba(109, 109, 110, 0.4);
         }
 
-        /* Transitions */
         .animate-fade-in-up {
             animation: fadeInUp 0.4s ease-out;
         }
@@ -132,12 +131,13 @@
     <div class="min-h-screen">
         @include('layouts.navigation', ['class' => $navigation_class ?? ''])
 
-        <!-- Page Content -->
+        {{-- Conteúdo da página --}}
         <main>
             {{ $slot }}
         </main>
     </div>
 
+    {{-- Script de animação da navbar --}}
     <script>
         window.onscroll = function () {
             var nav = document.getElementById('navbar');

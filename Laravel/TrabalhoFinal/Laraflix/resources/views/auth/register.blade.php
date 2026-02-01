@@ -113,6 +113,7 @@
         <a href="/" class="logo">Laraflix</a>
     </header>
 
+    <!-- Conteúdo da página -->
     <main class="flex-grow flex items-start justify-center pt-10 px-4">
         <div class="register-card">
             <h1 class="text-3xl font-bold mb-2">Crie a sua conta para começar</h1>
@@ -121,28 +122,28 @@
             <form method="POST" action="{{ route('register') }}">
                 @csrf
 
-                <!-- Name -->
+                <!-- Nome -->
                 <div class="mb-4">
                     <input id="name" class="input-field" type="text" name="name" :value="old('name')"
                         placeholder="Nome completo" required autofocus autocomplete="name" />
                     <x-input-error :messages="$errors->get('name')" class="mt-1" />
                 </div>
 
-                <!-- Email Address -->
+                <!-- Email -->
                 <div class="mb-4">
                     <input id="email" class="input-field" type="email" name="email" :value="old('email')"
                         placeholder="Endereço de e-mail" required autocomplete="username" />
                     <x-input-error :messages="$errors->get('email')" class="mt-1" />
                 </div>
 
-                <!-- Password -->
+                <!-- Palavra-passe -->
                 <div class="mb-4">
                     <input id="password" class="input-field" type="password" name="password" placeholder="Palavra-passe"
                         required autocomplete="new-password" />
                     <x-input-error :messages="$errors->get('password')" class="mt-1" />
                 </div>
 
-                <!-- Confirm Password -->
+                <!-- Confirmar Palavra-passe -->
                 <div class="mb-4">
                     <input id="password_confirmation" class="input-field" type="password" name="password_confirmation"
                         placeholder="Confirmar palavra-passe" required autocomplete="new-password" />
@@ -154,6 +155,7 @@
                 </button>
             </form>
 
+            <!-- Footer -->
             <div class="mt-10">
                 <p class="text-gray-500">
                     Já tem uma conta? <a href="{{ route('login') }}" class="login-link font-bold text-white">Inicie
@@ -161,6 +163,7 @@
                 </p>
             </div>
 
+            <!-- Texto do Footer -->
             <div class="footer-text">
                 Esta página está protegida pelo serviço Google reCAPTCHA para garantir que não se trata de um robô. <a
                     href="#" class="text-blue-600 hover:underline">Mais informações</a>

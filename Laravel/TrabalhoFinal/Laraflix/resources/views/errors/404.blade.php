@@ -127,6 +127,8 @@
     </style>
 </head>
 
+{{-- Conteúdo da página --}}
+
 <body>
     <div class="bg-container">
         <img src="{{ asset('images/error-bg.png') }}" class="bg-image" alt="Background">
