@@ -30,7 +30,9 @@ Route::get('/dashboard', function (\App\Services\OmdbService $omdb) {
         }
     }
 
-    return view('dashboard', compact('categories'));
+    $featured = $omdb->fetchMovieByTitle('Younger');
+
+    return view('dashboard', compact('categories', 'featured'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/categorias', [MovieController::class, 'index'])->name('categories.index');
@@ -42,6 +44,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/watchlist', [App\Http\Controllers\WatchlistController::class, 'index'])->name('watchlist.index');
+    Route::post('/watchlist/toggle', [App\Http\Controllers\WatchlistController::class, 'toggle'])->name('watchlist.toggle');
+    Route::get('/watchlist/check/{movie}', [App\Http\Controllers\WatchlistController::class, 'check'])->name('watchlist.check');
+
+    Route::get('/profiles/manage', [App\Http\Controllers\ProfileManagementController::class, 'index'])->name('profiles.manage');
+    Route::get('/profiles/edit/{user}', [App\Http\Controllers\ProfileManagementController::class, 'edit'])->name('profiles.edit_form');
+    Route::patch('/profiles/update/{user}', [App\Http\Controllers\ProfileManagementController::class, 'update'])->name('profiles.update');
+    Route::delete('/profiles/{user}', [App\Http\Controllers\ProfileManagementController::class, 'destroy'])->name('profiles.destroy');
+
+    Route::middleware('admin')->group(function () {
+        Route::get('/profiles/create', [App\Http\Controllers\ProfileManagementController::class, 'create'])->name('profiles.create');
+        Route::post('/profiles', [App\Http\Controllers\ProfileManagementController::class, 'store'])->name('profiles.store');
+    });
 
     Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
 });

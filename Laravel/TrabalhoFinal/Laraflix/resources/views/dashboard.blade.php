@@ -1,279 +1,350 @@
 <x-app-layout>
     <style>
-        body {
-            background-color: #141414;
-            color: #fff;
-        }
-
         .hero-banner {
             position: relative;
-            height: 80vh;
-            background: linear-gradient(to top, #141414 0%, transparent 20%),
-                linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, transparent 60%),
-                url('https://occ-0-1168-299.1.nflxso.net/dnm/api/v6/6AYY38jnywDWOOMBv7qDX6UpBAM/AAAABZ-E7YyP_f_f_f_f.jpg') no-repeat center center/cover;
+            height: 90vh;
+            background-size: cover;
+            background-position: center top;
             display: flex;
             align-items: center;
             padding: 0 4%;
+            margin-top: -70px; /* Pull content up under transparent nav */
         }
 
-        .netflix-nav {
-            background-color: transparent;
-            transition: background-color 0.3s;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 50;
-            display: flex;
-            align-items: center;
-            padding: 15px 4%;
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(70deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 70%),
+                        linear-gradient(to top, #141414 0%, transparent 20%),
+                        linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 15%);
+            z-index: 1;
         }
 
-        .netflix-nav.scrolled {
-            background-color: #141414;
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 40%;
+            margin-top: 50px;
         }
 
-        .logo-red {
-            color: #E50914;
+        .hero-title {
+            font-size: 5rem;
             font-weight: 900;
-            font-size: 1.8rem;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-            margin-right: 30px;
+            margin-bottom: 1.5rem;
+            line-height: 1;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
         }
 
-        .nav-link-custom {
-            font-size: 0.85rem;
-            color: #e5e5e5;
-            margin-right: 20px;
-            transition: color 0.3s;
-        }
-
-        .nav-link-custom:hover {
-            color: #b3b3b3;
-        }
-
-        .nav-link-custom.active {
-            font-weight: bold;
+        .hero-synopsis {
+            font-size: 1.2rem;
+            line-height: 1.4;
+            margin-bottom: 2rem;
             color: #fff;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .maturity-badge {
+            position: absolute;
+            right: 0;
+            bottom: 20%;
+            background: rgba(51, 51, 51, 0.6);
+            border-left: 3px solid #dcdcdc;
+            padding: 0.5rem 3rem 0.5rem 1rem;
+            font-size: 1.1rem;
+            color: #fff;
+            z-index: 10;
         }
 
         .row-container {
             padding: 0 4%;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             position: relative;
             z-index: 10;
-            margin-top: -50px;
         }
 
         .row-title {
-            font-size: 1.4vw;
-            font-weight: bold;
-            margin-bottom: 10px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
             color: #e5e5e5;
+            transition: color 0.3s;
+        }
+
+        .row-title:hover {
+            color: #fff;
         }
 
         .movie-card {
+            position: relative;
             aspect-ratio: 16/9;
             background-color: #333;
             border-radius: 4px;
-            overflow: hidden;
-            transition: transform 0.3s, z-index 0.3s;
+            overflow: visible;
+            transition: transform 0.4s cubic-bezier(0.33, 1, 0.68, 1);
             flex-shrink: 0;
             cursor: pointer;
-            position: relative;
+            width: 280px;
         }
 
-        .movie-card:hover { transform: scale(1.1); z-index: 20; box-shadow: 0px 10px 20px rgba(0,0,0,0.5); }
-        .movie-grid { display: flex; gap: 10px; overflow-x: auto; padding: 20px 0; scrollbar-width: none; }
+        .movie-card:hover { 
+            transform: scale(1.15); 
+            z-index: 50; 
+            box-shadow: 0px 15px 30px rgba(0,0,0,0.7); 
+        }
+
+        .movie-grid { 
+            display: flex; 
+            gap: 8px; 
+            overflow-x: auto; 
+            padding: 20px 0 40px 0; 
+            scrollbar-width: none; 
+            scroll-behavior: smooth;
+        }
+        
         .movie-grid::-webkit-scrollbar { display: none; }
         
-        .rating-badge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold; border: 1px solid rgba(255,255,255,0.2); }
-
-        .btn-white {
-            background-color: #fff;
-            color: #000;
-            padding: 10px 25px;
+        .movie-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             border-radius: 4px;
-            font-weight: bold;
-            display: inline-flex;
+        }
+
+        /* Netflix-style Badges */
+        .top10-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: #E50914;
+            color: white;
+            font-size: 0.6rem;
+            font-weight: 900;
+            padding: 2px 4px;
+            border-bottom-left-radius: 2px;
+            text-transform: uppercase;
+            z-index: 10;
+        }
+
+        .bottom-badge {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #E50914;
+            color: white;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 1px 6px;
+            white-space: nowrap;
+            border-radius: 2px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            pointer-events: none;
+        }
+
+        .rating-badge { 
+            position: absolute; 
+            top: 8px; 
+            left: 8px; 
+            background: rgba(0,0,0,0.6); 
+            backdrop-filter: blur(4px);
+            padding: 2px 6px; 
+            border-radius: 2px; 
+            font-size: 10px; 
+            font-weight: bold; 
+            border: 1px solid rgba(255,255,255,0.2); 
+            z-index: 5;
+        }
+
+        /* Navigation Arrows */
+        .nav-arrow {
+            position: absolute;
+            top: 60px;
+            bottom: 40px;
+            width: 4%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
             align-items: center;
-            gap: 10px;
-            transition: opacity 0.2s;
+            justify-content: center;
+            z-index: 60;
+            opacity: 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            color: white;
         }
 
-        .btn-white:hover {
-            opacity: 0.8;
+        .row-container:hover .nav-arrow {
+            opacity: 1;
         }
 
-        .btn-gray {
-            background-color: rgba(109, 109, 110, 0.7);
-            color: #fff;
-            padding: 10px 25px;
-            border-radius: 4px;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: background-color 0.2s;
+        .nav-arrow:hover {
+            background: rgba(0,0,0,0.8);
+            scale: 1.1;
         }
 
-        .btn-gray:hover {
-            background-color: rgba(109, 109, 110, 0.4);
+        .left-arrow { left: 0; border-radius: 0 4px 4px 0; }
+        .right-arrow { right: 0; border-radius: 4px 0 0 4px; }
+
+        .nav-arrow svg {
+            width: 2rem;
+            height: 2rem;
         }
     </style>
 
-    <div class="min-h-screen bg-[#141414] font-sans">
-        {{-- Custom Navigation --}}
-        <div id="navbar" class="netflix-nav">
-            <a href="/" class="logo-red">Laraflix</a>
-            <div class="hidden lg:flex flex-grow">
-                <a href="#" class="nav-link-custom active">Página inicial</a>
-                <a href="#" class="nav-link-custom">Séries</a>
-                <a href="#" class="nav-link-custom">Filmes</a>
-                <a href="#" class="nav-link-custom">Novidades mais vistas</a>
-                <a href="#" class="nav-link-custom">A minha lista</a>
-            </div>
-            <div class="flex items-center gap-6">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white cursor-pointer" fill="none"
-                    viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-                <span class="text-sm cursor-pointer hidden md:block">Crianças</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white cursor-pointer" fill="none"
-                    viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                </svg>
-                <div class="relative" x-data="{ open: false }" @click.away="open = false">
-                    <div @click="open = !open" class="flex items-center gap-2 cursor-pointer group">
-                        <div class="w-8 h-8 rounded bg-blue-500 overflow-hidden">
-                            <img src="https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg"
-                                alt="Profile">
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white transition-transform" :class="open ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </div>
-
-                    {{-- Dropdown Menu --}}
-                    <div x-show="open" 
-                         x-transition:enter="transition ease-out duration-100"
-                         x-transition:enter-start="transform opacity-0 scale-95"
-                         x-transition:enter-end="transform opacity-100 scale-100"
-                         class="absolute right-0 mt-2 w-56 bg-black/90 border border-zinc-800 shadow-2xl z-50 py-2">
-                        
-                        {{-- Arrow Top --}}
-                        <div class="absolute -top-2 right-4 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[8px] border-b-black/90"></div>
-
-                        {{-- Profile List --}}
-                        <div class="px-2 border-b border-zinc-800 pb-2 mb-2">
-                            <div class="flex items-center gap-3 p-2 hover:underline cursor-pointer">
-                                <div class="w-8 h-8 rounded bg-green-500 overflow-hidden shrink-0">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" alt="Profile">
-                                </div>
-                                <span class="text-xs font-bold">{{ Auth::user()->name }}</span>
-                            </div>
-                            <div class="flex items-center gap-3 p-2 hover:underline cursor-pointer opacity-70">
-                                <div class="w-8 h-8 rounded bg-yellow-500 overflow-hidden shrink-0 text-center flex items-center justify-center">
-                                    <span class="text-[10px] font-bold">Kids</span>
-                                </div>
-                                <span class="text-xs font-bold">Infantil</span>
-                            </div>
-                        </div>
-
-                        {{-- Secondary Menu --}}
-                        <div class="px-2">
-                            <a href="#" class="flex items-center gap-3 p-2 hover:underline text-xs group">
-                                <svg class="h-5 w-5 opacity-70 group-hover:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
-                                Gerir perfis
-                            </a>
-                            <a href="#" class="flex items-center gap-3 p-2 hover:underline text-xs group">
-                                <svg class="h-5 w-5 opacity-70 group-hover:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 17l-4 4m0 0l-4-4m4 4V3" /></svg>
-                                Transferir perfil
-                            </a>
-                            <a href="{{ route('profile.edit') }}" class="flex items-center gap-3 p-2 hover:underline text-xs group">
-                                <svg class="h-5 w-5 opacity-70 group-hover:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
-                                Conta
-                            </a>
-                            <a href="#" class="flex items-center gap-3 p-2 hover:underline text-xs group border-b border-zinc-800 pb-3 mb-2">
-                                <svg class="h-5 w-5 opacity-70 group-hover:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                Centro de Assistência
-                            </a>
-                        </div>
-
-                        {{-- Logout --}}
-                        <div class="px-2 pb-1">
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" class="w-full text-center p-2 hover:underline text-xs font-bold pt-2">
-                                    Sair da Laraflix
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+    <div class="font-sans">
         {{-- Hero Section --}}
-        <div class="hero-banner">
-            <div class="max-w-xl">
-                <h1 class="text-6xl font-black mb-4 uppercase tracking-tighter">Machos Alfa</h1>
-                <p class="text-xl mb-6 font-medium leading-normal drop-shadow-md">
-                    O berço, o carrinho, a cadeirinha, as fraldas, o leite em pó... Quatro amigos em plena crise de
-                    masculinidade tentam adaptar-se aos novos tempos.
-                </p>
-                <div class="flex gap-3">
-                    <button class="btn-white">
-                        <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
-                            <path d="M6 4l15 8-15 8V4z" />
-                        </svg>
-                        Ver
-                    </button>
-                    <button class="btn-gray">
-                        <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        Mais informações
-                    </button>
+        @if($featured)
+            <div class="hero-banner" style="background-image: url('{{ str_replace('SX300', 'SX1920', $featured['Poster']) }}')">
+                <div class="hero-overlay"></div>
+
+                <div class="hero-content">
+                    <h1 class="hero-title">{{ $featured['Title'] }}</h1>
+                    <p class="hero-synopsis">
+                        {{ $featured['Plot'] }}
+                    </p>
+                    <div class="flex gap-4">
+                        <button class="btn-white">
+                            <svg class="h-8 w-8 fill-current" viewBox="0 0 24 24">
+                                <path d="M6 4l15 8-15 8V4z" />
+                            </svg>
+                            Ver
+                        </button>
+                        <button class="btn-gray">
+                            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Mais informações
+                        </button>
+                    </div>
+                </div>
+
+                <div class="maturity-badge">
+                    {{ $featured['Rated'] ?? '13+' }}
                 </div>
             </div>
-            <div class="absolute bottom-10 right-0 p-3 bg-zinc-800/60 border-l-4 border-zinc-400 text-sm px-6">
-                13+
+        @else
+            {{-- Fallback Hero --}}
+            <div class="hero-banner" style="background-image: url('https://occ-0-1168-299.1.nflxso.net/dnm/api/v6/6AYY38jnywDWOOMBv7qDX6UpBAM/AAAABZ-E7YyP_f_f_f_f.jpg')">
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <h1 class="hero-title">Machos Alfa</h1>
+                    <p class="hero-synopsis">
+                        Quatro amigos em plena crise de masculinidade tentam adaptar-se aos novos tempos.
+                    </p>
+                    <div class="flex gap-4">
+                        <button class="btn-white">Ver</button>
+                        <button class="btn-gray">Mais informações</button>
+                    </div>
+                </div>
             </div>
-        </div>
+        @endif
 
         {{-- Rows section --}}
-        <div class="pb-20 relative z-20" x-data="{ selectedMovie: null }">
+        <div class="pb-20 relative z-20" x-data="{ 
+            selectedMovie: null,
+            isInWatchlist: false,
+            async toggleWatchlist() {
+                if (!this.selectedMovie) return;
+                try {
+                    const response = await fetch('{{ route('watchlist.toggle') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({ movie_id: this.selectedMovie.id })
+                    });
+                    const data = await response.json();
+                    if (data.success) {
+                        this.isInWatchlist = data.is_in_watchlist;
+                    }
+                } catch (error) {
+                    console.error('Error toggling watchlist:', error);
+                }
+            },
+            async checkWatchlist(movie) {
+                this.selectedMovie = movie;
+                try {
+                    const response = await fetch(`/watchlist/check/${movie.id}`);
+                    const data = await response.json();
+                    this.isInWatchlist = data.is_in_watchlist;
+                } catch (error) {
+                    console.error('Error checking watchlist:', error);
+                }
+            }
+        }">
             @foreach ($categories as $category)
                 @if ($category->movies->count() > 0)
-                    <div class="row-container mb-12">
+                    <div class="row-container group" 
+                         x-data="{ 
+                            canScrollLeft: false,
+                            canScrollRight: true,
+                            updateArrows() {
+                                const el = this.$refs.grid;
+                                if (!el) return;
+                                this.canScrollLeft = el.scrollLeft > 10;
+                                this.canScrollRight = el.scrollLeft + el.offsetWidth < el.scrollWidth - 10;
+                            },
+                            next() {
+                                const el = this.$refs.grid;
+                                const step = 288;
+                                el.scrollBy({ left: step, behavior: 'smooth' });
+                                setTimeout(() => this.updateArrows(), 400);
+                            },
+                            prev() {
+                                const el = this.$refs.grid;
+                                const step = 288;
+                                el.scrollBy({ left: -step, behavior: 'smooth' });
+                                setTimeout(() => this.updateArrows(), 400);
+                            }
+                         }"
+                         x-init="setTimeout(() => updateArrows(), 100)">
+
                         <h2 class="row-title">{{ $category->name }}</h2>
-                        <div class="movie-grid">
+
+                        {{-- Arrows --}}
+                        <button class="nav-arrow left-arrow" @click="prev()" x-show="canScrollLeft" x-transition>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                        </button>
+                        <button class="nav-arrow right-arrow" @click="next()" x-show="canScrollRight" x-transition>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </button>
+
+                        <div class="movie-grid" x-ref="grid" @scroll.debounce.100ms="updateArrows()">
                             @foreach ($category->movies as $movie)
-                                <div class="movie-card w-44 md:w-56 lg:w-64" @click="selectedMovie = {{ json_encode($movie) }}">
-                                    @if($movie->rating)
-                                        <div class="rating-badge text-netflix-red">IMDb {{ $movie->rating }}</div>
+                                <div class="movie-card" @click="checkWatchlist({{ json_encode($movie) }})">
+                                    {{-- Random Badges --}}
+                                    @php
+                                        $randomBadge = rand(1, 10);
+                                    @endphp
+
+                                    @if($randomBadge == 1)
+                                        <div class="top10-badge">TOP 10</div>
                                     @endif
+
+                                    @if($movie->rating)
+                                        <div class="rating-badge text-white">★ {{ $movie->rating }}</div>
+                                    @endif
+
                                     <img src="{{ $movie->poster_url ?: ($movie->image ? asset('storage/' . $movie->image) : 'https://via.placeholder.com/300x169/1a1a1a/ffffff?text=' . urlencode($movie->title)) }}"
-                                        alt="{{ $movie->title }}" class="w-full h-full object-cover">
-                                    <div
-                                        class="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity flex items-end p-2">
-                                        <p class="text-[10px] font-bold text-white uppercase">{{ $movie->title }}</p>
+                                        alt="{{ $movie->title }}" class="movie-img">
+
+                                    @if($randomBadge == 2)
+                                        <div class="bottom-badge">Nova temporada</div>
+                                    @elseif($randomBadge == 3)
+                                        <div class="bottom-badge">Adicionado recentemente</div>
+                                    @endif
+
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-3">
+                                        <p class="text-xs font-bold text-white uppercase tracking-wider">{{ $movie->title }}</p>
                                     </div>
                                 </div>
                             @endforeach
-                            {{-- Fill with placeholders if few movies --}}
-                            @if ($category->movies->count() < 6)
-                                @for ($i = 0; $i < (6 - $category->movies->count()); $i++)
-                                    <div class="movie-card w-44 md:w-56 lg:w-64">
-                                        <img src="https://via.placeholder.com/300x169/222/555?text=Laraflix"
-                                            class="w-full h-full object-cover">
-                                    </div>
-                                @endfor
-                            @endif
                         </div>
                     </div>
                 @endif
@@ -294,7 +365,12 @@
                                 <h3 class="text-4xl font-bold mb-4" x-text="selectedMovie.title"></h3>
                                 <div class="flex gap-4">
                                     <button class="btn-white">Ver agora</button>
-                                    <button class="bg-zinc-800/80 p-2 rounded-full border border-zinc-500"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg></button>
+                                    <button @click="toggleWatchlist()" 
+                                            class="p-2 rounded-full border border-zinc-500 transition-colors"
+                                            :class="isInWatchlist ? 'bg-white text-black border-white' : 'bg-zinc-800/80 text-white hover:bg-zinc-700'">
+                                        <svg x-show="!isInWatchlist" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
+                                        <svg x-show="isInWatchlist" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -311,15 +387,4 @@
             </template>
         </div>
     </div>
-
-    <script>
-        window.onscroll = function () {
-            var nav = document.getElementById('navbar');
-            if (window.pageYOffset > 50) {
-                nav.classList.add("scrolled");
-            } else {
-                nav.classList.remove("scrolled");
-            }
-        };
-    </script>
 </x-app-layout>
