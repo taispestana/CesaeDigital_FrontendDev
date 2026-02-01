@@ -41,11 +41,9 @@ Route::get('/categorias/{id}', [MovieController::class, 'show'])->name('categori
 Route::middleware('auth')->group(function () {
     Route::get('/movies/{movie}/edit', [MovieController::class, 'edit'])->name('movies.edit');
     Route::put('/movies/{movie}', [MovieController::class, 'update'])->name('movies.update');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/watchlist', [App\Http\Controllers\WatchlistController::class, 'index'])->name('watchlist.index');
+
     Route::post('/watchlist/toggle', [App\Http\Controllers\WatchlistController::class, 'toggle'])->name('watchlist.toggle');
     Route::get('/watchlist/check/{movie}', [App\Http\Controllers\WatchlistController::class, 'check'])->name('watchlist.check');
 
