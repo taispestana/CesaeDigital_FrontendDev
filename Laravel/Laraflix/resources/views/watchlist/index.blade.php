@@ -1,71 +1,9 @@
-<x-app-layout>
+<x-main-layout>
     <x-slot name="navigation_class">solid</x-slot>
-
-    <style>
-        .row-container {
-            padding: 0 4%;
-            margin-top: 100px;
-            margin-bottom: 3rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        .row-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: #e5e5e5;
-        }
-
-        .movie-card {
-            position: relative;
-            aspect-ratio: 16/9;
-            background-color: #333;
-            border-radius: 4px;
-            overflow: visible;
-            transition: transform 0.4s cubic-bezier(0.33, 1, 0.68, 1);
-            cursor: pointer;
-            width: 280px;
-        }
-
-        .movie-card:hover {
-            transform: scale(1.15);
-            z-index: 50;
-            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.7);
-        }
-
-        .movie-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 40px 8px;
-            padding: 20px 0;
-        }
-
-        .movie-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-
-        .rating-badge {
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(4px);
-            padding: 2px 6px;
-            border-radius: 2px;
-            font-size: 10px;
-            font-weight: bold;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            z-index: 5;
-        }
-    </style>
 
     {{-- Livewire que controla o watchlist --}}
     <div class="min-h-screen font-sans">
-        <div class="row-container" x-data="{ 
+        <div class="row-container watchlist-spacer" x-data="{ 
             selectedMovie: null,
             isInWatchlist: true,
             async toggleWatchlist() {
@@ -106,7 +44,7 @@
             @else
 
                 {{-- Grid de filmes --}}
-                <div class="movie-grid">
+                <div class="movie-grid-vertical">
                     @foreach ($movies as $movie)
                         <div class="movie-card" @click="selectMovie({{ json_encode($movie) }})">
                             @if($movie->rating)
@@ -175,4 +113,4 @@
             </template>
         </div>
     </div>
-</x-app-layout>
+</x-main-layout>

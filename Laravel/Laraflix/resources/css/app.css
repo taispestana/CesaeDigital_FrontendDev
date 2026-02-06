@@ -1,3 +1,1069 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    background-color: #141414;
+    color: #fff;
+    font-family: 'Outfit', 'figtree', sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+}
+
+/* Nav Styles */
+.netflix-nav {
+    background-color: transparent;
+    transition: background-color 0.3s;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    padding: 15px 4%;
+}
+
+.netflix-nav.scrolled,
+.netflix-nav.solid {
+    background-color: #141414;
+}
+
+.logo-red {
+    color: #E50914;
+    font-weight: 900;
+    font-size: 1.8rem;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    margin-right: 30px;
+    text-decoration: none;
+}
+
+.nav-link-custom {
+    font-size: 0.85rem;
+    color: #e5e5e5;
+    margin-right: 20px;
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+.nav-link-custom:hover {
+    color: #b3b3b3;
+}
+
+.nav-link-custom.active {
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Buttons */
+.btn-white {
+    background-color: #fff;
+    color: #000;
+    padding: 0.8rem 2rem;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: background 0.2s;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-white:hover {
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.btn-gray {
+    background-color: rgba(109, 109, 110, 0.7);
+    color: #fff;
+    padding: 0.8rem 2rem;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: background 0.2s;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-gray:hover {
+    background-color: rgba(109, 109, 110, 0.4);
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.4s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hero Styles */
+.hero-banner {
+    position: relative;
+    height: 90vh;
+    background-size: cover;
+    background-position: center top;
+    display: flex;
+    align-items: center;
+    padding: 0 4%;
+    margin-top: -70px;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(70deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 70%),
+        linear-gradient(to top, #141414 0%, transparent 20%),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, transparent 15%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 40%;
+    margin-top: 50px;
+}
+
+.hero-title {
+    font-size: 5rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    line-height: 1;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero-synopsis {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    color: #ddd;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-weight: 400;
+}
+
+.series-tag {
+    font-size: 0.9rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+}
+
+.series-tag::before {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: #E50914;
+}
+
+.maturity-badge {
+    position: absolute;
+    right: 0;
+    bottom: 20%;
+    background: rgba(51, 51, 51, 0.6);
+    border-left: 3px solid #dcdcdc;
+    padding: 0.5rem 3rem 0.5rem 1rem;
+    font-size: 1.1rem;
+    color: #fff;
+    z-index: 10;
+}
+
+.hero-brand-logo {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.hero-brand-logo .logo-red {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.hero-logo-img {
+    max-width: 450px;
+    height: auto;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.8));
+    display: block;
+}
+
+.hero-tagline {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+/* Layout & Movie Cards */
+.row-container {
+    padding: 0 4%;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 10;
+}
+
+.row-container.watchlist-spacer {
+    margin-top: 100px;
+}
+
+.row-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #e5e5e5;
+    transition: color 0.3s;
+}
+
+.row-title:hover {
+    color: #fff;
+}
+
+.movie-card {
+    position: relative;
+    aspect-ratio: 16/9;
+    background-color: #333;
+    border-radius: 4px;
+    overflow: visible;
+    transition: transform 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+    flex-shrink: 0;
+    cursor: pointer;
+    width: 280px;
+}
+
+.movie-card:hover {
+    transform: scale(1.15);
+    z-index: 50;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.7);
+}
+
+.movie-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.movie-grid {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 20px 0 40px 0;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+
+.movie-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.movie-grid-vertical {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px 8px;
+    padding: 20px 0;
+}
+
+/* Badges */
+.top10-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #E50914;
+    color: white;
+    font-size: 0.6rem;
+    font-weight: 900;
+    padding: 2px 4px;
+    border-bottom-left-radius: 2px;
+    text-transform: uppercase;
+    z-index: 10;
+}
+
+.bottom-badge {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #E50914;
+    color: white;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 1px 6px;
+    white-space: nowrap;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+.rating-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    padding: 2px 6px;
+    border-radius: 2px;
+    font-size: 10px;
+    font-weight: bold;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 5;
+}
+
+/* Nav Arrows */
+.nav-arrow {
+    position: absolute;
+    top: 60px;
+    bottom: 40px;
+    width: 4%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 60;
+    opacity: 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    color: white;
+}
+
+.row-container:hover .nav-arrow {
+    opacity: 1;
+}
+
+.nav-arrow:hover {
+    background: rgba(0, 0, 0, 0.8);
+    scale: 1.1;
+}
+
+.left-arrow {
+    left: 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.right-arrow {
+    right: 0;
+    border-radius: 4px 0 0 4px;
+}
+
+.nav-arrow svg {
+    width: 2rem;
+    height: 2rem;
+}
+
+/* =========================================
+   Welcome Page Styles (.page-welcome)
+   ========================================= */
+.page-welcome {
+    font-family: 'Outfit', sans-serif;
+    background-color: #000;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+.page-welcome .hero-section {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background: url('/images/hero-bg.png') no-repeat center center/cover;
+}
+
+.page-welcome .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%), linear-gradient(to top, #000 0%, transparent 40%), linear-gradient(to bottom, #000 0%, transparent 20%);
+}
+
+.page-welcome .netflix-red {
+    color: #E50914;
+}
+
+.page-welcome .bg-netflix-red {
+    background-color: #E50914;
+}
+
+.page-welcome .bg-netflix-red:hover {
+    background-color: #C11119;
+}
+
+.page-welcome .logo {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    color: #E50914;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.page-welcome .logo:hover {
+    transform: scale(1.05);
+}
+
+/* =========================================
+   Auth Pages Styles (Login/Register) (.page-auth)
+   ========================================= */
+.page-auth {
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(to bottom, #440000 0%, #000000 40%);
+    background-attachment: fixed;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-auth .logo-header {
+    padding: 25px 50px;
+}
+
+.page-auth .logo {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    color: #E50914;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.page-auth .login-card,
+.page-auth .register-card {
+    max-width: 450px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 60px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+}
+
+.page-auth .input-field {
+    background: #161616 !important;
+    border: 1px solid #333 !important;
+    color: #fff !important;
+    padding: 16px !important;
+    border-radius: 4px !important;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.page-auth .input-field:focus {
+    border-color: #fff !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.page-auth .btn-red {
+    background-color: #E50914;
+    color: #fff;
+    padding: 12px;
+    border-radius: 4px;
+    font-weight: 700;
+    width: 100%;
+    margin-top: 15px;
+    transition: background 0.2s;
+}
+
+.page-auth .btn-red:hover {
+    background-color: #C11119;
+}
+
+.page-auth .help-link {
+    color: #b3b3b3;
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 15px;
+}
+
+.page-auth .help-link:hover {
+    text-decoration: underline;
+}
+
+.page-auth .footer-text {
+    color: #737373;
+    font-size: 0.85rem;
+    margin-top: 30px;
+    line-height: 1.4;
+}
+
+.page-auth .register-link,
+.page-auth .login-link {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.page-auth .register-link:hover,
+.page-auth .login-link:hover {
+    text-decoration: underline;
+}
+
+/* =========================================
+   Profile Pages Styles (.page-profiles)
+   ========================================= */
+.page-profiles {
+    background-color: #fff;
+    color: #333;
+    font-family: 'Outfit', sans-serif;
+    margin: 0;
+}
+
+/* Add padding bottom for create/edit pages if needed, 
+   but 'page-profiles' is general. We can add specific overrides if needed. */
+.page-profiles.profiles-edit-mode {
+    padding-bottom: 50px;
+}
+
+.page-profiles .settings-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 4%;
+    background-color: #000;
+}
+
+.page-profiles .logo-red {
+    color: #E50914;
+    font-weight: 900;
+    font-size: 2rem;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.page-profiles .settings-container,
+.page-profiles .edit-container {
+    margin: 40px auto;
+}
+
+.page-profiles .settings-container {
+    max-width: 1000px;
+    display: flex;
+    gap: 40px;
+    padding: 0 20px;
+}
+
+.page-profiles .edit-container {
+    max-width: 800px;
+    padding: 0 40px;
+}
+
+.page-profiles .sidebar {
+    width: 200px;
+    flex-shrink: 0;
+}
+
+.page-profiles .sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 4px;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.page-profiles .sidebar-link:hover {
+    background-color: #f5f5f5;
+}
+
+.page-profiles .sidebar-link.active {
+    font-weight: 700;
+    color: #000;
+}
+
+.page-profiles .content {
+    flex-grow: 1;
+}
+
+.page-profiles .back-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.page-profiles h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin: 0 0 8px 0;
+}
+
+/* Edit/Create specific H1 margin */
+.page-profiles.profiles-edit-mode h1 {
+    margin: 0 0 40px 0;
+}
+
+.page-profiles .subtitle {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+.page-profiles .section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 40px 0 16px 0;
+    color: #333;
+}
+
+.page-profiles .card {
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.page-profiles .card-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px;
+    border-bottom: 1px solid #e5e5e5;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
+}
+
+.page-profiles .card-item:last-child {
+    border-bottom: none;
+}
+
+.page-profiles .card-item:hover {
+    background-color: #f9f9f9;
+}
+
+.page-profiles .card-item-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.page-profiles .icon-box {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+}
+
+.page-profiles .item-text h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.page-profiles .item-text p {
+    margin: 4px 0 0 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.page-profiles .profile-list {
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.page-profiles .profile-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    border-bottom: 1px solid #e5e5e5;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
+}
+
+.page-profiles .profile-item:last-child {
+    border-bottom: none;
+}
+
+.page-profiles .profile-item:hover {
+    background-color: #f9f9f9;
+}
+
+.page-profiles .profile-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.page-profiles .profile-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.page-profiles .profile-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.page-profiles .badge {
+    background-color: #e8f0fe;
+    color: #1a73e8;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-left: 10px;
+}
+
+.page-profiles .kids-avatar {
+    background: #fff6e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-profiles .chevron {
+    color: #333;
+    width: 20px;
+    height: 20px;
+}
+
+/* Profile Edit/Create Specifics */
+.page-profiles .edit-profile-section {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.page-profiles .profile-avatar-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+}
+
+.page-profiles .profile-avatar-container .profile-avatar {
+    width: 100%;
+    height: 100%;
+    background-color: #e5e5e5;
+}
+
+.page-profiles .avatar-edit-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.page-profiles .edit-icon-main {
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 8px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.page-profiles .input-group {
+    flex-grow: 1;
+}
+
+.page-profiles .input-label {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.page-profiles .name-input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 1.1rem;
+    border: 1px solid #333;
+    border-radius: 4px;
+    font-weight: 500;
+    color: #333;
+}
+
+.page-profiles .section-header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 40px 0 16px 0;
+}
+
+.page-profiles .section-description {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.page-profiles .action-box {
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.page-profiles .contact-card {
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.page-profiles .contact-card:hover {
+    border-color: #333;
+}
+
+.page-profiles .contact-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.page-profiles .contact-text h4 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.page-profiles .contact-text p {
+    margin: 4px 0 0 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.page-profiles .footer-note {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.page-profiles .button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 60px;
+}
+
+.page-profiles .btn-guardar {
+    background: #000;
+    color: #fff;
+    padding: 16px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+
+.page-profiles .btn-cancelar {
+    background: transparent;
+    color: #000;
+    padding: 12px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.page-profiles .divider {
+    height: 1px;
+    background: #e5e5e5;
+    margin: 40px 0;
+}
+
+.page-profiles .btn-eliminar {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #e5e5e5;
+    color: #666;
+    padding: 14px;
+    border-radius: 4px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.page-profiles .btn-eliminar:hover {
+    border-color: #333;
+    color: #333;
+}
+
+/* =========================================
+   Error Page Styles (.page-error)
+   ========================================= */
+.page-error {
+    margin: 0;
+    padding: 0;
+    font-family: 'Outfit', sans-serif;
+    background-color: #000;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    /* for absolute children */
+}
+
+.page-error .bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.page-error .bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+}
+
+.page-error .overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, transparent 20%, rgba(0, 0, 0, 0.4) 80%);
+}
+
+.page-error .content {
+    text-align: center;
+    max-width: 800px;
+    padding: 40px;
+    z-index: 1;
+    position: relative;
+}
+
+.page-error h1 {
+    font-size: 5rem;
+    font-weight: 900;
+    margin: 0 0 20px 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.page-error p {
+    font-size: 1.5rem;
+    line-height: 1.5;
+    margin-bottom: 40px;
+    font-weight: 400;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.page-error .btn-home {
+    background-color: #fff;
+    color: #000;
+    padding: 12px 30px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 4px;
+    display: inline-block;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.page-error .btn-home:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: scale(1.05);
+}
+
+.page-error .error-footer {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    color: #fff;
+    font-size: 1.25rem;
+}
+
+.page-error .error-code {
+    border-left: 2px solid #E50914;
+    padding-left: 15px;
+    font-weight: 400;
+}
+
+.page-error .error-code strong {
+    font-weight: 700;
+}
+
+.page-error .attribution {
+    position: absolute;
+    bottom: 20px;
+    right: 4%;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
