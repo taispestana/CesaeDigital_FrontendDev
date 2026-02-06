@@ -43,3 +43,7 @@ Route::middleware('auth')->group(function () {
 
 //Rotas de autenticação
 require __DIR__ . '/auth.php';
+
+Route::fallback(function () {
+    return redirect('/');
+});

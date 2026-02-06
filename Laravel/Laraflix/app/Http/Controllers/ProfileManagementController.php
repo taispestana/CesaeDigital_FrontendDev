@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileManagementController extends Controller
 {
@@ -11,14 +15,14 @@ class ProfileManagementController extends Controller
      */
     public function index()
     {
-        $users = \App\Models\User::all();
+        $users = User::all();
         return view('profiles.manage', compact('users'));
     }
 
     /**
      * Função que exibe a página de edição de perfil
      */
-    public function edit(\App\Models\User $user)
+    public function edit(User $user)
     {
         return view('profiles.edit', compact('user'));
     }
@@ -26,7 +30,7 @@ class ProfileManagementController extends Controller
     /**
      * Função que atualiza o perfil do usuário
      */
-    public function update(\Illuminate\Http\Request $request, \App\Models\User $user)
+    public function update(Request $request, User $user)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -39,8 +43,8 @@ class ProfileManagementController extends Controller
 
         if ($request->hasFile('profile_photo')) {
             // Deleta a foto antiga se existir
-            if ($user->profile_photo_path && \Illuminate\Support\Facades\Storage::disk('public')->exists($user->profile_photo_path)) {
-                \Illuminate\Support\Facades\Storage::disk('public')->delete($user->profile_photo_path);
+            if ($user->profile_photo_path && Storage::disk('public')->exists($user->profile_photo_path)) {
+                Storage::disk('public')->delete($user->profile_photo_path);
             }
 
             $path = $request->file('profile_photo')->store('profile-photos', 'public');
@@ -56,9 +60,9 @@ class ProfileManagementController extends Controller
     /**
      * Função que elimina um perfil de usuário
      */
-    public function destroy(\App\Models\User $user)
+    public function destroy(User $user)
     {
-        $currentUser = \Illuminate\Support\Facades\Auth::user();
+        $currentUser = Auth::user();
 
         if (!$currentUser->isAdmin()) {
             abort(403, 'Ação não autorizada.');
@@ -66,7 +70,7 @@ class ProfileManagementController extends Controller
 
         // Se estiver eliminando o próprio perfil, desloga o usuário
         if ($currentUser->id === $user->id) {
-            \Illuminate\Support\Facades\Auth::logout();
+            Auth::logout();
             $user->delete();
             return redirect('/')->with('success', 'A sua conta foi eliminada.');
         }
@@ -86,7 +90,7 @@ class ProfileManagementController extends Controller
     /**
      * Função que salva um novo perfil no banco de dados
      */
-    public function store(\Illuminate\Http\Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -99,10 +103,10 @@ class ProfileManagementController extends Controller
             $profilePhotoPath = $request->file('profile_photo')->store('profile-photos', 'public');
         }
 
-        \App\Models\User::create([
+        User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => \Illuminate\Support\Facades\Hash::make('laraflix123'),
+            'password' => Hash::make('laraflix123'),
             'role' => 'user',
             'profile_photo_path' => $profilePhotoPath,
         ]);
@@ -113,9 +117,9 @@ class ProfileManagementController extends Controller
     /**
      * Função que altera o perfil atual
      */
-    public function switch(\App\Models\User $user)
+    public function switch(User $user)
     {
-        \Illuminate\Support\Facades\Auth::login($user);
+        Auth::login($user);
         return redirect()->route('dashboard')->with('success', 'Perfil alterado para ' . $user->name);
     }
 }
