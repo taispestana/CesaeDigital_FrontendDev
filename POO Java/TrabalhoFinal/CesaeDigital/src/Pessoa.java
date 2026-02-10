@@ -30,7 +30,7 @@ public abstract class Pessoa {
     public Pessoa(String nome, String email, String telefone, int idade) {
         setNome(nome); // Usa setter para validação
         setEmail(email); // Usa setter para validação
-        this.telefone = telefone;
+        setTelefone(telefone); // Usa setter para validação
         setIdade(idade); // Usa setter para validação
     }
 
@@ -124,11 +124,17 @@ public abstract class Pessoa {
 
     /**
      * Define o telefone da pessoa.
+     * Valida se o telefone contém apenas dígitos e tem pelo menos 9 números.
      * 
      * @param telefone Novo telefone.
      */
     public void setTelefone(String telefone) {
-        this.telefone = telefone;
+        // Validação: Não nulo e contém apenas dígitos (regex "\\d+") com pelo menos 9 caracteres
+        if (telefone != null && telefone.matches("\\d{9,}")) {
+            this.telefone = telefone;
+        } else {
+            System.out.println("Erro: Telefone inválido (deve conter apenas números, min 9 dígitos).");
+        }
     }
 
     /**

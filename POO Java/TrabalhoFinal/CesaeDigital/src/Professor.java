@@ -80,7 +80,7 @@ public class Professor extends Pessoa {
         System.out.println("ID Professor: " + numeroProfessor);
         System.out.println(super.toString());
         System.out.println("Especialidade: " + especialidade);
-        System.out.printf("Salário Mensal: %.2f€%n", salario);
+        System.out.printf("Salário Mensal: %.2f euros%n", salario);
         listarUCs();
         System.out.println("--------------------------------");
     }
