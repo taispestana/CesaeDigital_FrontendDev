@@ -65,7 +65,7 @@ public class Curso {
         System.out.println("Tipo: " + tipo);
         System.out.println("Duração: " + duracaoMeses + " meses");
         System.out.println("----------------------------------------");
-        
+
         System.out.println("PLANO CURRICULAR (UCs):");
         if (unidadesCurriculares.isEmpty()) {
             System.out.println("- Nenhuma UC definida.");
@@ -74,7 +74,7 @@ public class Curso {
                 System.out.println("  > " + uc.getNome() + " (" + uc.getCargaHoraria() + "h)");
             }
         }
-        
+
         System.out.println("----------------------------------------");
         listarTurmas();
         System.out.println("========================================\n");
@@ -82,13 +82,25 @@ public class Curso {
 
     // ========== GETTERS E SETTERS ==========
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+    public String getNome() {
+        return nome;
+    }
 
-    public TipoCurso getTipo() { return tipo; }
-    public void setTipo(TipoCurso tipo) { this.tipo = tipo; }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-    public int getDuracaoMeses() { return duracaoMeses; }
+    public TipoCurso getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoCurso tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getDuracaoMeses() {
+        return duracaoMeses;
+    }
 
     public void setDuracaoMeses(int duracaoMeses) {
         if (duracaoMeses > 0) {
@@ -99,6 +111,16 @@ public class Curso {
         }
     }
 
-    public ArrayList<Turma> getTurmas() { return new ArrayList<>(turmas); }
-    public ArrayList<UnidadeCurricular> getUnidadesCurriculares() { return new ArrayList<>(unidadesCurriculares); }
+    public ArrayList<Turma> getTurmas() {
+        return new ArrayList<>(turmas);
+    }
+
+    public ArrayList<UnidadeCurricular> getUnidadesCurriculares() {
+        return new ArrayList<>(unidadesCurriculares);
+    }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
 }

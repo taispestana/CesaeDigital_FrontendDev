@@ -19,10 +19,10 @@ public class Professor extends Pessoa {
     // ========== CONSTRUTOR ==========
     public Professor(String nome, String email, String telefone, int idade, String especialidade, double salario) {
         super(nome, email, telefone, idade);
-        
+
         // Geração automática do número do professor
         this.numeroProfessor = ++contadorProfessores;
-        
+
         this.especialidade = especialidade;
         setSalario(salario); // Usa o setter para validação
         this.unidadesCurriculares = new ArrayList<>();
@@ -35,7 +35,8 @@ public class Professor extends Pessoa {
      * Limite máximo de 5 UCs por professor.
      */
     public void adicionarUC(UnidadeCurricular uc) {
-        if (uc == null) return;
+        if (uc == null)
+            return;
 
         if (unidadesCurriculares.size() >= 5) {
             System.out.println("Erro: O professor " + getNome() + " já atingiu o limite máximo de 5 UCs.");
@@ -114,5 +115,10 @@ public class Professor extends Pessoa {
 
     public ArrayList<UnidadeCurricular> getUnidadesCurriculares() {
         return new ArrayList<>(unidadesCurriculares);
+    }
+
+    @Override
+    public String toString() {
+        return getNome();
     }
 }

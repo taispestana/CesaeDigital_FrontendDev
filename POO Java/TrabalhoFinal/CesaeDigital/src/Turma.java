@@ -27,7 +27,8 @@ public class Turma {
      * Inscreve um aluno se houver vaga e ele não estiver já na lista.
      */
     public void inscreverAluno(Aluno aluno) {
-        if (aluno == null) return;
+        if (aluno == null)
+            return;
 
         if (alunos.size() >= capacidadeMaxima) {
             System.out.println("Erro: A turma " + nome + " já atingiu a capacidade máxima.");
@@ -78,15 +79,45 @@ public class Turma {
         }
     }
 
+    /**
+     * Remove uma Unidade Curricular da turma.
+     */
+    public void removerUC(UnidadeCurricular uc) {
+        if (unidadesCurriculares.remove(uc)) {
+            System.out.println("Sucesso: UC removida da turma " + nome);
+        } else {
+            System.out.println("Erro: UC não encontrada nesta turma.");
+        }
+    }
+
     // ========== GETTERS E SETTERS ==========
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+    public String getNome() {
+        return nome;
+    }
 
-    public int getCapacidadeMaxima() { return capacidadeMaxima; }
-    
-    public ArrayList<Aluno> getAlunos() { return new ArrayList<>(alunos); }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-    public Curso getCurso() { return curso; }
-    public void setCurso(Curso curso) { this.curso = curso; }
+    public int getCapacidadeMaxima() {
+        return capacidadeMaxima;
+    }
+
+    public ArrayList<Aluno> getAlunos() {
+        return new ArrayList<>(alunos);
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
 }

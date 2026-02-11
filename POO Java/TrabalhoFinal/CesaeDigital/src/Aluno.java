@@ -14,16 +14,28 @@ public class Aluno extends Pessoa {
     private ArrayList<Double> notas;
     private EstadoAluno estado;
 
-    // ========== CONSTRUTOR ==========
+    // ========== CONSTRUTORES ==========
+    /**
+     * Construtor completo da classe Aluno.
+     */
     public Aluno(String nome, String email, String telefone, int idade, Turma turma, EstadoAluno estado) {
         super(nome, email, telefone, idade); // Chama o construtor da classe Pessoa
-        
+
         // Geração automática do número do aluno
         this.numeroAluno = ++contadorAlunos;
-        
+
         this.turma = turma;
         this.estado = estado;
         this.notas = new ArrayList<>(); // Inicializa a lista de notas vazia
+    }
+
+    /**
+     * Construtor simplificado da classe Aluno (sobrecarga).
+     * Útil quando o aluno é registado sem uma turma inicial.
+     */
+    public Aluno(String nome, String email, String telefone, int idade) {
+        // Chama o construtor completo com valores padrão para turma e estado
+        this(nome, email, telefone, idade, null, EstadoAluno.ATIVO);
     }
 
     // ========== MÉTODOS ESPECÍFICOS ==========
@@ -42,13 +54,14 @@ public class Aluno extends Pessoa {
 
     /**
      * Calcula a média aritmética das notas.
+     * 
      * @return A média ou 0.0 se não houver notas.
      */
     public double calcularMedia() {
         if (notas.isEmpty()) {
             return 0.0;
         }
-        
+
         double soma = 0;
         for (double nota : notas) {
             soma += nota;
@@ -93,5 +106,10 @@ public class Aluno extends Pessoa {
 
     public void setEstado(EstadoAluno estado) {
         this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return getNome();
     }
 }
